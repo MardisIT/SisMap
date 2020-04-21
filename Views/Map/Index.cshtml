@@ -28,14 +28,14 @@
         }
 </style>
 <nav class="white">
-    
+
     <div class="nav-wrapper">
         <img src="~/Content/img/mardis2.png" style="padding-top: 10px;" class="brand-logo center" height="55" width="auto" style="-webkit-user-select: none;margin: auto;">
         </ul>
     </div>
 </nav>
 <div class=".body" onload="javascript:getLocation()">
-
+    @Html.AntiForgeryToken()
     <div style="position:relative">
         <iframe class="iframe"
                 id="mapFrame" src="https://www.google.com/maps/d/embed?mid=1Y4eCTe0aHn2cacnZYCgBVLOzMHoEyLgo&ll='&z={19}
@@ -47,3 +47,24 @@
 
     </div>
 </div>
+
+@section scripts{
+    <script>
+        LoadMap();
+        function LoadMap() {
+            var token = $("[name='__RequestVerificationToken']").val();
+            $.ajax({
+                url: '@Url.Action("DataMax","Map")',
+                type: 'POST',
+                data: {
+                    __RequestVerificationToken: token
+
+                },
+                success: function (result) {
+                    alert(result);
+                }
+            });
+        }
+    </script>
+    
+    }

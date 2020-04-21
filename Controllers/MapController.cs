@@ -15,13 +15,19 @@ namespace SisMap.Controllers
             var statustask = _BancoBarioDOA.GetCount();
             return View();
         }
-        [HttpGet]
-        public JsonResult GetData()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult DataMax(string __RequestVerificationToken)
         {
             try
             {
+                
+                
 
-                var statustask = _BancoBarioDOA.GetCount();
+                    var statustask = _BancoBarioDOA.GetCount();
+               
+
+            
 
                 return Json(statustask);
 

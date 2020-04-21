@@ -39,28 +39,7 @@
             <p>&copy; @DateTime.Now.Year - Chariot</p>
         </footer>
     </div>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzL5Xs37ud3aRBdbGpkwyNCmrE961Peas">
 
-            var geocoder = new google.maps.Geocoder;
-
-            function geocodeLatLng(geocoder, position) {
-            var latlng = {lat: position.coords.latitude.toString(), lng: position.coords.longitude.toString()};
-            geocoder.geocode({'location': latlng}, function(results, status) {
-                if (status === 'OK') {
-                if (results[0]) {
-                    window.alert('Result found'+ results[0].formatted_address);
-                    y.innerText(results[0].formatted_address);
-
-                } else {
-                    window.alert('No results found');
-                }
-                } else {
-                window.alert('Geocoder failed due to: ' + status);
-                }
-            });
-        }
-
-    </script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
