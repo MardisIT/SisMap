@@ -2,6 +2,48 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .body {
+        margin: 0;
+    }
 
-<h2>Index</h2>
+    .iframe {
+        height: calc(100vh - 4px);
+        width: calc(100vw - 4px);
+        box-sizing: border-box;
+    }
 
+    nav .brand-logo {
+        position: absolute;
+        color: rgb(225, 21, 48);
+        display: inline-block;
+        font-size: 2.1rem;
+        padding: 0;
+    }
+
+        nav .brand-logo.center {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+</style>
+<nav class="white">
+    
+    <div class="nav-wrapper">
+        <img src="~/Content/img/mardis2.png" style="padding-top: 10px;" class="brand-logo center" height="55" width="auto" style="-webkit-user-select: none;margin: auto;">
+        </ul>
+    </div>
+</nav>
+<div class=".body" onload="javascript:getLocation()">
+
+    <div style="position:relative">
+        <iframe class="iframe"
+                id="mapFrame" src="https://www.google.com/maps/d/embed?mid=1Y4eCTe0aHn2cacnZYCgBVLOzMHoEyLgo&ll='&z={19}
+                frameborder="0"
+                allowfullscreen
+                ;>
+        </iframe>
+        <img style="bottom:90px; left:20px; position:absolute; z-index:9" src="./img/mardis1.png" height="52" width="60">
+
+    </div>
+</div>
