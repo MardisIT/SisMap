@@ -24,7 +24,7 @@ namespace SisMap.Controllers
                 
                 
 
-                    var statustask = _BancoBarioDOA.GetCount();
+                    var statustask = _BancoBarioDOA.GetData();
                
 
             

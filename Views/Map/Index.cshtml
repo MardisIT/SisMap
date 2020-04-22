@@ -53,15 +53,14 @@
         LoadMap();
         function LoadMap() {
             var token = $("[name='__RequestVerificationToken']").val();
-            $.ajax({
+           $.ajax({
                 url: '@Url.Action("DataMax","Map")',
                 type: 'POST',
                 data: {
                     __RequestVerificationToken: token
-
                 },
-                success: function (result) {
-                    alert(result);
+               success: function (result) {
+                   console.log(result);
                 }
             });
         }
