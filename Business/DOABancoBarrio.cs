@@ -27,25 +27,26 @@ namespace SisMap.Business
                 ProvinceModel _provice = new ProvinceModel();
                 foreach (var item in _model.Select(x=>x.provincia).Distinct()) 
                 {
-                    _data.Add(new ProvinceModel { Provice = item });
+                    _data.Add(new ProvinceModel { provincia = item });
                 }
                 foreach (var item in _data)
                 {
-                  var bank=  _model.Where(x => x.provincia == item.Provice).Select(x=>new BankModel {
-                     trmName=x.nombreLocal,
+                    var bank = _model.Where(x => x.provincia == item.provincia).Select(x => new BankModel {
+                        name = x.nombreLocal,
                         dtrmNombre = x.propietario,
-                        trmLocation = x.tiponegocio,
+                        direccion = x.tiponegocio,
                         ruc_cedula = x.cedula,
-                        Latitud = x.latitud,
-                        Longitud = x.longitud,
+                        latitud = x.latitud,
+                        longitud = x.longitud,
                         TipoNegocio = x.tiponegocio,
                         Canton = x.ciudad,
                         Parroquia = x.parroquia,
-                        Celular=x.telefono,
+                        Celular = x.telefono,
+                        img = x.imagen
 
 
                     }).ToList();
-                    _data.Where(t => t.Provice == item.Provice).First().banks = bank;
+                    _data.Where(t => t.provincia == item.provincia).First().bancos = bank;
                 }
             
 

@@ -2,68 +2,88 @@
 @{
     ViewBag.Title = "Index";
 }
-<style>
-    .body {
-        margin: 0;
-    }
 
-    .iframe {
-        height: calc(100vh - 4px);
-        width: calc(100vw - 4px);
-        box-sizing: border-box;
-    }
-
-    nav .brand-logo {
-        position: absolute;
-        color: rgb(225, 21, 48);
-        display: inline-block;
-        font-size: 2.1rem;
-        padding: 0;
-    }
-
-        nav .brand-logo.center {
-            left: 50%;
-            -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-        }
-</style>
-<nav class="white">
-
-    <div class="nav-wrapper">
-        <img src="~/Content/img/mardis2.png" style="padding-top: 10px;" class="brand-logo center" height="55" width="auto" style="-webkit-user-select: none;margin: auto;">
-        </ul>
+<nav class="navPage">
+    <i id="openAllSites" class="material-icons">menu</i>
+    <img src="./src/mardis2.png" class="iconHeader">
+    <div id="routeResumen" class="routeResumen">
+        <p>
+            DISTANCIA: <a id="distace"></a>
+            TIEMPO: <a id="duration"></a>
+        </p>
     </div>
 </nav>
-<div class=".body" onload="javascript:getLocation()">
-    @Html.AntiForgeryToken()
-    <div style="position:relative">
-        <iframe class="iframe"
-                id="mapFrame" src="https://www.google.com/maps/d/embed?mid=1Y4eCTe0aHn2cacnZYCgBVLOzMHoEyLgo&ll='&z={19}
-                frameborder="0"
-                allowfullscreen
-                ;>
-        </iframe>
-        <img style="bottom:90px; left:20px; position:absolute; z-index:9" src="./img/mardis1.png" height="52" width="60">
-
+<main class="map" id="mapid">
+</main>
+@Html.AntiForgeryToken()
+<!--MARKER DRAWER-->
+<aside id="markerSite" class="sidenav drawerBackground">
+    <!--MARKER NAVBAR-->
+    <nav class="drawerNavigator">
+        <i id="closeDrawer" class="material-icons">arrow_back</i>
+        <p id="titleDrawer" class="titleText"></p>
+        <i id="goTo" class="material-icons">directions</i>
+    </nav>
+    <ul class="drawerBody">
+        <img id=localImage src="" class="imageHeader">
+        <div>
+            NOMBRE
+            <p id="localName"></p>
+        </div>
+        <div>
+            DIRECCIÓN
+            <p id="localDir"></p>
+        </div>
+        <div>
+            LATITUD
+            <p id="localLat"></p>
+        </div>
+        <div>
+            LONGITUD
+            <p id="localLong"></p>
+        </div>
+    </ul>
+</aside>
+<!--LIST DRAWER-->
+<aside id="allsites" class="sidenav">
+    <nav class="navPageAll">
+        <p>BANCOS DEL BARRIO</p>
+    </nav>
+    <div id="allSitesList">
+        <ul id="listCollapsible" class="collapsible">
+        </ul>
     </div>
+</aside>
+<div style="display:none;overflow-y: auto;" class="floatSteps" id="floatSteps">
+    <ul id="floatStepsBody" class="floatStepsBody">
+    </ul>
 </div>
+<a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
+<a class="getMyLocationContent">  <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i></a>
 
 @section scripts{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script src="~/Content/js/main.js"></script>
     <script>
         LoadMap();
         function LoadMap() {
             var token = $("[name='__RequestVerificationToken']").val();
-           $.ajax({
-                url: '@Url.Action("DataMax","Map")',
+            $.ajax({
+                url: "/Map/DataMax",
                 type: 'POST',
                 data: {
                     __RequestVerificationToken: token
                 },
-               success: function (result) {
-                   console.log(result);
+                success: function (result) {
+                    permiso(result)
                 }
             });
+            return null;
         }
+
+
     </script>
-    
-    }
+
+}

@@ -7,7 +7,7 @@ namespace SisMap.Models
 {
     public class ProvinceModel
     {
-        public string Provice {get;set;}
-        public List<BankModel> banks { get; set; } = new List<BankModel>();
+        public string provincia { get;set;}
+        public List<BankModel> bancos { get; set; } = new List<BankModel>();
 }
 }
