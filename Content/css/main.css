@@ -1,38 +1,36 @@
-.map{
+.map {
     height: 93vh;
 }
 
 @media only screen and (max-width: 600px) {
-    .routeResumen p{    
+    .routeResumen p {
         font-size: 9pt;
     }
 
-    .iconHeader{
+    .iconHeader {
         display: none;
     }
-
 }
 
 @media only screen and (min-width: 600px) {
-    .iconHeader{
+    .iconHeader {
         position: absolute;
         align-self: center;
         padding: 0;
         left: 50%;
         -webkit-transform: translateX(-50%);
-                transform: translateX(-50%);
+        transform: translateX(-50%);
         height: 55px;
     }
-    
 }
 
-.getMyLocation{
+.getMyLocation {
     cursor: pointer;
     position: absolute;
     right: 7px;
     bottom: 15%;
     z-index: 9999;
-    color: #0169B7 ;
+    color: #0169B7;
     font-size: 20pt;
     color: #007ACC;
     height: 40px;
@@ -45,180 +43,192 @@
     -webkit-box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
     -moz-box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
     box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
-
 }
 
-.routeResumen{
+.routeResumen {
     display: none;
 }
-.routeResumen p{    
-    font-weight: bold;
-    margin-right: 10px;
-    color: #0665B2;
-}
-.routeResumen p a{
-    margin-left:10px;
-    margin-right:10px;
-    height: 30px;
-    font-weight: bold;
-    color: gray;
-}
 
-.navPage{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding-left:20px;
+    .routeResumen p {
+        font-weight: bold;
+        margin-right: 10px;
+        color: #0665B2;
+    }
+
+        .routeResumen p a {
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 30px;
+            font-weight: bold;
+            color: gray;
+        }
+
+.navPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
     background-color: #ffffff;
 }
 
-.navPageAll{
-    display:flex;
-    align-items:flex-start;
-    padding-left:20px;
+.navPageAll {
+    display: flex;
+    align-items: flex-start;
+    padding-left: 20px;
 }
 
-.navPageAll p{
-    font-weight: 600;
-    font-size: 12pt;
+    .navPageAll p {
+        font-weight: 600;
+        font-size: 12pt;
+    }
+
+.navPage i {
+    color: rgb(189, 11, 11);
+    cursor: pointer;
 }
 
-.navPage i{
-    color:rgb(189, 11, 11);   
-    cursor:pointer;
-}
-
-.drawerBackground{
+.drawerBackground {
     background-color: #FAFAFA;
 }
 
-.imageHeader{
+.imageHeader {
     height: 200px;
     width: 300px;
+    display: none;
 }
 
-.drawerNavigator{
-    align-items:center;
-    display:flex;
-    justify-content:space-between;
-    padding-left:10px;
-    padding-right:10px;
-}
-.drawerNavigator  p{
-    color:white;   
-    font-size:14pt;
-    font-weight: 600;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 200px;
-}                                                                        
-.drawerNavigator  i{
-    color:white;   
-    cursor:pointer;
-}
-.drawerNavigator  i:hover{
-    color:black;
+.drawerNavigator {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.drawerBody{
-    padding:  0px 20px 20px 20px;
-    overflow-y: auto;    
+    .drawerNavigator p {
+        color: white;
+        font-size: 14pt;
+        font-weight: 600;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+
+    .drawerNavigator i {
+        color: white;
+        cursor: pointer;
+    }
+
+        .drawerNavigator i:hover {
+            color: black;
+        }
+
+.drawerBody {
+    padding: 0px 20px 20px 20px;
+    overflow-y: auto;
 }
-.drawerBody p{
-    font-size:12pt;
-    color: black;
-    padding-top: 5px;
-}
-.drawerBody div{
-    margin-left: 20px;
-    margin-right: 20px;
-    padding-top: 25px;
-    font-size: 10pt;
-    color: gray;
-}
+
+    .drawerBody p {
+        font-size: 12pt;
+        color: black;
+        padding-top: 5px;
+    }
+
+    .drawerBody div {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 25px;
+        font-size: 10pt;
+        color: gray;
+    }
 
 @media only screen and (max-width: 600px) {
-    .floatSteps{
+    .floatSteps {
         height: 80%;
-        position:absolute;
-        top:10%;
-        right:10px;
+        position: absolute;
+        top: 10%;
+        right: 10px;
         width: 90%;
         background-color: white;
         z-index: 9999;
     }
-    .menuSteps{
-        position:absolute;
-        top:10%;
-        right:10px;
+
+    .menuSteps {
+        position: absolute;
+        top: 10%;
+        right: 10px;
         z-index: 9999;
-        cursor:pointer;
+        cursor: pointer;
         user-select: none;
     }
 }
- 
+
 @media only screen and (min-width: 600px) {
-    .floatSteps{
+    .floatSteps {
         height: 80%;
-        position:absolute;
-        top:10%;
-        right:5px;
+        position: absolute;
+        top: 10%;
+        right: 5px;
         width: 60%;
         background-color: white;
         z-index: 9998;
     }
-    .menuSteps{
-        position:absolute;
-        top:10%;
-        right:10px;
+
+    .menuSteps {
+        position: absolute;
+        top: 10%;
+        right: 10px;
         z-index: 9999;
-        cursor:pointer;
+        cursor: pointer;
         user-select: none;
     }
 }
 
 
 @media only screen and (min-width: 768px) {
-    .floatSteps{
+    .floatSteps {
         height: 80%;
-        position:absolute;
-        top:10%;
-        right:5px;
+        position: absolute;
+        top: 10%;
+        right: 5px;
         width: 40%;
         background-color: white;
         z-index: 9998;
     }
-    .menuSteps{
-        position:absolute;
-        top:10%;
-        right:10px;
+
+    .menuSteps {
+        position: absolute;
+        top: 10%;
+        right: 10px;
         z-index: 9999;
-        cursor:pointer;
-        user-select: none;
-    }
-}
-@media only screen and (min-width: 992px) {
-    .floatSteps{
-        height: 80%;
-        position:absolute;
-        top:10%;
-        right:5px;
-        width: 25%;
-        background-color: white;
-        z-index: 9998;
-    }
-    .menuSteps{
-        position:absolute;
-        top:10%;
-        right:10px;
-        z-index: 9999;
-        cursor:pointer;
+        cursor: pointer;
         user-select: none;
     }
 }
 
-.menuSteps i{
+@media only screen and (min-width: 992px) {
+    .floatSteps {
+        height: 80%;
+        position: absolute;
+        top: 10%;
+        right: 5px;
+        width: 25%;
+        background-color: white;
+        z-index: 9998;
+    }
+
+    .menuSteps {
+        position: absolute;
+        top: 10%;
+        right: 10px;
+        z-index: 9999;
+        cursor: pointer;
+        user-select: none;
+    }
+}
+
+.menuSteps i {
     font-size: 28pt;
     color: #007ACC;
     height: 50px;
@@ -231,14 +241,13 @@
     -webkit-box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
     -moz-box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
     box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
-
 }
 
-.menuSteps{
+.menuSteps {
     display: none;
 }
 
-.floatSteps{
+.floatSteps {
     overflow-y: auto;
     top: 18%;
     padding-top: 30px;

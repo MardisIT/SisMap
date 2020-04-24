@@ -5,7 +5,7 @@
 
 <nav class="navPage">
     <i id="openAllSites" class="material-icons">menu</i>
-    <img src="./src/mardis2.png" class="iconHeader">
+    <img src="~/Content/img/mardis.png" class="iconHeader" />
     <div id="routeResumen" class="routeResumen">
         <p>
             DISTANCIA: <a id="distace"></a>
@@ -31,14 +31,38 @@
             <p id="localName"></p>
         </div>
         <div>
+            NEGOCIO TIPO
+            <p id="localType"></p>
+        </div>
+        <div>
+            PROPIETARIO
+            <p id="localOwn"></p>
+        </div>
+        <div>
+            TELÉFONO
+            <p id="localPhone"></p>
+        </div>
+        <div>
             DIRECCIÓN
             <p id="localDir"></p>
         </div>
         <div>
+            PROVINCIA
+            <p id="localProv"></p>
+        </div>
+        <div>
+            CANTÓN
+            <p id="localCity"></p>
+        </div>
+        <div>
+            PARROQUIA
+            <p id="localPar"></p>
+        </div>
+        <div style="display: none;">
             LATITUD
             <p id="localLat"></p>
         </div>
-        <div>
+        <div style="display: none;">
             LONGITUD
             <p id="localLong"></p>
         </div>
@@ -61,10 +85,9 @@
 <a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
 <a class="getMyLocationContent">  <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i></a>
 
+
 @section scripts{
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
     <script src="~/Content/js/main.js"></script>
     <script>
         LoadMap();
@@ -76,14 +99,11 @@
                 data: {
                     __RequestVerificationToken: token
                 },
-                success: function (result) {
+                success: function (result) {               
                     permiso(result)
                 }
             });
             return null;
         }
-
-
     </script>
-
 }
