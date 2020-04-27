@@ -709,7 +709,7 @@ function error() {
 function permiso(_model) {
     data_engine = _model
     //se debe  poner en negado la siguiente función
-    if (window.location === window.parent.location) {
+    if (window.location !== window.parent.location) {
 
         var contentRequestPermisson = document.getElementById('contentRequestPermisson')
         contentRequestPermisson.style.display = "flex"
