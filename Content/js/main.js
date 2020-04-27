@@ -703,7 +703,7 @@ function initializarMapa() {
 }
 
 function error() {
-    alert('Unable to retrieve your location');
+    alert('Se han denegado permisos de ubicación, active para acceder');
 }
 
 function permiso(_model) {
