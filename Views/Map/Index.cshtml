@@ -4,18 +4,20 @@
 }
 
 <div id="contentRequestPermisson" class="dialogModal">
-    <a id="requestPermisson" class="waves-effect waves-light btn">Permitir Ubicación</a>
+    <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
 </div>
 
 <nav class="navPage">
     <i id="openAllSites" class="material-icons">menu</i>
     <img src="~/Content/img/mardis.png" class="iconHeader" />
-    <div id="routeResumen" class="routeResumen">
-        <p>
-            DISTANCIA: <a id="distace"></a>
-            TIEMPO: <a id="duration"></a>
-        </p>
-    </div>
+    <!--
+        <div id="routeResumen" class="routeResumen">
+            <p>
+                DISTANCIA: <a id="distace"></a>
+                TIEMPO: <a id="duration"></a>
+            </p>
+        </div>
+     -->
 </nav>
 <main class="map" id="mapid">
 </main>
@@ -86,8 +88,11 @@
     <ul id="floatStepsBody" class="floatStepsBody">
     </ul>
 </div>
+<!--
 <a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
-<a class="getMyLocationContent">  <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i></a>
+-->
+<a>  <i id="getNearest" class="material-icons getNearest">directions</i></a>
+<a>  <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i></a>
 
 
 @section scripts{

@@ -3,8 +3,8 @@ var myLocationMarker;
 var lastLatRoute;
 var lastLongRoute;
 var layerGroup;
-var dist = []
-var ar = []
+//var dist = []
+//var ar = []
 
 document.getElementById("closeDrawer").addEventListener('click', (evt) => {
     var elem = document.getElementById('markerSite')
@@ -24,16 +24,22 @@ document.getElementById("goTo").onclick = function (evt) {
     lastLongRoute = longEnd
     var elem = document.getElementById('markerSite')
     var instance = M.Sidenav.getInstance(elem);
+    instance.close();
+    window.open('https://maps.google.com/?q=+' + latEnd + ',' + longEnd + '');
 
+    /*
     navigator.geolocation.getCurrentPosition((position) => {
         let latStart = position.coords.latitude;
         let longStart = position.coords.longitude;
-        fetching(latStart, longStart, latEnd, longEnd);
+        
+        //fetching(latStart, longStart, latEnd, longEnd);
         instance.close();
-        document.getElementById("menuSteps").style.display = "flex";
+        //document.getElementById("menuSteps").style.display = "flex";
     }
-        , error);
+        , error);*/
 }
+
+/*
 
 document.getElementById("menuSteps").addEventListener('click', (evt) => {
     var elem = document.getElementById('floatSteps')
@@ -49,6 +55,8 @@ document.getElementById("menuSteps").addEventListener('click', (evt) => {
     }
 
 })
+*/
+document.getElementById("getNearest").addEventListener('click', (evt) => launchNearestPosition())
 
 document.getElementById("getMyLocation").addEventListener('click', (evt) => updateRouteActualPosition())
 
@@ -57,18 +65,31 @@ function updateRouteActualPosition() {
         let latStart = position.coords.latitude;
         let longStart = position.coords.longitude;
         if (myLocationMarker != null) {
-            if ((lastLatRoute != null || lastLongRoute != null)) {
+            /*if ((lastLatRoute != null || lastLongRoute != null)) {
                 clearRoutes()
                 mymap.removeLayer(myLocationMarker)
                 fetching(latStart, longStart, lastLatRoute, lastLongRoute);
                 success(position, mymap)
-            } else {
-                mymap.removeLayer(myLocationMarker)
-                success(position, mymap)
-            }
+            } else {*/
+            mymap.removeLayer(myLocationMarker)
+            success(position, mymap)
+        } else {
+            success(position, mymap)
         }
     }
         , error);
+}
+
+function launchNearestPosition() {
+    var gj = L.geoJson(layerGroup);    
+    navigator.geolocation.getCurrentPosition((position) => {
+        let latStart = position.coords.latitude;
+        let longStart = position.coords.longitude;
+        var nearest = leafletKnn(gj).nearest(L.latLng(latStart, longStart), 1, 10000);
+        window.open('https://maps.google.com/?q=+' + nearest[0].lat + ',' + nearest[0].lon + '');
+    }
+    , error);  
+
 }
 
 function clearRoutes() {
@@ -93,7 +114,7 @@ function secondsToString(seconds) {
     return hour + ':' + minute + ':' + second;
 }
 
-
+/*
 function searchMinusRoute(lat1, long1, lat2, long2) {
     fetch('https://router.project-osrm.org/route/v1/driving/' + long1 + ',' + lat1 + ';' + long2 + ',' + lat2 + '')
         .then(
@@ -118,21 +139,30 @@ function searchMinusRoute(lat1, long1, lat2, long2) {
         });
 }
 
+*/
+
 const sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-async function successEmbeeded(position) {
+/*async*/ function successEmbeeded(position) {
     var contentRequestPermisson = document.getElementById('contentRequestPermisson')
     contentRequestPermisson.style.display = "none"
+
+    var myLocationButton = document.getElementById('getNearest')
+    myLocationButton.style.display = "flex";
 
     var myLocationButton = document.getElementById('getMyLocation')
     myLocationButton.style.display = "flex";
 
     let mymap = initializarMapa();
 
+    success(position, mymap)
+
+    /*
     let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
+    let longitude = position.coords.longitude;    
+   
 
     var myIcon = L.icon({
         iconUrl: '../Content/img/myLocation.png',
@@ -152,19 +182,20 @@ async function successEmbeeded(position) {
     myLocationMarker = marker
     var latLngs = [marker.getLatLng()];
     var markerBounds = L.latLngBounds(latLngs);
-    mymap.fitBounds(markerBounds);
+    mymap.fitBounds(markerBounds);  
 
-    var gj = L.geoJson(layerGroup);
-    var nearest = leafletKnn(gj).nearest(L.latLng(latitude, longitude), 3, 8000);       
-
+    
     for (let i = 0; i <= nearest.length - 1; i++) {
         await searchMinusRoute(latitude, longitude, nearest[i].lat, nearest[i].lon)
     }  
 
     getMinusRoute(latitude, longitude)
-    
+    */
     
 }
+
+/*
+
 
 function getMinusRoute(latitudeStart, longStart) {
     return sleep(2000).then(v => {
@@ -423,10 +454,9 @@ function fetching(lat1, long1, lat2, long2) {
 
                         let kilometros = (parseFloat(data.routes[0].distance) / 1000).toFixed(2)
 
-                        document.getElementById("routeResumen").style.display = "flex"
-                        document.getElementById("distace").innerHTML = kilometros + " Km"
-                        document.getElementById("duration").innerHTML = secondsToString(parseFloat(data.routes[0].duration).toFixed(0))
-
+                        //document.getElementById("routeResumen").style.display = "flex"
+                        //document.getElementById("distace").innerHTML = kilometros + " Km"
+                        //document.getElementById("duration").innerHTML = secondsToString(parseFloat(data.routes[0].duration).toFixed(0))
 
 
                         steps.intersections.map((inte) => {
@@ -450,6 +480,7 @@ function fetching(lat1, long1, lat2, long2) {
             console.log('Fetch Error :-S', err);
         });
 }
+*/
 
 function success(position, mymap) {
     let latitude = position.coords.latitude;
@@ -486,29 +517,30 @@ function initializarMapa() {
         inDuration: 250,
         outDuration: 200,
         onOpenStart: function () {
-            var menuSteps = document.getElementById('menuSteps')
-            menuSteps.style.display = "none";
+            //var menuSteps = document.getElementById('menuSteps')
+            //menuSteps.style.display = "none";
             var myLocationButton = document.getElementById('getMyLocation')
             myLocationButton.style.display = "none";
-            var floatStepsDialog = document.getElementById('floatSteps')
+            /*var floatStepsDialog = document.getElementById('floatSteps')
             var menuSteps = document.getElementById('menuSteps')
             if (lastLatRoute != null) {
                 floatStepsDialog.style.display = "none"
             }
+            */
 
         },
         onCloseEnd: function () {
 
             var myLocationButton = document.getElementById('getMyLocation')
             myLocationButton.style.display = "flex";
-            var floatStepsDialog = document.getElementById('floatSteps')
+            /*var floatStepsDialog = document.getElementById('floatSteps')
             var menuSteps = document.getElementById('menuSteps')
             if (lastLatRoute != null) {
                 floatStepsDialog.style.display = "none"
                 menuSteps.style.display = "flex";
             } else {
                 menuSteps.style.display = "none";
-            }
+            }*/
         },
     });
 
@@ -525,7 +557,7 @@ function initializarMapa() {
             closeIcon.style.color = "#FFFFFF";
             var gotoIcon = document.getElementById('goTo')
             gotoIcon.style.color = "#FFFFFF";
-            var menuSteps = document.getElementById('menuSteps')
+            /*var menuSteps = document.getElementById('menuSteps')
             var floatStepsDialog = document.getElementById('floatSteps')
             var menuSteps = document.getElementById('menuSteps')
             if (lastLatRoute != null) {
@@ -533,15 +565,15 @@ function initializarMapa() {
                 menuSteps.style.display = "none";
             } else {
                 menuSteps.style.display = "none";
-            }
+            }*/
         },
         onCloseEnd: function () {
-            var menuSteps = document.getElementById('menuSteps')
+            /*var menuSteps = document.getElementById('menuSteps')
             if (lastLatRoute != null) {
                 menuSteps.style.display = "flex";
             } else {
                 menuSteps.style.display = "none";
-            }
+            }*/
         },
     });
 
@@ -647,7 +679,7 @@ function initializarMapa() {
             ulCollapsibleContentList.appendChild(liCollapsibleItem)
 
             liCollapsibleItem.addEventListener("click", () => {
-                mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 17);
+                mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 24);
                 var elem = document.getElementById('allsites')
                 var instance = M.Sidenav.getInstance(elem);
                 instance.close();
@@ -677,21 +709,24 @@ function error() {
 function permiso(_model) {
     data_engine = _model
     //se debe  poner en negado la siguiente función
-    if (window.location !== window.parent.location) {
+    if (window.location === window.parent.location) {
 
         var contentRequestPermisson = document.getElementById('contentRequestPermisson')
         contentRequestPermisson.style.display = "flex"
 
+        var myLocationButton = document.getElementById('getNearest')
+        myLocationButton.style.display = "none";
+
         var myLocationButton = document.getElementById('getMyLocation')
         myLocationButton.style.display = "none";
 
-        document.getElementById('requestPermisson').onclick = function () {
-            if (navigator.geolocation) {
+        if (navigator.geolocation) {
+            document.getElementById('requestPermisson').onclick = function () {
                 navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
-            } else {
-                console.lo("Geolocation is not supported by this browser.");
-            }
-        }
+            }            
+        } else {
+            console.lo("Geolocation is not supported by this browser.");
+        }        
 
     }
     else {

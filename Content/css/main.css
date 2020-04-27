@@ -35,6 +35,27 @@
     background: white;
 }
 
+.getNearest {
+    cursor: pointer;
+    position: absolute;
+    right: 7px;
+    bottom: 25%;
+    z-index: 9999;
+    color: #0169B7;
+    font-size: 20pt;
+    color: #007ACC;
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
+    -moz-box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
+    box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
+}
+
 .getMyLocation {
     cursor: pointer;
     position: absolute;
