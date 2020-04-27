@@ -16,19 +16,21 @@
     <link href="~/Content/css/leaflet.css" rel="stylesheet" />
 
 </head>
-<body>
+<body>    
     @RenderBody()
 
     <environment include="Staging,Production">
         <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>      
+        <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
         <script src="~/Content/js/leaflet.js"></script>
+        <script src="~/Content/js/leaflet-knn.min.js"></script>
     </environment>
 
     <environment exclude="Development">
-        <script src="~/Scripts/jquery-3.4.1.min.js"></script>        
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
         <script src="~/Content/js/leaflet.js"></script>
+        <script src="~/Content/js/leaflet-knn.min.js"></script>
     </environment>
 
     @RenderSection("scripts", required: false)

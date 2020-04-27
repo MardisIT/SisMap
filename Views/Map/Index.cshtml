@@ -3,6 +3,10 @@
     ViewBag.Title = "Index";
 }
 
+<div id="contentRequestPermisson" class="dialogModal">
+    <a id="requestPermisson" class="waves-effect waves-light btn">Permitir Ubicación</a>
+</div>
+
 <nav class="navPage">
     <i id="openAllSites" class="material-icons">menu</i>
     <img src="~/Content/img/mardis.png" class="iconHeader" />
@@ -83,7 +87,7 @@
     </ul>
 </div>
 <a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
-<a class="getMyLocationContent">  <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i></a> 
+<a class="getMyLocationContent">  <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i></a>
 
 
 @section scripts{
@@ -99,7 +103,7 @@
                 data: {
                     __RequestVerificationToken: token
                 },
-                success: function (result) {               
+                success: function (result) {
                     permiso(result)
                 }
             });

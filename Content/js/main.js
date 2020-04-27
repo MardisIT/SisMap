@@ -2,96 +2,203 @@ var mymap;
 var myLocationMarker;
 var lastLatRoute;
 var lastLongRoute;
-var data_engine;
+var layerGroup;
+var dist = []
+var ar = []
 
-document.getElementById("closeDrawer").addEventListener('click', (evt)=>{
+document.getElementById("closeDrawer").addEventListener('click', (evt) => {
     var elem = document.getElementById('markerSite')
     var instance = M.Sidenav.getInstance(elem);
     instance.close();
 })
-document.getElementById("openAllSites").addEventListener('click',(evt)=>{
+document.getElementById("openAllSites").addEventListener('click', (evt) => {
     var elem = document.getElementById('allsites')
     var instance = M.Sidenav.getInstance(elem);
     instance.open();
 })
 
-document.getElementById("goTo").onclick = function(evt) {
-  var latEnd=document.getElementById("localLat").innerHTML
-  var longEnd=document.getElementById("localLong").innerHTML
-  lastLatRoute = latEnd
-  lastLongRoute = longEnd
-  var elem = document.getElementById('markerSite')
-  var instance = M.Sidenav.getInstance(elem);
+document.getElementById("goTo").onclick = function (evt) {
+    var latEnd = document.getElementById("localLat").innerHTML
+    var longEnd = document.getElementById("localLong").innerHTML
+    lastLatRoute = latEnd
+    lastLongRoute = longEnd
+    var elem = document.getElementById('markerSite')
+    var instance = M.Sidenav.getInstance(elem);
 
-  navigator.geolocation.getCurrentPosition((position)=>{
-    let latStart = position.coords.latitude;
-    let longStart = position.coords.longitude;
-    fetching(latStart,longStart,latEnd,longEnd); 
-    instance.close(); 
-    document.getElementById("menuSteps").style.display = "flex";
-  }
-  , error);
+    navigator.geolocation.getCurrentPosition((position) => {
+        let latStart = position.coords.latitude;
+        let longStart = position.coords.longitude;
+        fetching(latStart, longStart, latEnd, longEnd);
+        instance.close();
+        document.getElementById("menuSteps").style.display = "flex";
+    }
+        , error);
 }
 
-document.getElementById("menuSteps").addEventListener('click',(evt)=>{
-  var elem = document.getElementById('floatSteps')
-  var myLocationButton = document.getElementById('getMyLocation')
+document.getElementById("menuSteps").addEventListener('click', (evt) => {
+    var elem = document.getElementById('floatSteps')
+    var myLocationButton = document.getElementById('getMyLocation')
 
-  if(elem.style.display!="none"){
-    elem.style.display="none"
-    myLocationButton.style.display="flex";  
-  }else{
-    elem.style.display="flex"
-    myLocationButton.style.display="none";  
+    if (elem.style.display != "none") {
+        elem.style.display = "none"
+        myLocationButton.style.display = "flex";
+    } else {
+        elem.style.display = "flex"
+        myLocationButton.style.display = "none";
 
-  } 
-  
+    }
+
 })
 
-document.getElementById("getMyLocation").addEventListener('click',(evt)=>updateRouteActualPosition())
+document.getElementById("getMyLocation").addEventListener('click', (evt) => updateRouteActualPosition())
 
-function  updateRouteActualPosition(){
-  navigator.geolocation.getCurrentPosition((position)=>{
-    let latStart = position.coords.latitude;
-    let longStart = position.coords.longitude;
-    if(myLocationMarker!=null){
-      if(( lastLatRoute!= null || lastLongRoute != null)){
-        clearRoutes()
-        mymap.removeLayer(myLocationMarker)
-        fetching(latStart,longStart,lastLatRoute,lastLongRoute); 
-        success(position, mymap)
-      }else{
-        mymap.removeLayer(myLocationMarker)
-        success(position, mymap)
-      }      
-    }   
-  }
-  , error);
+function updateRouteActualPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+        let latStart = position.coords.latitude;
+        let longStart = position.coords.longitude;
+        if (myLocationMarker != null) {
+            if ((lastLatRoute != null || lastLongRoute != null)) {
+                clearRoutes()
+                mymap.removeLayer(myLocationMarker)
+                fetching(latStart, longStart, lastLatRoute, lastLongRoute);
+                success(position, mymap)
+            } else {
+                mymap.removeLayer(myLocationMarker)
+                success(position, mymap)
+            }
+        }
+    }
+        , error);
 }
 
-function clearRoutes(){
-  for(i in mymap._layers) {
-    if(mymap._layers[i]._path != undefined) {
-        try {
-          mymap.removeLayer(mymap._layers[i]);
-        }
-        catch(e) {
-            console.log("problem with " + e + mymap._layers[i]);
+function clearRoutes() {
+    for (i in mymap._layers) {
+        if (mymap._layers[i]._path != undefined) {
+            try {
+                mymap.removeLayer(mymap._layers[i]);
+            }
+            catch (e) {
+                console.log("problem with " + e + mymap._layers[i]);
+            }
         }
     }
 }
-}
 function secondsToString(seconds) {
-  var hour = Math.floor(seconds / 3600);
-  hour = (hour < 10)? '0' + hour : hour;
-  var minute = Math.floor((seconds / 60) % 60);
-  minute = (minute < 10)? '0' + minute : minute;
-  var second = seconds % 60;
-  second = (second < 10)? '0' + second : second;
-  return hour + ':' + minute + ':' + second;
+    var hour = Math.floor(seconds / 3600);
+    hour = (hour < 10) ? '0' + hour : hour;
+    var minute = Math.floor((seconds / 60) % 60);
+    minute = (minute < 10) ? '0' + minute : minute;
+    var second = seconds % 60;
+    second = (second < 10) ? '0' + second : second;
+    return hour + ':' + minute + ':' + second;
+}
+
+
+function searchMinusRoute(lat1, long1, lat2, long2) {
+    fetch('https://router.project-osrm.org/route/v1/driving/' + long1 + ',' + lat1 + ';' + long2 + ',' + lat2 + '')
+        .then(
+            function (response) {
+                if (response.status !== 200) {
+                    console.log('Error: ' +
+                        response.status);
+                    return;
+                }
+                response.json().then(function (data) {
+                    let distance = -1;
+                    distance = parseFloat(data.routes[0].distance)
+                    dist.push(distance)
+                    ar.push(lat2 + "|" + long2 + "|" + distance)
+                    console.log("Hola")
+                    return;
+                });
+            }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+}
+
+const sleep = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function successEmbeeded(position) {
+    var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+    contentRequestPermisson.style.display = "none"
+
+    var myLocationButton = document.getElementById('getMyLocation')
+    myLocationButton.style.display = "flex";
+
+    let mymap = initializarMapa();
+
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+
+    var myIcon = L.icon({
+        iconUrl: '../Content/img/myLocation.png',
+        iconSize: [50, 50],
+        iconAnchor: [22, 50],
+        popupAnchor: [-3, -50],
+        shadowSize: [68, 50],
+        shadowAnchor: [22, 50]
+    });
+    var marker = L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);
+    marker.bindPopup('Mi Posición').openPopup();
+    marker.on('click', function (evt) {
+        var latLngs = [marker.getLatLng()];
+        var markerBounds = L.latLngBounds(latLngs);
+        mymap.fitBounds(markerBounds);
+    })
+    myLocationMarker = marker
+    var latLngs = [marker.getLatLng()];
+    var markerBounds = L.latLngBounds(latLngs);
+    mymap.fitBounds(markerBounds);
+
+    var gj = L.geoJson(layerGroup);
+    var nearest = leafletKnn(gj).nearest(L.latLng(latitude, longitude), 3, 8000);       
+
+    for (let i = 0; i <= nearest.length - 1; i++) {
+        await searchMinusRoute(latitude, longitude, nearest[i].lat, nearest[i].lon)
+    }  
+
+    getMinusRoute(latitude, longitude)
+    
+    
+}
+
+function getMinusRoute(latitudeStart, longStart) {
+    return sleep(2000).then(v => {
+        let counter = 0;
+        let minDist = 0;
+        let indice = 0;
+
+        if (ar.length > 0) {
+            ar.forEach(element => {
+                let vi = element.split("|")[2]
+                if (counter == 0) {
+                    minDist = vi
+                } else {
+                    if (vi < minDist) {
+                        minDist = vi;
+                        indice = counter
+                    }
+                }
+                counter++;
+
+            })
+
+            fetching(latitudeStart, longStart, ar[indice].split("|")[0], ar[indice].split("|")[1]);
+            var elem = document.getElementById('markerSite')
+            var instance = M.Sidenav.getInstance(elem);
+            instance.close()
+            document.getElementById("menuSteps").style.display = "flex";
+        } 
+    })
+    
 }
 
 function fetching(lat1, long1, lat2, long2) {
+    console.log("entra ")
     let matriz = []
     document.getElementById("floatStepsBody").innerHTML = ""
     fetch('https://router.project-osrm.org/route/v1/driving/' + long1 + ',' + lat1 + ';' + long2 + ',' + lat2 + '?steps=true&overview=full')
@@ -106,7 +213,7 @@ function fetching(lat1, long1, lat2, long2) {
                 //aqui debo formeatear la data
                 let count = 1
                 response.json().then(function (data) {
-                    console.log(data)
+
                     data.routes[0].legs[0].steps.map((steps) => {
                         if (count == 1) {
                             let iconI;
@@ -344,29 +451,29 @@ function fetching(lat1, long1, lat2, long2) {
         });
 }
 
-function success(position,mymap) {
-  let latitude  = position.coords.latitude;
-  let longitude = position.coords.longitude;
+function success(position, mymap) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
 
-  var myIcon = L.icon({
-    iconUrl: '../Content/img/myLocation.png',
-    iconSize: [50, 50],
-    iconAnchor: [22, 50],
-    popupAnchor: [-3, -50],
-    shadowSize: [68, 50],
-    shadowAnchor: [22, 50]
-  });
-  var marker = L.marker([latitude,longitude], {icon: myIcon}).addTo(mymap);
-  marker.bindPopup('Mi Posición').openPopup();
-  marker.on('click', function(evt) { 
-    var latLngs = [ marker.getLatLng() ];
+    var myIcon = L.icon({
+        iconUrl: '../Content/img/myLocation.png',
+        iconSize: [50, 50],
+        iconAnchor: [22, 50],
+        popupAnchor: [-3, -50],
+        shadowSize: [68, 50],
+        shadowAnchor: [22, 50]
+    });
+    var marker = L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);
+    marker.bindPopup('Mi Posición').openPopup();
+    marker.on('click', function (evt) {
+        var latLngs = [marker.getLatLng()];
+        var markerBounds = L.latLngBounds(latLngs);
+        mymap.fitBounds(markerBounds);
+    })
+    myLocationMarker = marker
+    var latLngs = [marker.getLatLng()];
     var markerBounds = L.latLngBounds(latLngs);
     mymap.fitBounds(markerBounds);
-  })
-  myLocationMarker = marker
-  var latLngs = [ marker.getLatLng() ];
-  var markerBounds = L.latLngBounds(latLngs);
-  mymap.fitBounds(markerBounds);
 }
 
 function initializarMapa() {
@@ -443,17 +550,16 @@ function initializarMapa() {
     }).setView([-1.591400, -79.002356], 7);
 
     L.control.zoom({ position: 'bottomright' }).addTo(mymap);
-    var actualDate = new Date();
-    var actualYear = actualDate.getFullYear();
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: "© " + actualYear +" - Chariot" }).addTo(mymap);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' }).addTo(mymap);
 
     //datos que toma del api:
-    var datos = data_engine;
+    let datos = data_engine
 
     //esto es para abrir el side bar o drawer
     var elem = document.getElementById('markerSite')
     var instance = M.Sidenav.getInstance(elem);
+    var markerGroup = [];
 
     datos.map((dataResponse) => {
         //creo un m arcador por caea registro del data
@@ -503,56 +609,53 @@ function initializarMapa() {
         });
 
         dataResponse.bancos.map((bancos) => {
+            var latLngs;
+            var markerBounds;
+            var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIcon });
+            // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
+            marker.on('click', function (evt) {
+                document.getElementById("titleDrawer").innerHTML = bancos.dtrmNombre
+                if (bancos.img != 'HTTP') {
+                    document.getElementById("localImage").src = bancos.img;
+                    document.getElementById("localImage").style.display = "flex";
+                } else {
+                    document.getElementById("localImage").style.display = "none";
+                }
+                document.getElementById("localName").innerHTML = bancos.dtrmNombre
+                document.getElementById("localType").innerHTML = bancos.TipoNegocio
+                document.getElementById("localOwn").innerHTML = bancos.name
+                document.getElementById("localPhone").innerHTML = bancos.Celular
+                document.getElementById("localDir").innerHTML = bancos.direccion
+                document.getElementById("localProv").innerHTML = dataResponse.provincia
+                document.getElementById("localCity").innerHTML = bancos.Canton
+                document.getElementById("localPar").innerHTML = bancos.Parroquia
+                document.getElementById("localLat").innerHTML = bancos.latitud
+                document.getElementById("localLong").innerHTML = bancos.longitud
 
-            if (bancos.latitud !== null && bancos.longitud !== null) {
-                var latLngs;
-                var markerBounds;
-                var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIcon }).addTo(mymap);
-                // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
-                marker.on('click', function (evt) {
-                    document.getElementById("titleDrawer").innerHTML = bancos.dtrmNombre
-                    if (bancos.img != 'HTTP') {
-                        document.getElementById("localImage").src = bancos.img;
-                        document.getElementById("localImage").style.display = "flex";
-                    } else {
-                        document.getElementById("localImage").style.display = "none";
-                    }
-                    document.getElementById("localName").innerHTML = bancos.dtrmNombre
-                    document.getElementById("localType").innerHTML = bancos.TipoNegocio
-                    document.getElementById("localOwn").innerHTML = bancos.name
-                    document.getElementById("localPhone").innerHTML = bancos.Celular
-                    document.getElementById("localDir").innerHTML = bancos.direccion
-                    document.getElementById("localProv").innerHTML = dataResponse.provincia
-                    document.getElementById("localCity").innerHTML = bancos.Canton
-                    document.getElementById("localPar").innerHTML = bancos.Parroquia
-                    document.getElementById("localLat").innerHTML = bancos.latitud
-                    document.getElementById("localLong").innerHTML = bancos.longitud
+                latLngs = [marker.getLatLng()];
+                markerBounds = L.latLngBounds(latLngs);
+                mymap.fitBounds(markerBounds);
+                instance.open()
+            })
 
-                    latLngs = [marker.getLatLng()];
-                    markerBounds = L.latLngBounds(latLngs);
-                    mymap.fitBounds(markerBounds);
-                    instance.open()
-                })
+            let liCollapsibleItem = document.createElement('li');
+            liCollapsibleItem.textContent = bancos.dtrmNombre;
+            liCollapsibleItem.style.paddingLeft = "20px"
+            liCollapsibleItem.style.paddingRight = "20px"
+            liCollapsibleItem.id = dataResponse.provincia + bancos.name
+            liCollapsibleItem.style.cursor = "pointer"
+            ulCollapsibleContentList.appendChild(liCollapsibleItem)
 
+            liCollapsibleItem.addEventListener("click", () => {
+                mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 17);
+                var elem = document.getElementById('allsites')
+                var instance = M.Sidenav.getInstance(elem);
+                instance.close();
+            }, false)
 
-                let liCollapsibleItem = document.createElement('li');
-                liCollapsibleItem.textContent = bancos.dtrmNombre;
-                liCollapsibleItem.style.paddingLeft = "20px"
-                liCollapsibleItem.style.paddingRight = "20px"
-                liCollapsibleItem.id = dataResponse.provincia + bancos.name
-                liCollapsibleItem.style.cursor = "pointer"
-                ulCollapsibleContentList.appendChild(liCollapsibleItem)
-
-                liCollapsibleItem.addEventListener("click", () => {
-                    mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 17);
-                    var elem = document.getElementById('allsites')
-                    var instance = M.Sidenav.getInstance(elem);
-                    instance.close();
-                }, false)
-            }            
+            markerGroup.push(marker)
 
         })
-
         divCollapdibleBody.appendChild(ulCollapsibleContentList)
 
         liHeader.appendChild(divCollapsibleHeader)
@@ -560,25 +663,47 @@ function initializarMapa() {
         liHeader.appendChild(divCollapdibleBody)
 
         document.getElementById("listCollapsible").appendChild(liHeader)
-
     })
+
+    layerGroup = L.layerGroup(markerGroup).addTo(mymap).toGeoJSON();
 
     return mymap;
 }
 
 function error() {
-  alert('Unable to retrieve your location');
+    alert('Unable to retrieve your location');
 }
+
 function permiso(_model) {
-  data_engine=_model
-  let mymap = initializarMapa();
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position)=>success(position,mymap), error);
-  } else {
-    console.lo("Geolocation is not supported by this browser.");
-  }
+    data_engine = _model
+    //se debe  poner en negado la siguiente función
+    if (window.location !== window.parent.location) {
+
+        var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+        contentRequestPermisson.style.display = "flex"
+
+        var myLocationButton = document.getElementById('getMyLocation')
+        myLocationButton.style.display = "none";
+
+        document.getElementById('requestPermisson').onclick = function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
+            } else {
+                console.lo("Geolocation is not supported by this browser.");
+            }
+        }
+
+    }
+    else {
+
+        let mymap = initializarMapa();
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => success(position, mymap), error);
+        } else {
+            console.lo("Geolocation is not supported by this browser.");
+        }
+    }
 }
-
-
 
   
