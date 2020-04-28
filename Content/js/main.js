@@ -655,8 +655,8 @@ function initializarMapa() {
                 }
                 document.getElementById("localName").innerHTML = bancos.dtrmNombre
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
-                document.getElementById("localOwn").innerHTML = bancos.name
-                document.getElementById("localPhone").innerHTML = bancos.Celular
+                //document.getElementById("localOwn").innerHTML = bancos.name
+                //document.getElementById("localPhone").innerHTML = bancos.Celular
                 document.getElementById("localDir").innerHTML = bancos.direccion
                 document.getElementById("localProv").innerHTML = dataResponse.provincia
                 document.getElementById("localCity").innerHTML = bancos.Canton
