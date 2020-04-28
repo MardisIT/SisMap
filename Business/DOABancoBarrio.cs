@@ -34,7 +34,7 @@ namespace SisMap.Business
                     var bank = _model.Where(x => x.provincia == item.provincia).Select(x => new BankModel {
                         name = x.nombreLocal,
                         dtrmNombre = x.propietario,
-                        direccion = x.tiponegocio,
+                        direccion = x.direccion,
                         ruc_cedula = x.cedula,
                         latitud = x.latitud,
                         longitud = x.longitud,
