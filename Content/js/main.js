@@ -656,10 +656,10 @@ function initializarMapa() {
                 document.getElementById("localName").innerHTML = bancos.dtrmNombre
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
                 document.getElementById("localOwn").innerHTML = bancos.name
-                document.getElementById("localPhone").innerHTML = bancos.Celular
+                //document.getElementById("localPhone").innerHTML = bancos.Celular
                 document.getElementById("localDir").innerHTML = bancos.direccion
                 document.getElementById("localProv").innerHTML = dataResponse.provincia
-                document.getElementById("localCity").innerHTML = bancos.Canton
+                //document.getElementById("localCity").innerHTML = bancos.Canton
                 document.getElementById("localPar").innerHTML = bancos.Parroquia
                 document.getElementById("localLat").innerHTML = bancos.latitud
                 document.getElementById("localLong").innerHTML = bancos.longitud

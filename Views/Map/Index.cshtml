@@ -52,10 +52,12 @@
             PROPIETARIO
             <p id="localOwn"></p>
         </div>
-        <div>
-            TELÉFONO
-            <p id="localPhone"></p>
-        </div>
+        <!--
+    <div>
+        TELÉFONO
+        <p id="localPhone"></p>
+    </div>
+    -->
         <div>
             DIRECCIÓN
             <p id="localDir"></p>
@@ -64,10 +66,12 @@
             PROVINCIA
             <p id="localProv"></p>
         </div>
-        <div>
-            CANTÓN
-            <p id="localCity"></p>
-        </div>
+        <!--
+    <div>
+        CANTÓN
+        <p id="localCity"></p>
+    </div>
+        -->
         <div>
             PARROQUIA
             <p id="localPar"></p>
@@ -81,46 +85,46 @@
             <p id="localLong"></p>
         </div>
     </ul>
-</aside>
-<!--LIST DRAWER-->
-<aside id="allsites" class="sidenav">
-    <nav class="navPageAll">
-        <p>BANCOS DEL BARRIO</p>
-    </nav>
-    <div id="allSitesList">
-        <ul id="listCollapsible" class="collapsible">
-        </ul>
-    </div>
-</aside>
-<div style="display:none;overflow-y: auto;" class="floatSteps" id="floatSteps">
-    <ul id="floatStepsBody" class="floatStepsBody">
-    </ul>
-</div>
-<!--
-<a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
--->
+    </aside>
+    <!--LIST DRAWER-->
+        <aside id="allsites" class="sidenav">
+            <nav class="navPageAll">
+                <p>BANCOS DEL BARRIO</p>
+            </nav>
+            <div id="allSitesList">
+                <ul id="listCollapsible" class="collapsible">
+                </ul>
+            </div>
+        </aside>
+        <div style="display:none;overflow-y: auto;" class="floatSteps" id="floatSteps">
+            <ul id="floatStepsBody" class="floatStepsBody">
+            </ul>
+        </div>
+        <!--
+    <a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
+    -->
 
-<a>  <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i></a>
+        <a>  <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i></a>
 
 
-@section scripts{
+        @section scripts{
 
-    <script src="~/Content/js/main.js"></script>
-    <script>
-        LoadMap();
-        function LoadMap() {
-            var token = $("[name='__RequestVerificationToken']").val();
-            $.ajax({
-                url: "/Map/DataMax",
-                type: 'POST',
-                data: {
-                    __RequestVerificationToken: token
-                },
-                success: function (result) {
-                    permiso(result)
+            <script src="~/Content/js/main.js"></script>
+            <script>
+                LoadMap();
+                function LoadMap() {
+                    var token = $("[name='__RequestVerificationToken']").val();
+                    $.ajax({
+                        url: "/Map/DataMax",
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token
+                        },
+                        success: function (result) {
+                            permiso(result)
+                        }
+                    });
+                    return null;
                 }
-            });
-            return null;
+            </script>
         }
-    </script>
-}
