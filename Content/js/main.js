@@ -22,21 +22,20 @@ document.getElementById("goTo").onclick = function (evt) {
     var longEnd = document.getElementById("localLong").innerHTML
     lastLatRoute = latEnd
     lastLongRoute = longEnd
-
-    navigator.geolocation.getCurrentPosition((position) => {
-        let latStart = position.coords.latitude;
-        let longStart = position.coords.longitude;
-        window.open('https://www.google.com/maps/dir/?api=1&origin=' + latStart + ',' + longStart + '&destination=' + latEnd + ',' + longEnd + '&travelmode=driving');
-
-    }
-        , errorGoTo(latEnd, longEnd));
+    //successEmbeeded(position), error);
+    navigator.geolocation.getCurrentPosition((position) => getRoute(position, latEnd, longEnd), errorGoTo);
 }
 
+function getRoute(position, latEnd, longEnd) {
+    console.log("entra en success")
+    let latStart = position.coords.latitude;
+    let longStart = position.coords.longitude;
+    window.open('https://www.google.com/maps/dir/?api=1&origin=' + latStart + ',' + longStart + '&destination=' + latEnd + ',' + longEnd + '&travelmode=driving');
+}
 
-
-function errorGoTo(latEnd, longEnd) {
+function errorGoTo() {    
     alert('Se han denegado permisos de ubicación. Para ver la ruta completa active permisos de ubicación');
-    window.open('https://maps.google.com/?q=+' + latEnd + ',' + longEnd + '');
+    window.open('https://maps.google.com/?q=+' + lastLatRoute + ',' + lastLongRoute + '');
 }
 
     /*
