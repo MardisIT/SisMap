@@ -179,7 +179,7 @@
 .imageFooter {
     height: 300px;
     width: 300px;
-    display: flex;
+    display: inline-block;
     align-content: center;
     align-items: center;
     margin-top: 25px;
@@ -315,9 +315,9 @@
     .cabeceraImage {
         width: 100% !important;
     }
-    .imageFooter {
+    /*.imageFooter {
         width: 100% !important;
-    }
+    }*/
     }
 
     @media only screen and (min-width: 992px) {
