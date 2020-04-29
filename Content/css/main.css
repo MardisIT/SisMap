@@ -192,19 +192,21 @@
 }
 
 .imageFooter {
-    height: 300px;
-    width: 300px;
+    height: 380px;
+    width: 330px;
     display: inline-block;
     align-content: center;
     align-items: center;
     margin-top: 25px;
-    padding-left: 5px;
+    /* padding-left: 5px;
+        */
+
 }
 /*.leaflet-right .leaflet-control {
     
     display: none !important;
 }*/
-.imageFooterBG {
+    .imageFooterBG {
     height: 40px;
     width: 150px;
     display: inline-block;
