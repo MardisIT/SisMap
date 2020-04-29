@@ -581,9 +581,9 @@ function initializarMapa() {
         zoomControl: false
     }).setView([-1.591400, -79.002356], 7);
 
-    L.control.zoom({ position: 'bottomright' }).addTo(mymap);
+    L.control.zoom({ position: 'topright' }).addTo(mymap);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' }).addTo(mymap);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Chariot - 2020' }).addTo(mymap);
 
     //datos que toma del api:
     let datos = data_engine
