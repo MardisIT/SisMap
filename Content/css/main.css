@@ -3,7 +3,7 @@
         font-size: 9pt;
     }
 
-    .iconHeader {
+   .iconHeader {
         display: none;
     }
 }
@@ -200,10 +200,10 @@
     margin-top: 25px;
     padding-left: 5px;
 }
-.leaflet-right .leaflet-control {
+/*.leaflet-right .leaflet-control {
     
     display: none !important;
-}
+}*/
 .imageFooterBG {
     height: 40px;
     width: 150px;

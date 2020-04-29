@@ -22,10 +22,22 @@ document.getElementById("goTo").onclick = function (evt) {
     var longEnd = document.getElementById("localLong").innerHTML
     lastLatRoute = latEnd
     lastLongRoute = longEnd
-    var elem = document.getElementById('markerSite')
-    var instance = M.Sidenav.getInstance(elem);
-    instance.close();
+
+    navigator.geolocation.getCurrentPosition((position) => {
+        let latStart = position.coords.latitude;
+        let longStart = position.coords.longitude;
+        window.open('https://www.google.com/maps/dir/?api=1&origin=' + latStart + ',' + longStart + '&destination=' + latEnd + ',' + longEnd + '&travelmode=driving');
+
+    }
+        , errorGoTo(latEnd, longEnd));
+}
+
+
+
+function errorGoTo(latEnd, longEnd) {
+    alert('Se han denegado permisos de ubicación. Para ver la ruta completa active permisos de ubicación');
     window.open('https://maps.google.com/?q=+' + latEnd + ',' + longEnd + '');
+}
 
     /*
     navigator.geolocation.getCurrentPosition((position) => {
@@ -37,7 +49,7 @@ document.getElementById("goTo").onclick = function (evt) {
         //document.getElementById("menuSteps").style.display = "flex";
     }
         , error);*/
-}
+
 
 /*
 
@@ -585,7 +597,7 @@ function initializarMapa() {
         zoomControl: false
     }).setView([-1.591400, -79.002356], 100);
 
-    L.control.zoom({ position: 'topright' }).addTo(mymap);
+    L.control.zoom({ position: 'bottomright' }).addTo(mymap);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Chariot - 2020' }).addTo(mymap);
 
