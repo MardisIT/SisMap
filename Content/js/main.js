@@ -111,8 +111,6 @@ function launchNearestPosition() {
     
     var checkDevice = checkMobile();
 
-    console.log(myLocationMarker.getLatLng())
-
     if (!checkDevice) {
         navigator.geolocation.getCurrentPosition((position) => {
             let latStart = position.coords.latitude;
@@ -122,8 +120,8 @@ function launchNearestPosition() {
         }
             , error);
     } else if (myLocationMarker != null) {       
-        var latLngs = [myLocationMarker.getLatLng()];
-        var nearest = leafletKnn(gj).nearest(L.latLng(latLngs), 1, 10000);
+        var latLngs = myLocationMarker.getLatLng();
+        var nearest = leafletKnn(gj).nearest(L.latLng(latLngs.lat, latLngs.lng), 1, 10000);
         window.open('https://maps.google.com/?q=+' + nearest[0].lat + ',' + nearest[0].lon + '');    
              
     }else {
