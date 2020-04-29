@@ -1,17 +1,91 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<style>
+    .body {
+        margin: 0;
+    }
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    .iframe {
+        height: calc(100vh - 4px);
+        width: calc(100vw - 4px);
+        box-sizing: border-box;
+    }
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    nav .brand-logo {
+        position: absolute;
+        color: rgb(225, 21, 48);
+        display: inline-block;
+        font-size: 2.1rem;
+        padding: 0;
+    }
+
+        nav .brand-logo.center {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+</style>
+<div class="body" onload="javascript:getLocation()">
+
+    <div style="position:relative">
+        <iframe class="iframe"
+                id="mapFrame" src="https://www.google.com/maps/d/embed?mid=1Y4eCTe0aHn2cacnZYCgBVLOzMHoEyLgo&ll='&z={19}
+                frameborder="0"
+                allowfullscreen
+                ;>
+        </iframe>
+        <img style="bottom:90px; left:20px; position:absolute; z-index:9" src="./img/mardis1.png" height="52" width="60">
+
+    </div>
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzL5Xs37ud3aRBdbGpkwyNCmrE961Peas">
+
+        var geocoder = new google.maps.Geocoder;
+
+        function geocodeLatLng(geocoder, position) {
+            var latlng = { lat: position.coords.latitude.toString(), lng: position.coords.longitude.toString() };
+            geocoder.geocode({ 'location': latlng }, function (results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        window.alert('Result found' + results[0].formatted_address);
+                        y.innerText(results[0].formatted_address);
+
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+
+    </script>
+</div>
+
+
+<script>
+
+    var x = document.getElementById("mapFrame");
+    var y = document.getElementById("titleID");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            y.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+
+        var iframe1 = "https://www.google.com/maps/d/embed?mid=1Y4eCTe0aHn2cacnZYCgBVLOzMHoEyLgo&ll=" + position.coords.latitude + "%2C" + position.coords.longitude + "&z={19}";
+
+        x.src = iframe1;
+
+        geocodeLatLng.call(geocoder, position);
+
+    }
+
+</script>

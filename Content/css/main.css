@@ -169,6 +169,7 @@
 
 .sidenav {
     width: 370px !important;
+ 
 }
 
 .imageFooter {
@@ -190,7 +191,21 @@
     margin-top: 10px;
     padding-left: 5px;
 }
-
+.TITLEBRAND {
+    text-align: center;
+    background-color: #BE1C6C;
+    PADDING-TOP: 9PX;
+    COLOR: WHITE;
+    FONT-SIZE: 11PX;
+    FONT-WEIGHT: 600;
+}
+.TITLEBRANDTI {
+    text-align: center;
+    PADDING-TOP: 9PX;
+    COLOR: #084e87 !important;
+    FONT-SIZE: 11PX;
+    FONT-WEIGHT: 700 !important;
+}
 
 
 .drawerNavigator {
@@ -203,7 +218,7 @@
 
     .drawerNavigator p {
         color: white;
-        font-size: 14pt;
+        font-size: 11pt;
         font-weight: 600;
         overflow: hidden;
         white-space: nowrap;

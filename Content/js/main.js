@@ -646,19 +646,19 @@ function initializarMapa() {
             var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIcon });
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
-                document.getElementById("titleDrawer").innerHTML = bancos.dtrmNombre
+                document.getElementById("titleDrawer").innerHTML = bancos.name
                 //if (bancos.img != 'HTTP') {
                 //    document.getElementById("localImage").src = bancos.img;
                 //    document.getElementById("localImage").style.display = "flex";
                 //} else {
                 //    document.getElementById("localImage").style.display = "none";
                 //}
-                document.getElementById("localName").innerHTML = bancos.dtrmNombre
+               // document.getElementById("localName").innerHTML = bancos.name
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
                 //document.getElementById("localOwn").innerHTML = bancos.name
                 //document.getElementById("localPhone").innerHTML = bancos.Celular
                 document.getElementById("localDir").innerHTML = bancos.direccion
-                document.getElementById("localProv").innerHTML = dataResponse.provincia
+                //document.getElementById("localProv").innerHTML = dataResponse.provincia
                 document.getElementById("localCity").innerHTML = bancos.Canton
                 document.getElementById("localPar").innerHTML = bancos.Parroquia
                 document.getElementById("localLat").innerHTML = bancos.latitud
