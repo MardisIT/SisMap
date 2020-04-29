@@ -126,7 +126,14 @@
     <script src="~/Content/js/main.js"></script>
     <script>
         LoadMap();
+               var isSafari = /constructor/i.test(window.HTMLElement) ||
+                (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })
+                (!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+        //alert(isSafari)
         function LoadMap() {
+     
+
+
             var token = $("[name='__RequestVerificationToken']").val();
             $.ajax({
                 url: "/Map/DataMax",

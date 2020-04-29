@@ -502,9 +502,9 @@ function success(position, mymap) {
         mymap.fitBounds(markerBounds);
     })
     myLocationMarker = marker
-    var latLngs = [marker.getLatLng()];
-    var markerBounds = L.latLngBounds(latLngs);
-    mymap.fitBounds(markerBounds);
+  //  var latLngs = [marker.getLatLng()];
+    // var markerBounds = L.latLngBounds(latLngs);
+    mymap.fitBounds(mymap.setView([latitude, longitude],14));
 }
 
 function initializarMapa() {
