@@ -146,6 +146,13 @@ const sleep = ms => {
 }
 
 /*async*/ function successEmbeeded(position) {
+   
+
+    let mymap = initializarMapa();
+
+    success(position, mymap)
+
+
     var contentRequestPermisson = document.getElementById('contentRequestPermisson')
     contentRequestPermisson.style.display = "none"
 
@@ -155,9 +162,6 @@ const sleep = ms => {
     var myLocationButton = document.getElementById('getMyLocation')
     myLocationButton.style.display = "flex";
 
-    let mymap = initializarMapa();
-
-    success(position, mymap)
 
     /*
     let latitude = position.coords.latitude;
@@ -504,7 +508,7 @@ function success(position, mymap) {
     myLocationMarker = marker
   //  var latLngs = [marker.getLatLng()];
     // var markerBounds = L.latLngBounds(latLngs);
-    mymap.fitBounds(mymap.setView([latitude, longitude],14));
+    mymap.setView([latitude, longitude],14);
 }
 
 function initializarMapa() {
@@ -710,20 +714,10 @@ function permiso(_model) {
     data_engine = _model
     //se debe  poner en negado la siguiente función
     if (window.location !== window.parent.location) {
-
-        var contentRequestPermisson = document.getElementById('contentRequestPermisson')
-        contentRequestPermisson.style.display = "flex"
-
-        var myLocationButton = document.getElementById('getNearest')
-        myLocationButton.style.display = "none";
-
-        var myLocationButton = document.getElementById('getMyLocation')
-        myLocationButton.style.display = "none";
-
         if (navigator.geolocation) {
-            document.getElementById('requestPermisson').onclick = function () {
+          
                 navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
-            }            
+      
         } else {
             console.lo("Geolocation is not supported by this browser.");
         }        

@@ -5,6 +5,17 @@
 
 <div id="contentRequestPermisson" class="dialogModal">
     <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
+    <div id="progressCircle" class="preloader-wrapper big active progressMap">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <nav class="navPage">
@@ -115,6 +126,7 @@
 
 <a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
 -->
+
 <div class="tooltip">
     <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
     <span class="tooltiptext tooltip-left">Mi ubicación</span>
@@ -125,14 +137,44 @@
 
     <script src="~/Content/js/main.js"></script>
     <script>
-        LoadMap();
-               var isSafari = /constructor/i.test(window.HTMLElement) ||
-                (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })
-                (!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-        //alert(isSafari)
-        function LoadMap() {
-     
 
+        function checkMobile() {
+            return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+        }
+
+        var checkDevice = checkMobile();
+
+        if (window.location !== window.parent.location) {       
+
+            var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+            contentRequestPermisson.style.display = "flex"
+
+            var myLocationButton = document.getElementById('getNearest')
+            myLocationButton.style.display = "none";
+
+            var myLocationButton = document.getElementById('getMyLocation')
+            myLocationButton.style.display = "none";
+                     
+            
+            document.getElementById('requestPermisson').onclick = function () {
+                
+                if (!checkDevice) {
+                    var requestPermissonButton = document.getElementById('requestPermisson')
+                    requestPermissonButton.style.display = "none"
+                    var progressCircle = document.getElementById('progressCircle')
+                    progressCircle.style.display = "flex"
+
+                    LoadMap();
+                } else {
+                    window.open('https://bancoguayaquil.azurewebsites.net/');
+                }
+            }
+        } else {
+            LoadMap();    
+        }
+
+                   
+        function LoadMap() {   
 
             var token = $("[name='__RequestVerificationToken']").val();
             $.ajax({
@@ -143,6 +185,13 @@
                 },
                 success: function (result) {
                     permiso(result)
+                },
+                error: function () {
+                    var requestPermissonButton = document.getElementById('requestPermisson')
+                    requestPermissonButton.style.display = "flex"
+
+                    var progressCircle = document.getElementById('progressCircle')
+                    progressCircle.style.display = "none"
                 }
             });
             return null;

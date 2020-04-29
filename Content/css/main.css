@@ -24,6 +24,10 @@
     height: 93vh;
 }
 
+.progressMap {
+    display: none
+}
+
 .dialogModal {
     display: none;
     position: absolute;
