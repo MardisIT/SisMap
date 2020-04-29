@@ -168,13 +168,13 @@
 }
 
 .sidenav {
-    width: 370px !important;
+    width: 330px !important;
  
 }
 
 .imageFooter {
     height: 350px;
-    width: 350px;
+    width: 327px;
     display: flex;
     align-content: center;
     align-items: center;

@@ -579,7 +579,7 @@ function initializarMapa() {
 
     mymap = L.map('mapid', {
         zoomControl: false
-    }).setView([-1.591400, -79.002356], 7);
+    }).setView([-1.591400, -79.002356], 100);
 
     L.control.zoom({ position: 'topright' }).addTo(mymap);
 
