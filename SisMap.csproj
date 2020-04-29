@@ -167,7 +167,10 @@
     <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\css\reset.min.css" />
     <Content Include="Content\img\afiche.jpg" />
+    <Content Include="Content\img\CABECERA_BDB.png" />
+    <Content Include="Content\img\LOGO_BG.png" />
     <Content Include="Content\img\myLocation.png" />
+    <Content Include="Content\img\SERVICIOS_BDB.png" />
     <Content Include="Content\img\store_icon.png" />
     <Content Include="Content\img\mardis.png" />
     <Content Include="Content\js\leaflet-knn.min.js" />

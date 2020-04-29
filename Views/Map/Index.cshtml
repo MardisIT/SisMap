@@ -33,13 +33,14 @@
 <!--MARKER DRAWER-->
 <aside id="markerSite" class="sidenav drawerBackground">
     <!--MARKER NAVBAR-->
+    <img src="~/Content/img/CABECERA_BDB.png" style="width: 380px;" />
     <nav class="drawerNavigator" style="background-color: #BE1C6C">
         <i id="closeDrawer" class="material-icons">arrow_back</i>
         <p id="titleDrawer" class="titleText"></p>
         <i id="goTo" class="material-icons">directions</i>
     </nav>
     <ul class="drawerBody">
-        <img id=localImage src="" class="imageHeader">
+        @*<img id=localImage src="" class="imageHeader" hidden>*@
         <div>
             NOMBRE DEL NEGOCIO
             <p id="localName"></p>
@@ -84,7 +85,10 @@
             <p id="localLong"></p>
         </div>
 
-        <img src="~/Content/img/afiche.jpg" class="imageFooter">
+        <img src="~/Content/img/SERVICIOS_BDB.png" class="imageFooter" />
+        <div style="text-align:center">
+            <img src="~/Content/img/LOGO_BG.png" class="imageFooterBG" />
+        </div>
     </ul>
 </aside>
 <!--LIST DRAWER-->

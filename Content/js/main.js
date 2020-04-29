@@ -647,12 +647,12 @@ function initializarMapa() {
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
                 document.getElementById("titleDrawer").innerHTML = bancos.dtrmNombre
-                if (bancos.img != 'HTTP') {
-                    document.getElementById("localImage").src = bancos.img;
-                    document.getElementById("localImage").style.display = "flex";
-                } else {
-                    document.getElementById("localImage").style.display = "none";
-                }
+                //if (bancos.img != 'HTTP') {
+                //    document.getElementById("localImage").src = bancos.img;
+                //    document.getElementById("localImage").style.display = "flex";
+                //} else {
+                //    document.getElementById("localImage").style.display = "none";
+                //}
                 document.getElementById("localName").innerHTML = bancos.dtrmNombre
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
                 //document.getElementById("localOwn").innerHTML = bancos.name
