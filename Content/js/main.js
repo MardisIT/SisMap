@@ -107,16 +107,30 @@ function updateRouteActualPosition() {
 }
 
 function launchNearestPosition() {
-    var gj = L.geoJson(layerGroup);    
-    navigator.geolocation.getCurrentPosition((position) => {
-        let latStart = position.coords.latitude;
-        let longStart = position.coords.longitude;
-        var nearest = leafletKnn(gj).nearest(L.latLng(latStart, longStart), 1, 10000);
-        window.open('https://maps.google.com/?q=+' + nearest[0].lat + ',' + nearest[0].lon + '');
-    }
-    , error);  
+    var gj = L.geoJson(layerGroup);
+    
+    var checkDevice = checkMobile();
 
-}
+    if (!checkDevice) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            let latStart = position.coords.latitude;
+            let longStart = position.coords.longitude;
+            var nearest = leafletKnn(gj).nearest(L.latLng(latStart, longStart), 1, 10000);
+            window.open('https://maps.google.com/?q=+' + nearest[0].lat + ',' + nearest[0].lon + '');
+        }
+            , error);
+    } else if (myLocationMarker != null) {
+        var latLngs = [myLocationMarker.getLatLng()];
+        var nearest = leafletKnn(gj).nearest(L.latLng(latLngs), 1, 10000);
+        window.open('https://maps.google.com/?q=+' + nearest[0].lat + ',' + nearest[0].lon + '');    
+             
+    }else {
+        alert('Se han denegado permisos de ubicación. Para ver la ruta completa active permisos de ubicación');
+    }
+
+ }
+
+
 
 function clearRoutes() {
     for (i in mymap._layers) {
