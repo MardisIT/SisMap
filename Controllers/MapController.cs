@@ -12,7 +12,7 @@ namespace SisMap.Controllers
         // GET: Map
         public ActionResult Index()
         {
-            var statustask = _BancoBarioDOA.GetCount();
+         
             return View();
         }
         [HttpPost]

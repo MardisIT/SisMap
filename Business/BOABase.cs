@@ -9,6 +9,8 @@ namespace SisMap.Business
     public class BOABase
     {
         public BG_DbsEntities _context = new BG_DbsEntities();
+        public RedisCache _redis = new RedisCache();
+
        
     }
 }

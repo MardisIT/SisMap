@@ -1,4 +1,5 @@
-﻿using SisMap.Models;
+﻿using SisMap.Data;
+using SisMap.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,24 @@ namespace SisMap.Business
 
         public List<ProvinceModel> GetData()
         {
-            
-            List<ProvinceModel> _data = new List<ProvinceModel>();
-            try
-            {
-
-              var _model =  _context.BancosBarrio.Where(x=>x.estado=="A").ToList();
-               
-
+         
+                List<ProvinceModel> _data = new List<ProvinceModel>();
+            List<BancosBarrio> _model = new List<BancosBarrio>();
+                 try
+                {
+                     _model = _redis.Get<List<BancosBarrio>>("_redisBancoBarrio");
+                    if (_model == null)
+                    {
+                        _model = _context.BancosBarrio.Where(x => x.estado == "A").ToList();
+                        _redis.Set("_redisBancoBarrio", _model);
+                    }
+                }
+                catch (Exception)
+                {
+                    _model = _context.BancosBarrio.Where(x => x.estado == "A").ToList();
+                  
+                }
+         
                 ProvinceModel _provice = new ProvinceModel();
                 foreach (var item in _model.Select(x=>x.provincia).Distinct()) 
                 {
@@ -51,12 +62,8 @@ namespace SisMap.Business
                 }
             
 
-            }
-            catch (Exception)
-            {
-
-                return null;
-            }
+         
+           
             return _data;
         }
     }
