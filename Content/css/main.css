@@ -7,7 +7,22 @@
         display: none;
     }
 }
-
+.ibar {
+    font-size: 24px !important;
+    height: 0px !important;
+    line-height: 0px !important;
+    top: 10px !important;
+    left: 27%;
+    position: relative !important;
+}
+.lbar {
+    font-size: 24px !important;
+    height: 0px !important;
+    line-height: 0px !important;
+    top: 10px !important;
+    left: 27%;
+    position: relative !important;
+}
 @media only screen and (min-width: 600px) {
     .iconHeader {
         position: absolute;
