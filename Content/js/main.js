@@ -22,8 +22,17 @@ document.getElementById("goTo").onclick = function (evt) {
     var longEnd = document.getElementById("localLong").innerHTML
     lastLatRoute = latEnd
     lastLongRoute = longEnd
+
+    var checkDevice = checkMobile();
+
+    if (!checkDevice) {
+        navigator.geolocation.getCurrentPosition((position) => getRoute(position, latEnd, longEnd), errorGoTo);
+    } else {
+        window.open('https://maps.google.com/?q=+' + lastLatRoute + ',' + lastLongRoute + '');
+    }
+
     //successEmbeeded(position), error);
-    navigator.geolocation.getCurrentPosition((position) => getRoute(position, latEnd, longEnd), errorGoTo);
+  
 }
 
 function getRoute(position, latEnd, longEnd) {
@@ -70,6 +79,12 @@ document.getElementById("menuSteps").addEventListener('click', (evt) => {
 document.getElementById("getNearest").addEventListener('click', (evt) => launchNearestPosition())
 
 document.getElementById("getMyLocation").addEventListener('click', (evt) => updateRouteActualPosition())
+
+function checkMobile() {
+    return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+}
+
+
 
 function updateRouteActualPosition() {
     navigator.geolocation.getCurrentPosition((position) => {
