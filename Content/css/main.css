@@ -94,7 +94,7 @@
 .tooltip {
     position: absolute;
     right: 7px;
-    bottom: 10%;
+    bottom: 15%;
     z-index: 9999;
 }
 
@@ -332,9 +332,9 @@
     .cabeceraImage {
         width: 100% !important;
     }
-    /*.imageFooter {
+    .imageFooter {
         width: 100% !important;
-    }*/
+    }
     }
 
     @media only screen and (min-width: 992px) {
