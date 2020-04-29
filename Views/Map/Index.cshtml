@@ -165,13 +165,28 @@
                     requestPermissonButton.style.display = "none"
                     var progressCircle = document.getElementById('progressCircle')
                     progressCircle.style.display = "flex"
-
                     LoadMap();
                 } else {
                     window.open('https://bancoguayaquil.azurewebsites.net/');
                 }
             }
         } else {
+
+            var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+            contentRequestPermisson.style.display = "flex"
+
+            var requestPermissonButton = document.getElementById('requestPermisson')
+            requestPermissonButton.style.display = "none"
+
+            var progressCircle = document.getElementById('progressCircle')
+            progressCircle.style.display = "flex"
+
+            var myLocationButton = document.getElementById('getNearest')
+            myLocationButton.style.display = "none";
+
+            var myLocationButton = document.getElementById('getMyLocation')
+            myLocationButton.style.display = "none";
+
             LoadMap();    
         }
 
@@ -189,11 +204,16 @@
                     permiso(result)
                 },
                 error: function () {
-                    var requestPermissonButton = document.getElementById('requestPermisson')
-                    requestPermissonButton.style.display = "flex"
+                    if (window.location !== window.parent.location) {
+                        var requestPermissonButton = document.getElementById('requestPermisson')
+                        requestPermissonButton.style.display = "flex"
 
-                    var progressCircle = document.getElementById('progressCircle')
-                    progressCircle.style.display = "none"
+                        var progressCircle = document.getElementById('progressCircle')
+                        progressCircle.style.display = "none"
+                    } else {
+
+                    }
+                    
                 }
             });
             return null;

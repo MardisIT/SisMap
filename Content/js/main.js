@@ -729,6 +729,16 @@ function permiso(_model) {
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => success(position, mymap), error);
+
+            var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+            contentRequestPermisson.style.display = "none"
+
+            var myLocationButton = document.getElementById('getNearest')
+            myLocationButton.style.display = "flex";
+
+            var myLocationButton = document.getElementById('getMyLocation')
+            myLocationButton.style.display = "flex";
+
         } else {
             console.lo("Geolocation is not supported by this browser.");
         }
