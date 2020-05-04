@@ -1,0 +1,231 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="contentRequestPermisson" class="dialogModal">
+    <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
+    <div id="progressCircle" class="preloader-wrapper big active progressMap">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navPage">
+    <i id="openAllSites" class="material-icons">menu</i>
+    <!--
+    <img src="~/Content/img/mardis.png" class="iconHeader" />
+        -->
+    <div id="getNearest" class="getNearest" style="display:flex; flex-direction:row; align-content:center; align-items:center; justify-content:space-around">
+        <b class="nearestText">Banco más cercano</b>
+        <i class="material-icons">directions</i>
+    </div>
+
+
+    <!--
+        <div id="routeResumen" class="routeResumen">
+            <p>
+                DISTANCIA: <a id="distace"></a>
+                TIEMPO: <a id="duration"></a>
+            </p>
+        </div>
+     -->
+</nav>
+<main class="map" id="mapid">
+</main>
+@Html.AntiForgeryToken()
+<!--MARKER DRAWER-->
+<aside id="markerSite" class="sidenav drawerBackground">
+    <!--MARKER NAVBAR-->
+    <img src="~/Content/img/CABECERA_BDB.png" class="cabeceraImage" />
+    <div class="TITLEBRAND">
+        <p class="titleText">NOMBRE DEL NEGOCIO</p>
+    </div>
+    <nav class="drawerNavigator" style="background-color: #BE1C6C">
+        <span>
+            <i id="closeDrawer" class=" lbar material-icons">arrow_back</i><p style="position: inherit;top: -10px;font-size: 12px;"> Regresar</p>
+        </span>
+
+
+        <p id="titleDrawer" class="titleText"></p>
+
+        <span>
+            <i id="goTo" class="ibar material-icons">directions</i><p style="position: inherit;top: -10px;font-size: 12px;"> Cómo llegar</p>
+        </span>
+
+    </nav>
+    <ul class="drawerBody">
+        @*<img id=localImage src="" class="imageHeader" hidden>*@
+        @*<div>
+                NOMBRE DEL NEGOCIO
+                <p id="localName"></p>
+            </div>*@
+        <div>
+            TIPO DE NEGOCIO
+            <p id="localType"></p>
+        </div>
+        <!--
+            <div>
+                PROPIETARIO
+                <p id="localOwn"></p>
+            </div>
+
+        <div>
+            TELÉFONO
+            <p id="localPhone"></p>
+        </div>
+        -->
+        <div>
+            DIRECCIÓN
+            <p id="localDir"></p>
+        </div>
+        @*<div>
+                PROVINCIA
+                <p id="localProv"></p>
+            </div>*@
+        <div>
+            CANTÓN
+            <p id="localCity"></p>
+        </div>
+        <div>
+            PARROQUIA
+            <p id="localPar"></p>
+        </div>
+        <div style="display: none;">
+            LATITUD
+            <p id="localLat"></p>
+        </div>
+        <div style="display: none;">
+            LONGITUD
+            <p id="localLong"></p>
+        </div>
+        @*<div class="TITLEBRANDTI">
+                <H6><strong>SERVICIOS</strong></H6>
+            </div>*@
+
+        @*<div style="text-align:center">
+                <img src="~/Content/img/LOGO_BG.png" class="imageFooterBG" />
+            </div>*@
+    </ul>
+    <div style="text-align:center">
+
+        <img src="~/Content/img/SERVICIOS_BDB.jpg" class="imageFooter" />
+    </div>
+</aside>
+<!--LIST DRAWER-->
+<aside id="allsites" class="sidenav">
+    <nav class="navPageAll" style="background-color: #BE1C6C">
+        <p>BANCOS DEL BARRIO</p>
+    </nav>
+    <div id="allSitesList">
+        <ul id="listCollapsible" class="collapsible">
+        </ul>
+    </div>
+</aside>
+<!--
+    <div style="display:none;overflow-y: auto;" class="floatSteps" id="floatSteps">
+        <ul id="floatStepsBody" class="floatStepsBody">
+        </ul>
+    </div>
+
+<a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
+-->
+
+<div class="tooltip">
+    <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
+    <span class="tooltiptext tooltip-left">Mi ubicación</span>
+</div> 
+
+
+@section scripts{
+
+    <script src="~/Content/js/main.js"></script>
+    <script>
+
+        function checkMobile() {
+            return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+        }
+
+        var checkDevice = checkMobile();
+
+        if (window.location !== window.parent.location) {       
+
+            var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+            contentRequestPermisson.style.display = "flex"
+
+            var myLocationButton = document.getElementById('getNearest')
+            myLocationButton.style.display = "none";
+
+            var myLocationButton = document.getElementById('getMyLocation')
+            myLocationButton.style.display = "none";
+                     
+            
+            document.getElementById('requestPermisson').onclick = function () {
+                
+                if (!checkDevice) {
+                    var requestPermissonButton = document.getElementById('requestPermisson')
+                    requestPermissonButton.style.display = "none"
+                    var progressCircle = document.getElementById('progressCircle')
+                    progressCircle.style.display = "flex"
+                    LoadMap();
+                } else {
+                    window.open('https://bancoguayaquil.azurewebsites.net/');
+                }
+            }
+        } else {
+
+            var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+            contentRequestPermisson.style.display = "flex"
+
+            var requestPermissonButton = document.getElementById('requestPermisson')
+            requestPermissonButton.style.display = "none"
+
+            var progressCircle = document.getElementById('progressCircle')
+            progressCircle.style.display = "flex"
+
+            var myLocationButton = document.getElementById('getNearest')
+            myLocationButton.style.display = "none";
+
+            var myLocationButton = document.getElementById('getMyLocation')
+            myLocationButton.style.display = "none";
+
+            LoadMap();    
+        }
+
+                   
+        function LoadMap() {   
+
+            var token = $("[name='__RequestVerificationToken']").val();
+            $.ajax({
+                url: "/Map/DataMax",
+                type: 'POST',
+                data: {
+                    __RequestVerificationToken: token
+                },
+                success: function (result) {
+                    permiso(result)
+                },
+                error: function () {
+                    if (window.location !== window.parent.location) {
+                        var requestPermissonButton = document.getElementById('requestPermisson')
+                        requestPermissonButton.style.display = "flex"
+
+                        var progressCircle = document.getElementById('progressCircle')
+                        progressCircle.style.display = "none"
+                    } else {
+
+                    }
+                    
+                }
+            });
+            return null;
+        }
+    </script>
+}
