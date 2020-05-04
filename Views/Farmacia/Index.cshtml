@@ -141,12 +141,13 @@
 <div class="tooltip">
     <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
     <span class="tooltiptext tooltip-left">Mi ubicación</span>
-</div> 
+</div>
 
 
 @section scripts{
 
-    <script src="~/Content/js/main.js"></script>
+   
+    <script src="~/Content/js/mainFarmacia.js"></script>
     <script>
 
         function checkMobile() {
@@ -155,7 +156,7 @@
 
         var checkDevice = checkMobile();
 
-        if (window.location !== window.parent.location) {       
+        if (window.location !== window.parent.location) {
 
             var contentRequestPermisson = document.getElementById('contentRequestPermisson')
             contentRequestPermisson.style.display = "flex"
@@ -165,10 +166,10 @@
 
             var myLocationButton = document.getElementById('getMyLocation')
             myLocationButton.style.display = "none";
-                     
-            
+
+
             document.getElementById('requestPermisson').onclick = function () {
-                
+
                 if (!checkDevice) {
                     var requestPermissonButton = document.getElementById('requestPermisson')
                     requestPermissonButton.style.display = "none"
@@ -196,11 +197,11 @@
             var myLocationButton = document.getElementById('getMyLocation')
             myLocationButton.style.display = "none";
 
-            LoadMap();    
+            LoadMap();
         }
 
-                   
-        function LoadMap() {   
+
+        function LoadMap() {
 
             var token = $("[name='__RequestVerificationToken']").val();
             $.ajax({
@@ -222,7 +223,7 @@
                     } else {
 
                     }
-                    
+
                 }
             });
             return null;

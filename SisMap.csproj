@@ -216,6 +216,7 @@
     <Content Include="Content\img\mardis.png" />
     <Content Include="Content\js\leaflet-knn.min.js" />
     <Content Include="Content\js\leaflet.js" />
+    <Content Include="Content\js\mainFarmacia.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\materialize.min.js" />
     <Content Include="Data\BG.Context.tt">
