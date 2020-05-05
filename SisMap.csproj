@@ -167,8 +167,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Business\BOABaseDyv.cs" />
     <Compile Include="Business\BOABase.cs" />
     <Compile Include="Business\DOABancoBarrio.cs" />
+    <Compile Include="Business\DOAFarmacia.cs" />
     <Compile Include="Business\RedisCache.cs" />
     <Compile Include="Controllers\FarmaciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -190,6 +192,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BG.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dyvenpro\BancosBarrio.cs">
+      <DependentUpon>Dyvenpro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dyvenpro\Dyvenpro.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dyvenpro.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dyvenpro\Dyvenpro.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dyvenpro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dyvenpro\Dyvenpro.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dyvenpro.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -231,6 +251,16 @@
       <DependentUpon>BG.edmx</DependentUpon>
       <LastGenOutput>BG.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\dyvenpro\Dyvenpro.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Dyvenpro.edmx</DependentUpon>
+      <LastGenOutput>Dyvenpro.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\dyvenpro\Dyvenpro.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Dyvenpro.edmx</DependentUpon>
+      <LastGenOutput>Dyvenpro.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,6 +281,13 @@
     </EntityDeploy>
     <Content Include="Data\BG.edmx.diagram">
       <DependentUpon>BG.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Data\dyvenpro\Dyvenpro.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Dyvenpro.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\dyvenpro\Dyvenpro.edmx.diagram">
+      <DependentUpon>Dyvenpro.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\dyvenpro - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - ReadOnly - FTP.pubxml" />

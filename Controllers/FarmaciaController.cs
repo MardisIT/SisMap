@@ -10,7 +10,7 @@ namespace SisMap.Controllers
     public class FarmaciaController : Controller
 
     {
-        private DOABancoBarrio _BancoBarioDOA = new DOABancoBarrio();
+        private DOAFarmacia _DOAFarmacia = new DOAFarmacia();
         // GET: Farmacia
         public ActionResult Index()
         {
@@ -26,7 +26,7 @@ namespace SisMap.Controllers
 
 
 
-                var statustask = _BancoBarioDOA.GetData();
+                var statustask = _DOAFarmacia.GetData();
 
 
 
