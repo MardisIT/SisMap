@@ -708,6 +708,12 @@ function initializarMapa() {
                 document.getElementById("localLat").innerHTML = bancos.latitud
                 document.getElementById("localLong").innerHTML = bancos.longitud
 
+                //if (bancos.Celular !== null || bancos.Celular != '') {
+                document.getElementById('whatsRef').addEventListener("click", () => {
+                    window.open('https://api.whatsapp.com/send?phone=+593968953814')
+                }, false)
+                //}
+
                 latLngs = [marker.getLatLng()];
                 markerBounds = L.latLngBounds(latLngs);
                 mymap.fitBounds(markerBounds);
