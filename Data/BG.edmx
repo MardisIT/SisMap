@@ -10,8 +10,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idbg" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="tipo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="idbg" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="nombreLocal" Type="varchar(max)" Nullable="false" />
           <Property Name="propietario" Type="varchar(max)" Nullable="false" />
           <Property Name="direccion" Type="varchar(max)" Nullable="false" />
@@ -20,18 +20,46 @@
           <Property Name="provincia" Type="varchar(max)" Nullable="false" />
           <Property Name="ciudad" Type="varchar(max)" Nullable="false" />
           <Property Name="parroquia" Type="varchar(max)" Nullable="false" />
-          <Property Name="trmOfficia" Type="varchar(max)" Nullable="false" />
-          <Property Name="trmSupervi" Type="varchar(max)" Nullable="false" />
+          <Property Name="trmOfficia" Type="varchar(max)" />
+          <Property Name="trmSupervi" Type="varchar(max)" />
           <Property Name="telefono" Type="varchar(max)" Nullable="false" />
-          <Property Name="codigomardis" Type="varchar(max)" Nullable="false" />
-          <Property Name="estado" Type="varchar(max)" Nullable="false" />
+          <Property Name="codigomardis" Type="varchar(max)" />
           <Property Name="latitud" Type="float" />
           <Property Name="longitud" Type="float" />
-          <Property Name="digitador" Type="varchar(max)" Nullable="false" />
-          <Property Name="imagen" Type="varchar(max)" Nullable="false" />
+          <Property Name="digitador" Type="varchar(max)" />
+          <Property Name="imagen" Type="varchar(max)" />
+          <Property Name="fecha_Modificacion" Type="datetime" />
+          <Property Name="estado" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="BancosBG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idbg" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="nombreLocal" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="propietario" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="cedula" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="tiponegocio" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="provincia" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ciudad" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="parroquia" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="trmOfficia" Type="varchar" MaxLength="255" />
+          <Property Name="trmSupervi" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="codigomardis" Type="varchar" MaxLength="255" />
+          <Property Name="latitud" Type="float" />
+          <Property Name="longitud" Type="float" />
+          <Property Name="digitador" Type="varchar" MaxLength="255" />
+          <Property Name="banner" Type="varchar" MaxLength="1000" />
+          <Property Name="fecha_Modificacion" Type="datetime" />
+          <Property Name="estado" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityContainer Name="BG_DbsModelStoreContainer">
           <EntitySet Name="BancosBarrio" EntityType="Self.BancosBarrio" Schema="MardisCommon" store:Type="Tables" />
+          <EntitySet Name="BancosBG" EntityType="Self.BancosBG" Schema="MardisCommon" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -43,8 +71,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idbg" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="tipo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idbg" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombreLocal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="propietario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
@@ -53,18 +81,46 @@
           <Property Name="provincia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ciudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="parroquia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="trmOfficia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="trmSupervi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="trmOfficia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="trmSupervi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="codigomardis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigomardis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="latitud" Type="Double" />
           <Property Name="longitud" Type="Double" />
-          <Property Name="digitador" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="digitador" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_Modificacion" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BancosBG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idbg" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreLocal" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="propietario" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cedula" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tiponegocio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="provincia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ciudad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parroquia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="trmOfficia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="trmSupervi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigomardis" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="latitud" Type="Double" />
+          <Property Name="longitud" Type="Double" />
+          <Property Name="digitador" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="banner" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_Modificacion" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="BG_DbsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BancosBarrio" EntityType="Self.BancosBarrio" />
+          <EntitySet Name="BancosBG" EntityType="Self.BancosBG" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -90,11 +146,39 @@
                 <ScalarProperty Name="trmSupervi" ColumnName="trmSupervi" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="codigomardis" ColumnName="codigomardis" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="latitud" ColumnName="latitud" />
                 <ScalarProperty Name="longitud" ColumnName="longitud" />
                 <ScalarProperty Name="digitador" ColumnName="digitador" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="fecha_Modificacion" ColumnName="fecha_Modificacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BancosBG">
+            <EntityTypeMapping TypeName="BG_DbsModel.BancosBG">
+              <MappingFragment StoreEntitySet="BancosBG">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idbg" ColumnName="idbg" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="nombreLocal" ColumnName="nombreLocal" />
+                <ScalarProperty Name="propietario" ColumnName="propietario" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="tiponegocio" ColumnName="tiponegocio" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="parroquia" ColumnName="parroquia" />
+                <ScalarProperty Name="trmOfficia" ColumnName="trmOfficia" />
+                <ScalarProperty Name="trmSupervi" ColumnName="trmSupervi" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="codigomardis" ColumnName="codigomardis" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="digitador" ColumnName="digitador" />
+                <ScalarProperty Name="banner" ColumnName="banner" />
+                <ScalarProperty Name="fecha_Modificacion" ColumnName="fecha_Modificacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -404,16 +404,3 @@
         -moz-box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
         box-shadow: -7px 10px 17px -6px rgba(0,0,0,0.66);
     }
-.bank-form {
-
-    background-color: #fff;
-    position: absolute;
-    z-index: 200;
-    padding: 20px 25px;
-    width: 350px;
-
-    border-bottom-left-radius: 15px;
-    border: 1px solid #CFCFCF;
-    z-index: 90;
-        
-}

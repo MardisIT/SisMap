@@ -172,10 +172,14 @@
     <Compile Include="Business\DOABancoBarrio.cs" />
     <Compile Include="Business\DOAFarmacia.cs" />
     <Compile Include="Business\RedisCache.cs" />
+    <Compile Include="Controllers\BancosController.cs" />
     <Compile Include="Controllers\FarmaciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Data\BancosBarrio.cs">
+      <DependentUpon>BG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BancosBG.cs">
       <DependentUpon>BG.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\BG.Context.cs">
@@ -193,24 +197,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BG.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Data\dyvenpro\BancosBarrio.cs">
-      <DependentUpon>Dyvenpro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\dyvenpro\Dyvenpro.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Dyvenpro.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\dyvenpro\Dyvenpro.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Dyvenpro.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\dyvenpro\Dyvenpro.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Dyvenpro.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,6 +211,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\leaflet.css" />
+    <Content Include="Content\css\mainBG.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\css\reset.min.css" />
@@ -238,28 +225,19 @@
     <Content Include="Content\js\5b1c5b69fb.js" />
     <Content Include="Content\js\leaflet-knn.min.js" />
     <Content Include="Content\js\leaflet.js" />
+    <Content Include="Content\js\mainBancos.js" />
     <Content Include="Content\js\mainFarmacia.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\materialize.min.js" />
     <Content Include="Data\BG.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BG.Context.cs</LastGenOutput>
       <DependentUpon>BG.edmx</DependentUpon>
+      <LastGenOutput>BG.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Data\BG.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BG.edmx</DependentUpon>
       <LastGenOutput>BG.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\dyvenpro\Dyvenpro.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Dyvenpro.edmx</DependentUpon>
-      <LastGenOutput>Dyvenpro.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\dyvenpro\Dyvenpro.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Dyvenpro.edmx</DependentUpon>
-      <LastGenOutput>Dyvenpro.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -281,13 +259,6 @@
     </EntityDeploy>
     <Content Include="Data\BG.edmx.diagram">
       <DependentUpon>BG.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Data\dyvenpro\Dyvenpro.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Dyvenpro.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\dyvenpro\Dyvenpro.edmx.diagram">
-      <DependentUpon>Dyvenpro.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\dyvenpro - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - ReadOnly - FTP.pubxml" />
@@ -319,9 +290,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Farmacia\Index.cshtml" />
+    <Content Include="Views\Bancos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\dyvenpro\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

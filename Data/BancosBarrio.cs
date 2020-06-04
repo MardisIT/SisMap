@@ -29,10 +29,11 @@ namespace SisMap.Data
         public string trmSupervi { get; set; }
         public string telefono { get; set; }
         public string codigomardis { get; set; }
-        public string estado { get; set; }
         public Nullable<double> latitud { get; set; }
         public Nullable<double> longitud { get; set; }
         public string digitador { get; set; }
         public string imagen { get; set; }
+        public Nullable<System.DateTime> fecha_Modificacion { get; set; }
+        public string estado { get; set; }
     }
 }

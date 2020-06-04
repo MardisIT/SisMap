@@ -4,8 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="179c73437ff643a2b447e722de8edec7" Name="Diagram1">
+      <Diagram DiagramId="4bd4915ea56e4936adb0c68eac50ea6f" Name="Diagram1">
         <EntityTypeShape EntityType="BG_DbsModel.BancosBarrio" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BG_DbsModel.BancosBG" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

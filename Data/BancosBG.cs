@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SisMap.Data.dyvenpro
+namespace SisMap.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class BancosBarrio
+    public partial class BancosBG
     {
         public int id { get; set; }
         public string idbg { get; set; }
@@ -32,7 +32,7 @@ namespace SisMap.Data.dyvenpro
         public Nullable<double> latitud { get; set; }
         public Nullable<double> longitud { get; set; }
         public string digitador { get; set; }
-        public string imagen { get; set; }
+        public string banner { get; set; }
         public Nullable<System.DateTime> fecha_Modificacion { get; set; }
         public string estado { get; set; }
     }

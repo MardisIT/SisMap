@@ -4,7 +4,7 @@
 }
 
 <div id="contentRequestPermisson" class="dialogModal">
-    <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER FARMACIAS</a>
+    <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
     <div id="progressCircle" class="preloader-wrapper big active progressMap">
         <div class="spinner-layer spinner-blue-only">
             <div class="circle-clipper left">
@@ -24,7 +24,7 @@
     <img src="~/Content/img/mardis.png" class="iconHeader" />
         -->
     <div id="getNearest" class="getNearest" style="display:flex; flex-direction:row; align-content:center; align-items:center; justify-content:space-around">
-        <b class="nearestText">Farmacia más cercana</b>
+        <b class="nearestText">Banco más cercano</b>
         <i class="material-icons">directions</i>
     </div>
 
@@ -38,13 +38,14 @@
         </div>
      -->
 </nav>
+
 <main class="map" id="mapid">
 </main>
 @Html.AntiForgeryToken()
 <!--MARKER DRAWER-->
 <aside id="markerSite" class="sidenav drawerBackground">
     <!--MARKER NAVBAR-->
-    @*<img src="~/Content/img/CABECERA_BDB.png" class="cabeceraImage" />*@
+    <img src="~/Content/img/CABECERA_BDB.png" class="cabeceraImage" />
     <div class="TITLEBRAND">
         <p class="titleText">NOMBRE DEL NEGOCIO</p>
     </div>
@@ -113,28 +114,17 @@
         @*<div style="text-align:center">
                 <img src="~/Content/img/LOGO_BG.png" class="imageFooterBG" />
             </div>*@
-
-        <div style="padding-bottom:15px">
-            CONTACTO
-            <div style="margin-left: 0px;  display: flex; flex-direction: row; align-content: center; align-items: center;">
-                <a id="whatsRef" class="float">
-                    <i class="fa fa-whatsapp "></i>
-                </a>
-
-                <p style="margin-left:20px">Abrir en Whatsapp</p>
-            </div>
-        </div>
     </ul>
-    @*
-        <div style="text-align:center">
+    <div style="text-align:center">
 
-            <img src="~/Content/img/SERVICIOS_BDB.jpg" class="imageFooter" />
-        </div>*@
+        <img src="~/Content/img/SERVICIOS_BDB.jpg" class="imageFooter" />
+    </div>
 </aside>
 <!--LIST DRAWER-->
 <aside id="allsites" class="sidenav">
     <nav class="navPageAll" style="background-color: #BE1C6C">
-        <p>FARMACIAS</p>
+        <p>Agencia, cajero automático o Banco de barrio </p>
+        
     </nav>
     <div id="allSitesList">
         <ul id="listCollapsible" class="collapsible">
@@ -150,25 +140,30 @@
 <a class="menuSteps" id="menuSteps"><i class="material-icons">directions</i></a>
 -->
 
-<div class="tooltip">
-    <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
-    <span class="tooltiptext tooltip-left">Mi ubicación</span>
+<div class="container">
+
+
+    <div class="tooltip">
+
+        <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
+        <span class="tooltiptext tooltip-left">Mi ubicación</span>
+
+    </div>
 </div>
-
-
 @section scripts{
 
-
-    <script src="~/Content/js/mainFarmacia.js"></script>
+    <script src="~/Content/js/mainBancos.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165631711-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'UA-165631711-1');
+        gtag('config', 'UA-165708090-1');
     </script>
+
+
 
     <script>
 
@@ -227,7 +222,7 @@
 
             var token = $("[name='__RequestVerificationToken']").val();
             $.ajax({
-                url: "/Farmacia/DataMax",
+                url: "/Bancos/DataMax",
                 type: 'POST',
                 data: {
                     __RequestVerificationToken: token

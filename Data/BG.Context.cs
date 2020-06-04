@@ -26,5 +26,7 @@ namespace SisMap.Data
         }
     
         public virtual DbSet<BancosBarrio> BancosBarrio { get; set; }
+        public virtual DbSet<BancosBG
+            > BancosBG { get; set; }
     }
 }
