@@ -124,7 +124,8 @@ namespace SisMap.Business
                     Canton = x.ciudad,
                     Parroquia = x.parroquia,
                     Celular = x.telefono,
-                    img = x.banner
+                    img = x.banner,
+                    icon=x.trmSupervi
 
 
                 }).ToList();

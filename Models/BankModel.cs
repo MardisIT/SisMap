@@ -19,6 +19,7 @@ namespace SisMap.Models
         public string Parroquia { get; set; }
         public string Celular { get; set; }
         public string img { get; set; }
+        public string icon { get; set; }
     }
 
     }

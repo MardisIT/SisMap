@@ -675,19 +675,39 @@ function initializarMapa() {
         let ulCollapsibleContentList = document.createElement('ul');
         ulCollapsibleContentList.style.padding = "10px"
 
-        var myIcon = L.icon({
-            iconUrl: '../Content/img/store_icon.png',
-            iconSize: [30, 30],
-            iconAnchor: [22, 30],
-            popupAnchor: [-3, -30],
-            shadowSize: [40, 30],
-            shadowAnchor: [22, 30]
-        });
+        //var myIcon = L.icon({
+        //    iconUrl: '../Content/img/store_icon.png',
+        //    iconSize: [30, 30],
+        //    iconAnchor: [22, 30],
+        //    popupAnchor: [-3, -30],
+        //    shadowSize: [40, 30],
+        //    shadowAnchor: [22, 30]
+        //});
 
         dataResponse.bancos.map((bancos) => {
             var latLngs;
             var markerBounds;
-            var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIcon });
+            let uconbank = '../Content/img/puntoceleste.png'
+            switch (bancos.icon) {
+                case "atm":
+                    uconbank = '../Content/img/ATM Azul.png'
+                    break;
+                case "bdb":
+                    uconbank = '../Content/img/BancoBarrio.png'
+                    break;
+                default:
+                // code block
+            }
+
+            let myIconI = L.icon({
+                iconUrl: uconbank,
+                iconSize: [30, 30],
+                iconAnchor: [22, 30],
+                popupAnchor: [-3, -30],
+                shadowSize: [40, 30],
+                shadowAnchor: [22, 30]
+            });
+            var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIconI });
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
                 document.getElementById("titleDrawer").innerHTML = bancos.name
@@ -751,6 +771,7 @@ function error() {
 }
 
 function permiso(_model) {
+    data_engine = [];
     data_engine = _model
     //se debe  poner en negado la siguiente función
     if (window.location !== window.parent.location) {
@@ -783,5 +804,194 @@ function permiso(_model) {
             console.lo("Geolocation is not supported by this browser.");
         }
     }
+}
+
+function changedata(_model) {
+    data_engine = [];
+    data_engine = _model
+    //se debe  poner en negado la siguiente función
+    if (window.location !== window.parent.location) {
+        if (navigator.geolocation) {
+
+            navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
+
+        } else {
+            console.lo("Geolocation is not supported by this browser.");
+        }
+
+    }
+    else {
+
+        let mymap = ReolizarMapa();
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => success(position, mymap), error);
+
+            var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+            contentRequestPermisson.style.display = "none"
+
+            var myLocationButton = document.getElementById('getNearest')
+            myLocationButton.style.display = "flex";
+
+            var myLocationButton = document.getElementById('getMyLocation')
+            myLocationButton.style.display = "flex";
+
+        } else {
+            console.lo("Geolocation is not supported by this browser.");
+        }
+    }
+}
+function ReolizarMapa() {
+
+    var elems = document.getElementById('markerSite');
+    var elementAll = document.getElementById('allsites');
+
+    clearRoutes()
+    mymap.remove(); 
+    mymap = L.map('mapid', {
+        zoomControl: false
+    }).setView([-1.591400, -79.002356], 100);
+
+    L.control.zoom({ position: 'bottomright' }).addTo(mymap);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Chariot - 2020' }).addTo(mymap);
+    document.getElementById("listCollapsible").innerHTML = "";
+   
+    //datos que toma del api:
+    let datos = data_engine
+
+    //esto es para abrir el side bar o drawer
+    var elem = document.getElementById('markerSite')
+    var instance = M.Sidenav.getInstance(elem);
+    var markerGroup = [];
+
+    datos.map((dataResponse) => {
+        //creo un m arcador por caea registro del data
+        let liHeader = document.createElement('li');
+
+        let iconCollapsibleHeader = document.createElement('i');
+        iconCollapsibleHeader.className = "material-icons"
+        iconCollapsibleHeader.innerHTML = "arrow_drop_down"
+
+        let iconContentHeader = document.createElement('i');
+        iconContentHeader.className = "material-icons"
+        iconContentHeader.innerHTML = "store"
+        iconContentHeader.style.color = "#C2185B"
+        iconContentHeader.style.order = "-1"
+
+
+        let contentHeader = document.createElement('div')
+        contentHeader.innerText = dataResponse.provincia
+        contentHeader.style.display = "flex"
+        contentHeader.style.alignItems = "center"
+
+        contentHeader.appendChild(iconContentHeader)
+
+        let divCollapsibleHeader = document.createElement('div');
+        divCollapsibleHeader.id = dataResponse.provincia
+        divCollapsibleHeader.style.display = "flex"
+        divCollapsibleHeader.style.justifyContent = "space-between"
+        divCollapsibleHeader.style.alignItems = "center"
+        divCollapsibleHeader.className = "collapsible-header"
+
+        divCollapsibleHeader.appendChild(contentHeader)
+        divCollapsibleHeader.appendChild(iconCollapsibleHeader)
+
+        let divCollapdibleBody = document.createElement('div');
+        divCollapdibleBody.className = "collapsible-body"
+
+        let ulCollapsibleContentList = document.createElement('ul');
+        ulCollapsibleContentList.style.padding = "10px"
+
+        //var myIcon = L.icon({
+        //    iconUrl: '../Content/img/atm.png',
+        //    iconSize: [30, 30],
+        //    iconAnchor: [22, 30],
+        //    popupAnchor: [-3, -30],
+        //    shadowSize: [40, 30],
+        //    shadowAnchor: [22, 30]
+        //});
+
+        dataResponse.bancos.map((bancos) => {
+            var latLngs;
+            var markerBounds;
+            let uconbank = '../Content/img/puntoceleste.png'
+            switch (bancos.icon) {
+                case "atm":
+                    uconbank = '../Content/img/ATM Azul.png'
+                    break;
+                case "bdb":
+                    uconbank = '../Content/img/BancoBarrio.png'
+                    break;
+                default:
+                // code block
+            }
+
+            let myIconI = L.icon({
+                iconUrl: uconbank,
+                iconSize: [30, 30],
+                iconAnchor: [22, 30],
+                popupAnchor: [-3, -30],
+                shadowSize: [40, 30],
+                shadowAnchor: [22, 30]
+            });
+            var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIconI });
+            myIconI=null
+            // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
+            marker.on('click', function (evt) {
+                document.getElementById("titleDrawer").innerHTML = bancos.name
+                //if (bancos.img != 'HTTP') {
+                //    document.getElementById("localImage").src = bancos.img;
+                //    document.getElementById("localImage").style.display = "flex";
+                //} else {
+                //    document.getElementById("localImage").style.display = "none";
+                //}
+                // document.getElementById("localName").innerHTML = bancos.name
+                document.getElementById("localType").innerHTML = bancos.TipoNegocio
+                //document.getElementById("localOwn").innerHTML = bancos.name
+                //document.getElementById("localPhone").innerHTML = bancos.Celular
+                document.getElementById("localDir").innerHTML = bancos.direccion
+                //document.getElementById("localProv").innerHTML = dataResponse.provincia
+                document.getElementById("localCity").innerHTML = bancos.Canton
+                document.getElementById("localPar").innerHTML = bancos.Parroquia
+                document.getElementById("localLat").innerHTML = bancos.latitud
+                document.getElementById("localLong").innerHTML = bancos.longitud
+
+                latLngs = [marker.getLatLng()];
+                markerBounds = L.latLngBounds(latLngs);
+                mymap.fitBounds(markerBounds);
+                instance.open()
+            })
+
+            let liCollapsibleItem = document.createElement('li');
+            liCollapsibleItem.textContent = bancos.dtrmNombre;
+            liCollapsibleItem.style.paddingLeft = "20px"
+            liCollapsibleItem.style.paddingRight = "20px"
+            liCollapsibleItem.id = dataResponse.provincia + bancos.name
+            liCollapsibleItem.style.cursor = "pointer"
+            ulCollapsibleContentList.appendChild(liCollapsibleItem)
+
+            liCollapsibleItem.addEventListener("click", () => {
+                mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 24);
+                var elem = document.getElementById('allsites')
+                var instance = M.Sidenav.getInstance(elem);
+                instance.close();
+            }, false)
+
+            markerGroup.push(marker)
+
+        })
+        divCollapdibleBody.appendChild(ulCollapsibleContentList)
+
+        liHeader.appendChild(divCollapsibleHeader)
+
+        liHeader.appendChild(divCollapdibleBody)
+
+        document.getElementById("listCollapsible").appendChild(liHeader)
+    })
+
+    layerGroup = L.layerGroup(markerGroup).addTo(mymap).toGeoJSON();
+
+    return mymap;
 }
 

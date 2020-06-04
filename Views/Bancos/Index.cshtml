@@ -129,7 +129,7 @@
     </nav>
 
     <div class="container">
-        <h5>Encuenta Agencia, cajero o Banco de barrio</h5>
+        <h5>Encuentre Agencia, cajero o Banco de barrio</h5>
        
         <form>
             <div class="form-check-inline">
@@ -297,8 +297,44 @@
             });
             return null;
         }
+                function ReadMap() {
+
+            var token = $("[name='__RequestVerificationToken']").val();
+            let _bdb = $('#bdb').prop('checked')
+            let _mtf = $('#mtf').prop('checked')
+            let _agc = $('#agc').prop('checked')
+            let _atm = $('#atm').prop('checked')
+
+            $.ajax({
+                url: "/Bancos/DataMax",
+                type: 'POST',
+                data: {
+                    __RequestVerificationToken: token,
+                    mlf:_mtf ,
+                    bdb:_bdb,
+                    agc:_agc,
+                    atm:_atm
+                },
+                success: function (result) {
+                    changedata(result)
+                },
+                error: function () {
+                    if (window.location !== window.parent.location) {
+                        var requestPermissonButton = document.getElementById('requestPermisson')
+                        requestPermissonButton.style.display = "flex"
+
+                        var progressCircle = document.getElementById('progressCircle')
+                        progressCircle.style.display = "none"
+                    } else {
+
+                    }
+
+                }
+            });
+            return null;
+        }
         $(".OptionService").change(function () {
-           LoadMap()
+          ReadMap()
     })
     </script>
 }
