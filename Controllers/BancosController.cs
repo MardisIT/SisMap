@@ -17,14 +17,14 @@ namespace SisMap.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult DataMax(string __RequestVerificationToken)
+        public JsonResult DataMax(string __RequestVerificationToken, string mlf , string bdb, string agc, string atm)
         {
             try
             {
 
 
 
-                var statustask = _BancoBarioDOA.GetDataBank();
+                var statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm);
 
 
 

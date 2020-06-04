@@ -187,7 +187,7 @@
 }
 
 .sidenav {
-    width: 330px !important;
+    width: 380px !important;
  
 }
 
@@ -411,7 +411,8 @@
     z-index: 200;
     padding: 20px 25px;
     width: 350px;
-
+    margin-top: -32em;
+    margin-left: -120em;
     border-bottom-left-radius: 15px;
     border: 1px solid #CFCFCF;
     z-index: 90;

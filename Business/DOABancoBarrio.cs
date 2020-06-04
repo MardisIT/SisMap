@@ -67,7 +67,7 @@ namespace SisMap.Business
             return _data;
         }
 
-        public List<ProvinceModel> GetDataBank()
+        public List<ProvinceModel> GetDataBank(string mlf, string bdb, string agc, string atm)
         {
 
             List<ProvinceModel> _data = new List<ProvinceModel>();
@@ -86,9 +86,27 @@ namespace SisMap.Business
                 _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
 
             }
+            string[] source = new string[4];
+            if (bool.Parse(mlf)) {
+                source[0] = "mlf";
+            }
+            if (bool.Parse(bdb))
+            {
+                source[1] = "bdb";
+            }
+            if (bool.Parse(agc))
+            {
+                source[2] = "agc";
+            }
+            if (bool.Parse(atm))
+            {
+                source[3] = "atm";
+            }
+
+
 
             ProvinceModel _provice = new ProvinceModel();
-            foreach (var item in _model.Select(x => x.provincia).Distinct())
+            foreach (var item in _model.Where(x=> source.Contains(x.trmSupervi)).Select(x => x.provincia).Distinct())
             {
                 _data.Add(new ProvinceModel { provincia = item });
             }

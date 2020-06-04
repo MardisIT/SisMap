@@ -32,7 +32,7 @@ document.getElementById("goTo").onclick = function (evt) {
     }
 
     //successEmbeeded(position), error);
-  
+
 }
 
 function getRoute(position, latEnd, longEnd) {
@@ -42,21 +42,21 @@ function getRoute(position, latEnd, longEnd) {
     window.open('https://www.google.com/maps/dir/?api=1&origin=' + latStart + ',' + longStart + '&destination=' + latEnd + ',' + longEnd + '&travelmode=driving');
 }
 
-function errorGoTo() {    
+function errorGoTo() {
     alert('Se han denegado permisos de ubicación. Para ver la ruta completa active permisos de ubicación');
     window.open('https://maps.google.com/?q=+' + lastLatRoute + ',' + lastLongRoute + '');
 }
 
-    /*
-    navigator.geolocation.getCurrentPosition((position) => {
-        let latStart = position.coords.latitude;
-        let longStart = position.coords.longitude;
-        
-        //fetching(latStart, longStart, latEnd, longEnd);
-        instance.close();
-        //document.getElementById("menuSteps").style.display = "flex";
-    }
-        , error);*/
+/*
+navigator.geolocation.getCurrentPosition((position) => {
+    let latStart = position.coords.latitude;
+    let longStart = position.coords.longitude;
+    
+    //fetching(latStart, longStart, latEnd, longEnd);
+    instance.close();
+    //document.getElementById("menuSteps").style.display = "flex";
+}
+    , error);*/
 
 
 /*
@@ -108,7 +108,7 @@ function updateRouteActualPosition() {
 
 function launchNearestPosition() {
     var gj = L.geoJson(layerGroup);
-    
+
     var checkDevice = checkMobile();
 
     if (!checkDevice) {
@@ -119,16 +119,16 @@ function launchNearestPosition() {
             window.open('https://maps.google.com/?q=+' + nearest[0].lat + ',' + nearest[0].lon + '');
         }
             , error);
-    } else if (myLocationMarker != null) {       
+    } else if (myLocationMarker != null) {
         var latLngs = myLocationMarker.getLatLng();
         var nearest = leafletKnn(gj).nearest(L.latLng(latLngs.lat, latLngs.lng), 1, 10000);
-        window.open('https://maps.google.com/?q=+' + nearest[0].lat + ',' + nearest[0].lon + '');    
-             
-    }else {
+        window.open('https://maps.google.com/?q=+' + nearest[0].lat + ',' + nearest[0].lon + '');
+
+    } else {
         alert('Se han denegado permisos de ubicación. Para ver la ruta completa active permisos de ubicación');
     }
 
- }
+}
 
 
 
@@ -186,7 +186,7 @@ const sleep = ms => {
 }
 
 /*async*/ function successEmbeeded(position) {
-   
+
 
     let mymap = initializarMapa();
 
@@ -235,7 +235,7 @@ const sleep = ms => {
 
     getMinusRoute(latitude, longitude)
     */
-    
+
 }
 
 /*
@@ -548,7 +548,7 @@ function success(position, mymap) {
     myLocationMarker = marker
     //  var latLngs = [marker.getLatLng()];
     // var markerBounds = L.latLngBounds(latLngs);
-    mymap.setView([latitude, longitude],14);
+    mymap.setView([latitude, longitude], 14);
 }
 
 function initializarMapa() {
@@ -697,7 +697,7 @@ function initializarMapa() {
                 //} else {
                 //    document.getElementById("localImage").style.display = "none";
                 //}
-               // document.getElementById("localName").innerHTML = bancos.name
+                // document.getElementById("localName").innerHTML = bancos.name
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
                 //document.getElementById("localOwn").innerHTML = bancos.name
                 //document.getElementById("localPhone").innerHTML = bancos.Celular
@@ -755,12 +755,12 @@ function permiso(_model) {
     //se debe  poner en negado la siguiente función
     if (window.location !== window.parent.location) {
         if (navigator.geolocation) {
-          
-                navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
-      
+
+            navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
+
         } else {
             console.lo("Geolocation is not supported by this browser.");
-        }        
+        }
 
     }
     else {
@@ -785,4 +785,3 @@ function permiso(_model) {
     }
 }
 
-  

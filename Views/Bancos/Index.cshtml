@@ -121,11 +121,52 @@
     </div>
 </aside>
 <!--LIST DRAWER-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <aside id="allsites" class="sidenav">
     <nav class="navPageAll" style="background-color: #BE1C6C">
-        <p>Agencia, cajero automático o Banco de barrio </p>
-        
+        <p> Banco Guayaquil</p>
+
     </nav>
+
+    <div class="container">
+        <h5>Encuenta Agencia, cajero o Banco de barrio</h5>
+       
+        <form>
+            <div class="form-check-inline">
+                <p>
+                    <label>
+                        <input type="checkbox"  class="OptionService"  id="bdb" checked="checked" />
+                        <span>Banco del Barrio</span>
+                    </label>
+                </p>
+            </div>
+            <div class="form-check-inline">
+                <p>
+                    <label>
+                        <input type="checkbox"  class="OptionService"  id="mtf" checked="checked" />
+                        <span>Multifunciones</span>
+                    </label>
+                </p>
+            </div>
+            <div class="form-check-inline">
+                <p>
+                    <label>
+                        <input type="checkbox" class="OptionService"  id="agc" checked="checked" />
+                        <span>Agencias</span>
+                    </label>
+                </p>
+            </div>
+            <div class="form-check-inline">
+                <p>
+                    <label>
+                        <input type="checkbox" class="OptionService"  id="atm" checked="checked" />
+                        <span>ATMs</span>
+                    </label>
+                </p>
+            </div>
+
+        </form>
+    </div>
     <div id="allSitesList">
         <ul id="listCollapsible" class="collapsible">
         </ul>
@@ -151,7 +192,9 @@
     </div>
 </div>
 @section scripts{
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="~/Content/js/mainBancos.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
@@ -221,11 +264,20 @@
         function LoadMap() {
 
             var token = $("[name='__RequestVerificationToken']").val();
+            let _bdb = $('#bdb').prop('checked')
+            let _mtf = $('#mtf').prop('checked')
+            let _agc = $('#agc').prop('checked')
+            let _atm = $('#atm').prop('checked')
+
             $.ajax({
                 url: "/Bancos/DataMax",
                 type: 'POST',
                 data: {
-                    __RequestVerificationToken: token
+                    __RequestVerificationToken: token,
+                    mlf:_mtf ,
+                    bdb:_bdb,
+                    agc:_agc,
+                    atm:_atm
                 },
                 success: function (result) {
                     permiso(result)
@@ -245,5 +297,8 @@
             });
             return null;
         }
+        $(".OptionService").change(function () {
+           LoadMap()
+    })
     </script>
 }
