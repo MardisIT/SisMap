@@ -710,7 +710,7 @@ function initializarMapa() {
 
                 //if (bancos.Celular !== null || bancos.Celular != '') {
                 document.getElementById('whatsRef').addEventListener("click", () => {
-                    window.open('https://api.whatsapp.com/send?phone=+593968953814')
+                    window.open('https://api.whatsapp.com/send?phone=+593' + bancos.Celular)
                 }, false)
                 //}
 
