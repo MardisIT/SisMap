@@ -192,8 +192,8 @@
 }
 
 .imageFooter {
-    height: 380px;
-    width: 330px;
+    height: 400px;
+    width: 380px;
     display: inline-block;
     align-content: center;
     align-items: center;
@@ -222,6 +222,7 @@
     COLOR: WHITE;
     FONT-SIZE: 11PX;
     FONT-WEIGHT: 600;
+    height: 30px;
 }
 .TITLEBRANDTI {
     text-align: center;
@@ -337,7 +338,7 @@
 
 }
 .cabeceraImage {
-    width: 330px;
+    width: 380px;
 }
 @media only screen and (max-width: 500px) {
     .sidenav {

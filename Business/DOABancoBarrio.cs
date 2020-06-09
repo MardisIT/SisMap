@@ -112,7 +112,7 @@ namespace SisMap.Business
             }
             foreach (var item in _data)
             {
-                var bank = _model.Where(x => x.provincia == item.provincia).Select(x => new BankModel
+                var bank = _model.Where(x => x.provincia == item.provincia && source.Contains(x.trmSupervi)).Select(x => new BankModel
                 {
                     name = x.nombreLocal,
                     dtrmNombre = x.propietario,
