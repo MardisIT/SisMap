@@ -17,14 +17,38 @@ namespace SisMap.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult DataMax(string __RequestVerificationToken, string mlf , string bdb, string agc, string atm)
+        public JsonResult DataMax(string __RequestVerificationToken, string mlf , string bdb, string agc, string atm,string City="", string lat = "0", string lgn ="0")
+        {
+            try
+            {
+
+                        
+
+                //     var statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, City, float.Parse(lat), float.Parse(lgn));
+
+
+                var statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
+
+                return Json(statustask);
+
+            }
+
+            catch (Exception e)
+            {
+
+                return null;
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Provice(string __RequestVerificationToken)
         {
             try
             {
 
 
 
-                var statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm);
+                var statustask = _BancoBarioDOA.GetProvice();
 
 
 

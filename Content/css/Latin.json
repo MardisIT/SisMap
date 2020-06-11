@@ -1,0 +1,23 @@
+{
+  "sEmptyTable": "Cargando datos..",
+  "sInfo": "Página _PAGE_ de _PAGES_",
+  "sInfoEmpty": "No existen registros",
+  "sInfoFiltered": "Filtro",
+  "sInfoPostFix": "",
+  "sInfoThousands": ".",
+  "sLengthMenu": "Mostrar _MENU_ Registros ",
+  "sLoadingRecords": "Verificando..",
+  "sProcessing": "Verificando..",
+  "sSearch": "Buscar",
+  "sZeroRecords": "No hay entradas disponibles.",
+  "oPaginate": {
+    "sNext": "<i class=\"fa fa-forward\"></i>",
+    "sPrevious": "<i class=\"fa fa-backward\"></i>",
+    "sFirst": "<i class=\"fa fa-step-backward\"></i>",
+    "sLast": "<i class=\"fa fa-step-forward\"></i>"
+  },
+  "oAria": {
+    "sSortAscending": ": Ordern Ascendente",
+    "sSortDescending": ":Ordern Descendente"
+  }
+}

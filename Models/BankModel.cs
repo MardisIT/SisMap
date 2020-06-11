@@ -20,6 +20,7 @@ namespace SisMap.Models
         public string Celular { get; set; }
         public string img { get; set; }
         public string icon { get; set; }
+        public double? distancia { get; set; } 
     }
 
     }

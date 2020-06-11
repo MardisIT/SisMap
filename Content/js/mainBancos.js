@@ -805,7 +805,34 @@ function permiso(_model) {
         }
     }
 }
+function GetGeo() {
+ 
+    //se debe  poner en negado la siguiente función
+    if (window.location !== window.parent.location) {
+        if (navigator.geolocation) {
 
+            navigator.geolocation.getCurrentPosition((position) => InitGeo(position), error);
+
+        } else {
+            console.lo("Geolocation is not supported by this browser.");
+        }
+
+    }
+    else {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => InitGeo(position), error);
+        } else {
+            console.lo("Geolocation is not supported by this browser.");
+        }
+    }
+}
+function InitGeo(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;    
+    localStorage.setItem("Lat", latitude);
+    localStorage.setItem("lng", longitude);
+   
+}
 function changedata(_model) {
     data_engine = [];
     data_engine = _model

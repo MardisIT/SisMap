@@ -171,6 +171,7 @@
     <Compile Include="Business\BOABase.cs" />
     <Compile Include="Business\DOABancoBarrio.cs" />
     <Compile Include="Business\DOAFarmacia.cs" />
+    <Compile Include="Business\Geo.cs" />
     <Compile Include="Business\RedisCache.cs" />
     <Compile Include="Controllers\BancosController.cs" />
     <Compile Include="Controllers\FarmaciaController.cs" />
@@ -202,6 +203,8 @@
     </Compile>
     <Compile Include="Models\BankModel.cs" />
     <Compile Include="Models\ProvinceModel.cs" />
+    <Compile Include="Models\SelectCity.cs" />
+    <Compile Include="Models\SelectProvince.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +267,7 @@
     <Content Include="Data\BG.edmx.diagram">
       <DependentUpon>BG.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\css\Latin.json" />
     <None Include="Properties\PublishProfiles\dyvenpro - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - Web Deploy.pubxml" />
