@@ -201,7 +201,7 @@
             <div class="form-check-inline">
                 <p>
                     <label>
-                        <input type="checkbox" class="OptionService" id="bdb" checked="checked" />
+                        <input type="checkbox" class="OptionService" id="bdb1" checked="checked" />
                         <span>Banco del Barrio</span>
                     </label>
                 </p>
@@ -209,7 +209,7 @@
             <div class="form-check-inline">
                 <p>
                     <label>
-                        <input type="checkbox" class="OptionService" id="mtf" checked="checked" />
+                        <input type="checkbox" class="OptionService" id="mtf1" checked="checked" />
                         <span>Multifunciones</span>
                     </label>
                 </p>
@@ -217,7 +217,7 @@
             <div class="form-check-inline">
                 <p>
                     <label>
-                        <input type="checkbox" class="OptionService" id="agc" checked="checked" />
+                        <input type="checkbox" class="OptionService" id="agc1" checked="checked" />
                         <span>Agencias</span>
                     </label>
                 </p>
@@ -225,7 +225,7 @@
             <div class="form-check-inline">
                 <p>
                     <label>
-                        <input type="checkbox" class="OptionService" id="atm" checked="checked" />
+                        <input type="checkbox" class="OptionService" id="atm1" checked="checked" />
                         <span>ATMs</span>
                     </label>
                 </p>
@@ -255,7 +255,7 @@
         </nav>
 
 
-        <div class="col s12 m6"  style=" top:10px;">
+        <div class="col s12 m6" style=" top:10px;">
             <div>
                 <div class="card-content white-text">
                     <div class="col s12 m6">
@@ -263,7 +263,7 @@
                         <div class="switch" style=" float: right; text-align: right;">
                             <label>
                                 Bancos de barrio
-                                <input type="checkbox" class="OptionService"  name="helloThere" id="bdb" value="on">
+                                <input type="checkbox" class="OptionService" id="bdb" checked="checked">
                                 <span class="lever"></span>
                             </label>
                         </div>
@@ -291,13 +291,13 @@
                     <div class="col s12 m6" style="    float: right;    text-align: right;">
                         <div class="switch">
                             <label>
-                                Agencias
+                                ATMs
                                 <input type="checkbox" class="OptionService" id="atm" checked="checked">
                                 <span class="lever"></span>
                             </label>
                         </div>
                     </div>
-                 
+
 
                 </div>
                 <div class="col s12 m6">
@@ -317,26 +317,26 @@
                         <div class="input-field col s12">
                             <i class="material-icons prefix">search</i>
                             @*<input type="text" id="autocomplete-input" class="autocomplete">
-        <label for="autocomplete-input">Buscar</label>*@
-                    
+                                <label for="autocomplete-input">Buscar</label>*@
+
                         </div>
                     </div>
                 </div>
                 @*<div class="col s3">
-                    <div class="row">
-                        <div class="input-field col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
 
-                            <a class="waves-effect pink btn-small" style=" top: 50%;">Buscar</a>
+                                <a class="waves-effect pink btn-small" style=" top: 50%;">Buscar</a>
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
                 <div class="col s12" style="
         height: 300PX
 " id="allSitesList">
                     <div id="DatosTabla" style="
         transform: translateY(-10%);
-   "  >
-                        <table id="table-mardis"  class="display">
+   ">
+                        <table id="table-mardis" class="display">
                             <thead style="color:white">
                                 <tr>
                                     <th></th>
@@ -366,16 +366,16 @@
 
     </div>
     @section scripts{
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>*@
         <script src="~/Content/js/mainBancos.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
+
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
@@ -402,10 +402,17 @@
 
                 });
                 $('#selectCities').change(function () {
-                 
+
                     LoadListbank($(this).val())
 
                 });
+                   $('#selectCities').change(function () {
+
+                    LoadListbank($(this).val())
+
+                });
+
+        
             });
 
 
@@ -464,15 +471,15 @@
 
                 GetGeo();
                 var token = $("[name='__RequestVerificationToken']").val();
-               // let _bdb = $('#bdb').prop('checked')
-                let d = $("input[name='helloThere']").attr('checked', 'checked');
-                alert(d);
-                let _bdb= document.getElementById("bdb").checked
+                // let _bdb = $('#bdb').prop('checked')
+
+
+                let _bdb =  $('#bdb').prop('checked')
                 let _mtf = $('#mtf').prop('checked')
                 let _agc = $('#agc').prop('checked')
                 let _atm = $('#atm').prop('checked')
                 let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
-                console.log("Geo---"+geos)
+             
                 var dataSet = []
                 $.ajax({
                     url: "/Bancos/DataMax",
@@ -483,43 +490,43 @@
                         bdb: _bdb,
                         agc: _agc,
                         atm: _atm,
-                        lat:  parseFloat(localStorage.getItem('Lat')),
+                        lat: parseFloat(localStorage.getItem('Lat')),
                         lgn: parseFloat(localStorage.getItem('lng'))
                     },
                     success: function (result) {
-                         console.log(result)
-                             result.map((dataResponse) => {
-                    
+                
+                        result.map((dataResponse) => {
+
                             dataResponse.bancos.map((bancos) => {
-                                 var dataSet2 =[]
+                                var dataSet2 = []
                                 let data = {
-                                    nombre: "<b style='color:#1a237e;'>"+bancos.name+"</b></br><small>"+bancos.direccion+"</small> ",
+                                    nombre: "<b style='color:#1a237e;' onclick="+" 'ir("+bancos.latitud+","+bancos.longitud+")'"+">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
                                     icon: '     <i class="material-icons pink prefix">adjust</i>  ',
-                                    dist:"</br><small style='color:grey;'>"+bancos.distancia + " Km"+"</small> "
+                                    dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
                                 };
-                                
+
                                 dataSet.push(data)
                             })
-                      })
-                 
-             
+                        })
+
+
                         $('#table-mardis').DataTable({
-                               "language": {
-                                    "url": "../Content/css/Latin.json"
-                                 },
+                            "language": {
+                                "url": "../Content/css/Latin.json"
+                            },
                             data: dataSet,
                             "scrollY": "290px",
                             ordering: false,
-                             
-                               "pageLength": 100,
-                          
-     
-                           //  searching: false,
+
+                            "pageLength": 100,
+
+
+                            //  searching: false,
                             columns: [
-                               { "data": "icon" },
+                                { "data": "icon" },
                                 { "data": "nombre" },
-                                     { "data": "dist" }
-                                
+                                { "data": "dist" }
+
                             ]
 
 
@@ -540,12 +547,16 @@
                     }
                 });
                 return null;
+            } function ir(lt, lg) {
+                zoomPunto(lt, lg);
             }
+                var latf;
+                        var lngf;
             function LoadListbank(ct) {
-
+                   
 
                 var token = $("[name='__RequestVerificationToken']").val();
-               let _bdb= document.getElementById("bdb").checked
+                let _bdb = document.getElementById("bdb").checked
                 let _mtf = $('#mtf').prop('checked');
                 let _agc = $('#agc').prop('checked');
                 let _atm = $('#atm').prop('checked');
@@ -555,6 +566,7 @@
                 $.ajax({
                     url: "/Bancos/DataMax",
                     type: 'POST',
+                    async:true,
                     data: {
                         __RequestVerificationToken: token,
                         mlf: _mtf,
@@ -562,47 +574,62 @@
                         agc: _agc,
                         atm: _atm,
                         city: city,
-                        lat:  parseFloat(localStorage.getItem('Lat')),
+                        lat: parseFloat(localStorage.getItem('Lat')),
                         lgn: parseFloat(localStorage.getItem('lng'))
                     },
                     success: function (result) {
+                  
+                        let cont=0
                         result.map((dataResponse) => {
-                    
+
                             dataResponse.bancos.map((bancos) => {
-                                 var dataSet2 =[]
+                                var dataSet2 = []
                                 let data = {
-                                    nombre: "<b style='color:#1a237e;'>"+bancos.name+"</b></br><small>"+bancos.direccion+"</small>",
+                               nombre: "<b style='color:#1a237e;' onclick="+" 'ir("+bancos.latitud+","+bancos.longitud+")'"+">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
                                     icon: '     <i class="material-icons pink prefix">adjust</i>  ',
-                                    dist:"</br><small style='color:grey;'>"+bancos.distancia + " Km"+"</small> "
+                                    dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
                                 };
-                                
+
                                 dataSet.push(data)
+                                if (cont === 0) 
+                                    {
+                                        latf = bancos.latitud;
+                                        lngf = bancos.longitud;
+                                    }
+                                    cont++;
+
                             })
-                      })
-                 
-             
-                     $('#table-mardis').DataTable().clear().destroy();
-                        $('#table-mardis').DataTable({
-                               "language": {
-                                    "url": "../Content/css/Latin.json"
-                                 },
+                        })
+
+
+                        $('#table-mardis').DataTable().destroy();
+                       $('#table-mardis').DataTable({
+                            "language": {
+                                "url": "../Content/css/Latin.json"
+                            },
                             data: dataSet,
                             "scrollY": "290px",
                             ordering: false,
-                            
-                               "pageLength": 100,
-                           //  searching: false,
+
+                            "pageLength": 100,
+
+
+                            //  searching: false,
                             columns: [
-                               { "data": "icon" },
-                               { "data": "nombre" },
-                               { "data": "dist" }
-                                
+                                { "data": "icon" },
+                                { "data": "nombre" },
+                                { "data": "dist" }
+
                             ]
+                      
 
-
-                        });
+                       });
+                   
                         changedata(result)
+                        
+                   
                     },
+                
                     error: function () {
                         if (window.location !== window.parent.location) {
                             var requestPermissonButton = document.getElementById('requestPermisson')
@@ -692,7 +719,8 @@
             }
             $(".OptionService").change(function () {
 
-                LoadListbank(  $('#selectCities').val()) 
+                LoadListbank($('#selectCities').val())
+        
             })
         </script>
     }

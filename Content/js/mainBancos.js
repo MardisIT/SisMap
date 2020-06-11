@@ -1016,9 +1016,14 @@ function ReolizarMapa() {
 
         document.getElementById("listCollapsible").appendChild(liHeader)
     })
+  
 
     layerGroup = L.layerGroup(markerGroup).addTo(mymap).toGeoJSON();
 
     return mymap;
+}
+function zoomPunto(lat, lng) {
+
+    mymap.panTo(new L.LatLng(lat, lng), 24);
 }
 
