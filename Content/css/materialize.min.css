@@ -6561,7 +6561,7 @@ textarea {
         }
 
             .switch label input[type=checkbox]:checked + .lever {
-                background-color: #84c7c1
+                background-color: #0288d1b3 
             }
 
                 .switch label input[type=checkbox]:checked + .lever:before, .switch label input[type=checkbox]:checked + .lever:after {
@@ -6569,7 +6569,7 @@ textarea {
                 }
 
                 .switch label input[type=checkbox]:checked + .lever:after {
-                    background-color: #26a69a
+                    background-color: #0288d1
                 }
 
         .switch label .lever {

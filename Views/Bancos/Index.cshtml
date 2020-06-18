@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+    <link href="~/Content/css/mainBG.css" rel="stylesheet" />
 <div id="contentRequestPermisson" class="dialogModal">
     <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
     <div id="progressCircle" class="preloader-wrapper big active progressMap">
@@ -38,73 +38,7 @@
         </div>
      -->
 </nav>
-<style>
-    .sidenav-overlay {
-    opacity:0 !important;
 
-
-    }
-    .sidenav_bg {
-    position: fixed;
-    width: 450px;
-    left: 78%;
-    top: 0;
-    margin: 0;
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-    height: 650px;
-
-    height: -moz-calc(100%);
-    padding-bottom: 60px;
-    background-color: #fff;
-    z-index: 999;
-    overflow-y: auto;
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: translateX(-105%);
-    transform: translateX(-105%);
-}
-    #table-mardis_length {
-    display:none!important;
-    }
-     #table-mardis_info {
-    display:none!important;
-    }
-    .dataTables_wrapper .dataTables_paginate {
-    float: none !important;
-    text-align: center  !important;
-
-}
-  table.dataTable thead th, table.dataTable thead td {
-
-    border-bottom: none !important;
-}
-
-    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-        color: #fff !important;
-        border: 1px solid #be1c6c !important;
-        background: #be1c6c !important;
-    }
-    #table-mardis_filter {
-     float: none !important;
-    text-align: center  !important;
-    }
-    .pink {
-    background-color: #be1c6c !important;
-    color: white !important;
-}
-    #table-mardis_filter input {
-    width:300px;
-    }   
-    .lever {
-    background-color: #0288d1 !important;
-    color: white !important;
-}
-    .switch label input[type=checkbox]:checked + .lever:after {
-    background-color: white  !important;
-}
-</style>
 <main class="map" id="mapid">
 </main>
 @Html.AntiForgeryToken()
@@ -196,43 +130,7 @@
 
     <div class="container">
         <h5>Encuentre Agencia, cajero o Banco de barrio</h5>
-
-        <form>
-            <div class="form-check-inline">
-                <p>
-                    <label>
-                        <input type="checkbox" class="OptionService" id="bdb1" checked="checked" />
-                        <span>Banco del Barrio</span>
-                    </label>
-                </p>
-            </div>
-            <div class="form-check-inline">
-                <p>
-                    <label>
-                        <input type="checkbox" class="OptionService" id="mtf1" checked="checked" />
-                        <span>Multifunciones</span>
-                    </label>
-                </p>
-            </div>
-            <div class="form-check-inline">
-                <p>
-                    <label>
-                        <input type="checkbox" class="OptionService" id="agc1" checked="checked" />
-                        <span>Agencias</span>
-                    </label>
-                </p>
-            </div>
-            <div class="form-check-inline">
-                <p>
-                    <label>
-                        <input type="checkbox" class="OptionService" id="atm1" checked="checked" />
-                        <span>ATMs</span>
-                    </label>
-                </p>
-            </div>
-
-        </form>
-        <ul id="listCollapsible" class="collapsible">
+          <ul id="listCollapsible" class="collapsible">
         </ul>
     </div>
    
@@ -248,7 +146,7 @@
 
 <div class="container">
 
-    <div class="row sidenav_bg  right-aligned" style="    margin-left: -3%; transform: translateY(20%);    border-radius: 10px;">
+    <div class="row sidenav_bg  right-aligned" id="mapbg" name="i">
         <nav class="navPageAll" style="        background-color: #BE1C6C">
             <p> Encuentre Agencia, cajero o Banco de barrio</p>
 
@@ -258,17 +156,19 @@
         <div class="col s12 m6" style=" top:10px;">
             <div>
                 <div class="card-content white-text">
-                    <div class="col s12 m6">
+                    <div class="col s6 m6">
 
-                        <div class="switch" style=" float: right; text-align: right;">
+                        <div class="switch" style=" float: right;
+        text-align: right;
+    ">
                             <label>
                                 Bancos de barrio
                                 <input type="checkbox" class="OptionService" id="bdb" checked="checked">
-                                <span class="lever"></span>
+                                <span class="lever "></span>
                             </label>
                         </div>
                     </div>
-                    <div class="col s12 m6">
+                    <div class="col s6 m6">
 
                         <div class="switch" style="    float: right;    text-align: right;">
                             <label>
@@ -278,7 +178,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col s12 m6" style="    float: right;    text-align: right;">
+                    <div class="col s6 m6" style="    float: right;    text-align: right;">
 
                         <div class="switch">
                             <label>
@@ -288,7 +188,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col s12 m6" style="    float: right;    text-align: right;">
+                    <div class="col s6 m6" style="    float: right;    text-align: right;">
                         <div class="switch">
                             <label>
                                 ATMs
@@ -330,12 +230,8 @@
                             </div>
                         </div>
                     </div>*@
-                <div class="col s12" style="
-        height: 300PX
-" id="allSitesList">
-                    <div id="DatosTabla" style="
-        transform: translateY(-10%);
-   ">
+                <div class="col s12" style="  height: 300PX" id="allSitesList">
+                    <div id="DatosTabla" style="transform: translateY(-10%);">
                         <table id="table-mardis" class="display">
                             <thead style="color:white">
                                 <tr>
@@ -512,8 +408,25 @@
 
                         $('#table-mardis').DataTable({
                             "language": {
-                                "url": "../Content/css/Latin.json"
-                            },
+                                      "sEmptyTable": "Cargando datos..",
+                                      "sInfo": "Página _PAGE_ de _PAGES_",
+                                      "sInfoEmpty": "No existen registros",
+                                      "sInfoFiltered": "Filtro",
+                                      "sInfoPostFix": "",
+                                      "sInfoThousands": ".",
+                                      "sLengthMenu": "Mostrar _MENU_ Registros ",
+                                      "sLoadingRecords": "Verificando..",
+                                      "sProcessing": "Verificando..",
+                                      "sSearch": "Buscar",
+                                      "sZeroRecords": "No hay entradas disponibles.",
+                                "oPaginate": {
+                                    "sNext": "<i class=\"fa fa-forward\"></i>",
+                                    "sPrevious": "<i class=\"fa fa-backward\"></i>",
+                                    "sFirst": "<i class=\"fa fa-step-backward\"></i>",
+                                    "sLast": "<i class=\"fa fa-step-forward\"></i>"
+                                }
+                                      
+                                    },
                             data: dataSet,
                             "scrollY": "290px",
                             ordering: false,
@@ -604,10 +517,27 @@
 
                         $('#table-mardis').DataTable().destroy();
                        $('#table-mardis').DataTable({
-                            "language": {
-                                "url": "../Content/css/Latin.json"
-                            },
-                            data: dataSet,
+                            "language":{
+                                      "sEmptyTable": "Cargando datos..",
+                                      "sInfo": "Página _PAGE_ de _PAGES_",
+                                      "sInfoEmpty": "No existen registros",
+                                      "sInfoFiltered": "Filtro",
+                                      "sInfoPostFix": "",
+                                      "sInfoThousands": ".",
+                                      "sLengthMenu": "Mostrar _MENU_ Registros ",
+                                      "sLoadingRecords": "Verificando..",
+                                      "sProcessing": "Verificando..",
+                                      "sSearch": "Buscar",
+                                      "sZeroRecords": "No hay entradas disponibles.",
+                               "oPaginate": {
+                                   "sNext": "<i class=\"fa fa-forward\"></i>",
+                                   "sPrevious": "<i class=\"fa fa-backward\"></i>",
+                                   "sFirst": "<i class=\"fa fa-step-backward\"></i>",
+                                   "sLast": "<i class=\"fa fa-step-forward\"></i>"
+                               }
+                                      
+                                    },
+                           data: dataSet,
                             "scrollY": "290px",
                             ordering: false,
 

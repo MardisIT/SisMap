@@ -12,9 +12,19 @@ document.getElementById("closeDrawer").addEventListener('click', (evt) => {
     instance.close();
 })
 document.getElementById("openAllSites").addEventListener('click', (evt) => {
-    var elem = document.getElementById('allsites')
-    var instance = M.Sidenav.getInstance(elem);
-    instance.open();
+    var elem = document.getElementById('mapbg')
+    var idp = document.getElementById("openAllSites")
+    var id = $("#mapbg").attr('name')
+    if (id === 'i') {
+        elem.style.display = "none";
+        $("#mapbg").attr('name','n')
+    } else {
+        elem.style.display = "flex";
+        $("#mapbg").attr('name', 'i')
+    }
+   
+   
+
 })
 
 document.getElementById("goTo").onclick = function (evt) {
@@ -217,7 +227,7 @@ const sleep = ms => {
         shadowAnchor: [22, 50]
     });
     var marker = L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);
-    marker.bindPopup('Mi Posición').openPopup();
+    marker.bindPopup('Mi Ubicación').openPopup();
     marker.on('click', function (evt) {
         var latLngs = [marker.getLatLng()];
         var markerBounds = L.latLngBounds(latLngs);
@@ -539,7 +549,7 @@ function success(position, mymap) {
         shadowAnchor: [22, 50]
     });
     var marker = L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);
-    marker.bindPopup('Mi Posición').openPopup();
+    marker.bindPopup('Mi Ubicación').openPopup();
     marker.on('click', function (evt) {
         var latLngs = [marker.getLatLng()];
         var markerBounds = L.latLngBounds(latLngs);
