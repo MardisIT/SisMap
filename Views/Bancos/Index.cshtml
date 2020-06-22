@@ -19,11 +19,11 @@
 </div>
 
 <nav class="navPage">
-    <i id="openAllSites" class="material-icons">menu</i>
+    <i id="openAllSites" hidden class="material-icons">menu</i>
     <!--
     <img src="~/Content/img/mardis.png" class="iconHeader" />
         -->
-    <div id="getNearest" class="getNearest" style="display:flex; flex-direction:row; align-content:center; align-items:center; justify-content:space-around">
+    <div id="getNearest" class="getNearest" style="display:flex; flex-direction:row; align-content:center; align-items:center; justify-content:space-around" hidden>
         <b class="nearestText">Banco más cercano</b>
         <i class="material-icons">directions</i>
     </div>
@@ -40,6 +40,12 @@
 </nav>
 
 <main class="map" id="mapid">
+    <div class="leaflet-top leaflet-right">
+        <div class="leaflet-control-zoom leaflet-bar leaflet-control" style="right:30%">
+
+            <img  id="opensearch" style="display:none" src="~/Content/img/LOGO-BANCO-DE-GUAYAQUIL.jpg" width="100px"  />
+        </div>
+        </div>
 </main>
 @Html.AntiForgeryToken()
 <!--MARKER DRAWER-->
@@ -122,8 +128,8 @@
 </aside>
 <!--LIST DRAWER-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<aside id="allsites" class="sidenav">
-    <nav class="navPageAll" style="background-color: #BE1C6C">
+<aside id="allsites" class="sidenav" style=" display:none !important">
+    <nav class="navPageAll" style="background-color: #BE1C6C;" >
         <p> Banco Guayaquil</p>
 
     </nav>
@@ -148,7 +154,12 @@
 
     <div class="row sidenav_bg  right-aligned" id="mapbg" name="i">
         <nav class="navPageAll" style="        background-color: #BE1C6C">
-            <p> Encuentre Agencia, cajero o Banco de barrio</p>
+            <div class="col s6 m6">
+                <p> Servicios Diponibles</p>
+            </div>
+            <div class="col s6 m6">
+                <a id="idcerrar" class="leaflet-control-zoom-out" style="text-align: right;/* LEFT: 100%; */FLOAT: right;MARGIN-TOP: 5PX;"; href="#" title="Cerrar" role="button" aria-label="Cerrar">x</a>
+            </div>
 
         </nav>
 
@@ -172,7 +183,7 @@
 
                         <div class="switch" style="    float: right;    text-align: right;">
                             <label>
-                                Multifunciones
+                                 Multifunciones
                                 <input type="checkbox" class="OptionService" id="mtf" checked="checked">
                                 <span class="lever"></span>
                             </label>
@@ -191,7 +202,7 @@
                     <div class="col s6 m6" style="    float: right;    text-align: right;">
                         <div class="switch">
                             <label>
-                                ATMs
+                                Cajeros
                                 <input type="checkbox" class="OptionService" id="atm" checked="checked">
                                 <span class="lever"></span>
                             </label>

@@ -11,19 +11,29 @@ document.getElementById("closeDrawer").addEventListener('click', (evt) => {
     var instance = M.Sidenav.getInstance(elem);
     instance.close();
 })
-document.getElementById("openAllSites").addEventListener('click', (evt) => {
-    var elem = document.getElementById('mapbg')
-    var idp = document.getElementById("openAllSites")
-    var id = $("#mapbg").attr('name')
-    if (id === 'i') {
-        elem.style.display = "none";
-        $("#mapbg").attr('name','n')
-    } else {
-        elem.style.display = "flex";
-        $("#mapbg").attr('name', 'i')
-    }
+document.getElementById("opensearch").addEventListener('click', (evt) => {
+    var elem = document.getElementById('opensearch')
+    var elem1 = document.getElementById('mapbg')
+    elem1.style.display = "flex";
+    elem.style.display = "none";
    
-   
+
+})
+document.getElementById("idcerrar").addEventListener('click', (evt) => {
+    var elem = document.getElementById('opensearch')
+    var elem1 = document.getElementById('mapbg')
+    elem.style.display = "flex";
+    elem1.style.display = "none";
+    //var id = $("#mapbg").attr('name')
+    //if (id === 'i') {
+    //    elem.style.display = "none";
+    //    $("#mapbg").attr('name', 'n')
+    //} else {
+    //    elem.style.display = "flex";
+    //    $("#mapbg").attr('name', 'i')
+    //}
+
+
 
 })
 
