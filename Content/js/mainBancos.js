@@ -96,7 +96,7 @@ document.getElementById("menuSteps").addEventListener('click', (evt) => {
 
 })
 */
-document.getElementById("getNearest").addEventListener('click', (evt) => launchNearestPosition())
+//document.getElementById("getNearest").addEventListener('click', (evt) => launchNearestPosition())
 
 document.getElementById("getMyLocation").addEventListener('click', (evt) => updateRouteActualPosition())
 
@@ -216,11 +216,11 @@ const sleep = ms => {
     var contentRequestPermisson = document.getElementById('contentRequestPermisson')
     contentRequestPermisson.style.display = "none"
 
-    var myLocationButton = document.getElementById('getNearest')
-    myLocationButton.style.display = "flex";
+    //var myLocationButton = document.getElementById('getNearest')
+    //myLocationButton.style.display = "flex";
 
-    var myLocationButton = document.getElementById('getMyLocation')
-    myLocationButton.style.display = "flex";
+    //var myLocationButton = document.getElementById('getMyLocation')
+    //myLocationButton.style.display = "flex";
 
 
     /*
@@ -501,6 +501,7 @@ function fetching(lat1, long1, lat2, long2) {
                             let li3 = document.createElement("li")
                             li3.textContent = "Tiempo: " + secondsToString(parseFloat(steps.duration).toFixed(0)) + " min"
                             li3.style.display = "flex"
+
                             li3.style.alignItems = "center"
                             li3.style.paddingTop = "10px"
 
@@ -591,7 +592,8 @@ function initializarMapa() {
                 floatStepsDialog.style.display = "none"
             }
             */
-
+            var elem1 = document.getElementById('mapbg')
+            elem1.style.display = "none";
         },
         onCloseEnd: function () {
 
@@ -621,6 +623,8 @@ function initializarMapa() {
             closeIcon.style.color = "#FFFFFF";
             var gotoIcon = document.getElementById('goTo')
             gotoIcon.style.color = "#FFFFFF";
+            var elem1 = document.getElementById('mapbg')
+            elem1.style.display = "none";
             /*var menuSteps = document.getElementById('menuSteps')
             var floatStepsDialog = document.getElementById('floatSteps')
             var menuSteps = document.getElementById('menuSteps')
@@ -638,6 +642,8 @@ function initializarMapa() {
             } else {
                 menuSteps.style.display = "none";
             }*/
+            var elem1 = document.getElementById('mapbg')
+            elem1.style.display = "flex";
         },
     });
 
@@ -766,6 +772,8 @@ function initializarMapa() {
                 mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 24);
                 var elem = document.getElementById('allsites')
                 var instance = M.Sidenav.getInstance(elem);
+                var elem1 = document.getElementById('mapbg')
+                elem1.style.display = "none";
                 instance.close();
             }, false)
 
@@ -814,11 +822,11 @@ function permiso(_model) {
             var contentRequestPermisson = document.getElementById('contentRequestPermisson')
             contentRequestPermisson.style.display = "none"
 
-            var myLocationButton = document.getElementById('getNearest')
-            myLocationButton.style.display = "flex";
+            //var myLocationButton = document.getElementById('getNearest')
+            //myLocationButton.style.display = "flex";
 
-            var myLocationButton = document.getElementById('getMyLocation')
-            myLocationButton.style.display = "flex";
+            //var myLocationButton = document.getElementById('getMyLocation')
+            //myLocationButton.style.display = "flex";
 
         } else {
             console.lo("Geolocation is not supported by this browser.");
@@ -877,11 +885,11 @@ function changedata(_model) {
             var contentRequestPermisson = document.getElementById('contentRequestPermisson')
             contentRequestPermisson.style.display = "none"
 
-            var myLocationButton = document.getElementById('getNearest')
-            myLocationButton.style.display = "flex";
+            //var myLocationButton = document.getElementById('getNearest')
+            //myLocationButton.style.display = "flex";
 
-            var myLocationButton = document.getElementById('getMyLocation')
-            myLocationButton.style.display = "flex";
+            //var myLocationButton = document.getElementById('getMyLocation')
+            //myLocationButton.style.display = "flex";
 
         } else {
             console.lo("Geolocation is not supported by this browser.");

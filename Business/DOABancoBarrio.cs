@@ -197,7 +197,46 @@ namespace SisMap.Business
 
             return _data;
         }
-     
+        public List<SelectCity> GetCity()
+        {
+
+            List<SelectCity> _data = new List<SelectCity>();
+            List<BancosBG> _model = new List<BancosBG>();
+            try
+            {
+                _model = _redis.Get<List<BancosBG>>("_redisBancos");
+                if (_model == null)
+                {
+                    _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
+                    _redis.Set("_redisBancos", _model);
+                }
+            }
+            catch (Exception)
+            {
+                _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
+
+            }
+            //string[] source = new string[4];
+
+            _data.AddRange(_model.Select(x => new SelectCity { City= x.ciudad.ToUpper() }).Distinct().ToList());
+
+            //foreach (var item in _model.Select(x => x.ciudad.ToUpper()).Distinct().ToList())
+            //{
+            //    var distinctCities = _model.Where(x => x.provincia == item).Select(x => x.ciudad.ToUpper()).Distinct().ToList();
+
+
+            //    var cites = distinctCities.Select(x => new SelectCity { City = x }).Distinct().ToList();
+
+
+            //    _data.Add(new SelectProvince { Provice = item.ToUpper(), Cites = cites });
+            //}
+
+
+
+
+            return _data;
+        }
+
     }
 
 

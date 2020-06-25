@@ -240,6 +240,7 @@
     <Content Include="Content\img\store_icon.png" />
     <Content Include="Content\img\mardis.png" />
     <Content Include="Content\js\5b1c5b69fb.js" />
+    <Content Include="Content\js\dataTable.js" />
     <Content Include="Content\js\leaflet-knn.min.js" />
     <Content Include="Content\js\leaflet.js" />
     <Content Include="Content\js\mainBancos.js" />

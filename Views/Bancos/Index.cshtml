@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-    <link href="~/Content/css/mainBG.css" rel="stylesheet" />
+<link href="~/Content/css/mainBG.css" rel="stylesheet" />
 <div id="contentRequestPermisson" class="dialogModal">
     <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
     <div id="progressCircle" class="preloader-wrapper big active progressMap">
@@ -18,35 +18,39 @@
     </div>
 </div>
 
-<nav class="navPage">
-    <i id="openAllSites" hidden class="material-icons">menu</i>
-    <!--
-    <img src="~/Content/img/mardis.png" class="iconHeader" />
-        -->
-    <div id="getNearest" class="getNearest" style="display:flex; flex-direction:row; align-content:center; align-items:center; justify-content:space-around" hidden>
-        <b class="nearestText">Banco más cercano</b>
-        <i class="material-icons">directions</i>
-    </div>
+@*<nav class="navPage">
+        <i id="openAllSites" hidden class="material-icons">menu</i>
 
+        <img src="~/Content/img/mardis.png" class="iconHeader" />
 
-    <!--
-        <div id="routeResumen" class="routeResumen">
-            <p>
-                DISTANCIA: <a id="distace"></a>
-                TIEMPO: <a id="duration"></a>
-            </p>
+        <div id="getNearest" class="getNearest" style="display:flex; flex-direction:row; align-content:center; align-items:center; justify-content:space-around" hidden>
+            <b class="nearestText">Banco más cercano</b>
+            <i class="material-icons">directions</i>
         </div>
-     -->
-</nav>
+
+
+
+            <div id="routeResumen" class="routeResumen">
+                <p>
+                    DISTANCIA: <a id="distace"></a>
+                    TIEMPO: <a id="duration"></a>
+                </p>
+            </div>
+
+    </nav>*@
 
 <main class="map" id="mapid">
     <div class="leaflet-top leaflet-right">
         <div class="leaflet-control-zoom leaflet-bar leaflet-control" style="right:30%">
 
-            <img  id="opensearch" style="display:none" src="~/Content/img/LOGO-BANCO-DE-GUAYAQUIL.jpg" width="100px"  />
+            <img id="opensearch" style="display:none" src="~/Content/img/LOGO-BANCO-DE-GUAYAQUIL.jpg" width="100px" />
         </div>
-        </div>
+    </div>
 </main>
+<footer>
+    <p>Author: Hege Refsnes</p>
+    <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+</footer>
 @Html.AntiForgeryToken()
 <!--MARKER DRAWER-->
 <aside id="markerSite" class="sidenav drawerBackground">
@@ -129,17 +133,17 @@
 <!--LIST DRAWER-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <aside id="allsites" class="sidenav" style=" display:none !important">
-    <nav class="navPageAll" style="background-color: #BE1C6C;" >
-        <p> Banco Guayaquil</p>
+    @*<nav class="navPageAll" style="background-color: #BE1C6C;" >
+            <p> Banco Guayaquil</p>
 
-    </nav>
+        </nav>*@
 
     <div class="container">
-        <h5>Encuentre Agencia, cajero o Banco de barrio</h5>
-          <ul id="listCollapsible" class="collapsible">
+        <h5>PUNTOS DE <strong>ATENCIÓN</strong></h5>
+        <ul id="listCollapsible" class="collapsible">
         </ul>
     </div>
-   
+
 </aside>
 <!--
     <div style="display:none;overflow-y: auto;" class="floatSteps" id="floatSteps">
@@ -154,11 +158,11 @@
 
     <div class="row sidenav_bg  right-aligned" id="mapbg" name="i">
         <nav class="navPageAll" style="        background-color: #BE1C6C">
-            <div class="col s6 m6">
-                <p> Servicios Diponibles</p>
+            <div class="col s6 m6" style=" LEFT: 25%;">
+                <p>PUNTOS DE <strong>ATENCIÓN</strong></p>
             </div>
-            <div class="col s6 m6">
-                <a id="idcerrar" class="leaflet-control-zoom-out" style="text-align: right;/* LEFT: 100%; */FLOAT: right;MARGIN-TOP: 5PX;"; href="#" title="Cerrar" role="button" aria-label="Cerrar">x</a>
+            <div class="col s2 m2">
+                <a id="idcerrar" class="leaflet-control-zoom-out" style="text-align: right;/* LEFT: 100%; */FLOAT: right;MARGIN-TOP: 5PX;" ; href="#" title="Cerrar" role="button" aria-label="Cerrar">x</a>
             </div>
 
         </nav>
@@ -168,62 +172,92 @@
             <div>
                 <div class="card-content white-text">
                     <div class="col s6 m6">
-
-                        <div class="switch" style=" float: right;
-        text-align: right;
-    ">
+                        <div class="switch" style="   text-align: center;    ">
                             <label>
-                                Bancos de barrio
+                                <div class="contenedor">
+
+
+                                    <img src="~/Content/css/AGENCIABG.png" style="width:30PX" />
+                                    <div lass="centrado">                 Agencias</div>
+                                </div>
+
+                                <input type="checkbox" class="OptionService" id="agc" checked="checked">
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="col s6 m6">
+
+                        <div class="switch" style="  text-align: center;    ">
+                            <label>
+                                <div class="contenedor">
+                                    <img src="~/Content/css/BBBG.png" style="width:30PX" />
+                                    @*<div class="texto-encima">Texto</div>*@
+                                    <div lass="centrado">  Bancos de barrio</div>
+                                </div>
                                 <input type="checkbox" class="OptionService" id="bdb" checked="checked">
                                 <span class="lever "></span>
                             </label>
                         </div>
-                    </div>
-                    <div class="col s6 m6">
 
-                        <div class="switch" style="    float: right;    text-align: right;">
+                    </div>
+                    <div class="col s6 m6" style="       text-align: center;">
+                        <div class="switch" style="  text-align: center;    ">
                             <label>
-                                 Multifunciones
+                                <div class="contenedor">
+                                    <img src="~/Content/css/CAJEROBG.png" style="width:30PX" />
+
+                                    <div lass="centrado">  Cajeros</div>
+                                </div>
+
+                                <input type="checkbox" class="OptionService" id="atm" checked="checked">
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+
+
+                    </div>
+                    <div class="col s6 m6" style="       text-align: center;">
+
+                        <div class="switch" style="     text-align: center;">
+                            <label>
+
+                                <div class="contenedor">
+
+                                    <img src="~/Content/css/CAJERO MBG.png" style="width:30PX" />
+                                    @*<div class="texto-encima">Texto</div> *@
+                                    <div lass="centrado"> Cajero Multifución</div>
+                                </div>
+
                                 <input type="checkbox" class="OptionService" id="mtf" checked="checked">
                                 <span class="lever"></span>
                             </label>
                         </div>
                     </div>
-                    <div class="col s6 m6" style="    float: right;    text-align: right;">
-
-                        <div class="switch">
-                            <label>
-                                Agencias
-                                <input type="checkbox" class="OptionService" id="agc" checked="checked">
-                                <span class="lever"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col s6 m6" style="    float: right;    text-align: right;">
-                        <div class="switch">
-                            <label>
-                                Cajeros
-                                <input type="checkbox" class="OptionService" id="atm" checked="checked">
-                                <span class="lever"></span>
-                            </label>
-                        </div>
-                    </div>
 
 
                 </div>
-                <div class="col s12 m6">
+                @*<div class="col s12 m6">
 
-                    <select id="selectProvice" class="browser-default">
-                        <option value="" disabled selected>Provincia</option>
-                    </select>
-                </div>
-                <div class="col s12 m6">
+                        <select id="selectProvice" class="browser-default">
+                            <option value="" disabled selected>Provincia</option>
+                        </select>
+                    </div>*@
+                <div class="col s10 m10">
 
                     <select id="selectCities" class="browser-default">
                         <option value="" disabled selected>Ciudad</option>
                     </select>
                 </div>
-                <div class="col s9">
+                <div class="col s2 m2">
+
+                    <a class="btn transparent" id="Miubicacion">
+
+                        <img src="~/Content/css/UbicacionBG.png" style="width:25px" />
+                    </a>
+                </div>
+                <div class="col s9" id="serc">
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">search</i>
@@ -272,6 +306,7 @@
 
 
     </div>
+
     @section scripts{
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
@@ -280,7 +315,8 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>*@
         <script src="~/Content/js/mainBancos.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>*@
+        <script src="~/Content/js/dataTable.js"></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
 
         <script>
@@ -313,13 +349,19 @@
                     LoadListbank($(this).val())
 
                 });
-                   $('#selectCities').change(function () {
+                $('#selectCities').change(function () {
 
                     LoadListbank($(this).val())
 
                 });
+                $('#Miubicacion').click(function () {
 
-        
+                    ReloadMap();
+
+                });
+
+
+
             });
 
 
@@ -364,29 +406,31 @@
                 var progressCircle = document.getElementById('progressCircle')
                 progressCircle.style.display = "flex"
 
-                var myLocationButton = document.getElementById('getNearest')
-                myLocationButton.style.display = "none";
+                //var myLocationButton = document.getElementById('getNearest')
+                //myLocationButton.style.display = "none";
 
                 var myLocationButton = document.getElementById('getMyLocation')
                 myLocationButton.style.display = "none";
-                LoadProvice();
+
+                LoadCity();
+                //  LoadProvice();
                 LoadMap();
             }
 
-
-            function LoadMap() {
+            function ReloadMap() {
 
                 GetGeo();
                 var token = $("[name='__RequestVerificationToken']").val();
                 // let _bdb = $('#bdb').prop('checked')
 
-
-                let _bdb =  $('#bdb').prop('checked')
+                $('#selectCities').children().remove();
+                $('#selectCities').append('<option value="" disabled selected>Ciudad</option>')
+                let _bdb = $('#bdb').prop('checked')
                 let _mtf = $('#mtf').prop('checked')
                 let _agc = $('#agc').prop('checked')
                 let _atm = $('#atm').prop('checked')
                 let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
-             
+
                 var dataSet = []
                 $.ajax({
                     url: "/Bancos/DataMax",
@@ -401,43 +445,45 @@
                         lgn: parseFloat(localStorage.getItem('lng'))
                     },
                     success: function (result) {
-                
+
                         result.map((dataResponse) => {
+
 
                             dataResponse.bancos.map((bancos) => {
                                 var dataSet2 = []
                                 let data = {
-                                    nombre: "<b style='color:#1a237e;' onclick="+" 'ir("+bancos.latitud+","+bancos.longitud+")'"+">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
-                                    icon: '     <i class="material-icons pink prefix">adjust</i>  ',
+                                    nombre: "<b style='color:#1a237e; ; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
+                                    icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
                                     dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
                                 };
 
                                 dataSet.push(data)
+                                LoadCity();
                             })
                         })
 
-
+                        $('#table-mardis').DataTable().destroy();
                         $('#table-mardis').DataTable({
                             "language": {
-                                      "sEmptyTable": "Cargando datos..",
-                                      "sInfo": "Página _PAGE_ de _PAGES_",
-                                      "sInfoEmpty": "No existen registros",
-                                      "sInfoFiltered": "Filtro",
-                                      "sInfoPostFix": "",
-                                      "sInfoThousands": ".",
-                                      "sLengthMenu": "Mostrar _MENU_ Registros ",
-                                      "sLoadingRecords": "Verificando..",
-                                      "sProcessing": "Verificando..",
-                                      "sSearch": "Buscar",
-                                      "sZeroRecords": "No hay entradas disponibles.",
+                                "sEmptyTable": "Cargando datos..",
+                                "sInfo": "Página _PAGE_ de _PAGES_",
+                                "sInfoEmpty": "No existen registros",
+                                "sInfoFiltered": "Filtro",
+                                "sInfoPostFix": "",
+                                "sInfoThousands": ".",
+                                "sLengthMenu": "Mostrar _MENU_ Registros ",
+                                "sLoadingRecords": "Verificando..",
+                                "sProcessing": "Verificando..",
+                                "sSearch": "Buscar",
+                                "sZeroRecords": "No hay entradas disponibles.",
                                 "oPaginate": {
                                     "sNext": "<i class=\"fa fa-forward\"></i>",
                                     "sPrevious": "<i class=\"fa fa-backward\"></i>",
                                     "sFirst": "<i class=\"fa fa-step-backward\"></i>",
                                     "sLast": "<i class=\"fa fa-step-forward\"></i>"
                                 }
-                                      
-                                    },
+
+                            },
                             data: dataSet,
                             "scrollY": "290px",
                             ordering: false,
@@ -455,6 +501,111 @@
 
 
                         });
+
+                        var d1 = document.getElementById('table-mardis_info');
+                        d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
+                        changedata(result)
+                    },
+                    error: function () {
+                        if (window.location !== window.parent.location) {
+                            var requestPermissonButton = document.getElementById('requestPermisson')
+                            requestPermissonButton.style.display = "flex"
+
+                            var progressCircle = document.getElementById('progressCircle')
+                            progressCircle.style.display = "none"
+                        } else {
+
+                        }
+
+                    }
+                });
+                return null;
+            }
+            function LoadMap() {
+
+                GetGeo();
+                var token = $("[name='__RequestVerificationToken']").val();
+                // let _bdb = $('#bdb').prop('checked')
+
+
+                let _bdb = $('#bdb').prop('checked')
+                let _mtf = $('#mtf').prop('checked')
+                let _agc = $('#agc').prop('checked')
+                let _atm = $('#atm').prop('checked')
+                let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
+
+                var dataSet = []
+                $.ajax({
+                    url: "/Bancos/DataMax",
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: token,
+                        mlf: _mtf,
+                        bdb: _bdb,
+                        agc: _agc,
+                        atm: _atm,
+                        lat: parseFloat(localStorage.getItem('Lat')),
+                        lgn: parseFloat(localStorage.getItem('lng'))
+                    },
+                    success: function (result) {
+
+                        result.map((dataResponse) => {
+
+
+                            dataResponse.bancos.map((bancos) => {
+                                var dataSet2 = []
+                                let data = {
+                                    nombre: "<b style='color:#1a237e; ; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
+                                    icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
+                                    dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
+                                };
+
+                                dataSet.push(data)
+                            })
+                        })
+
+
+                        $('#table-mardis').DataTable({
+                            "language": {
+                                "sEmptyTable": "Cargando datos..",
+                                "sInfo": "Página _PAGE_ de _PAGES_",
+                                "sInfoEmpty": "No existen registros",
+                                "sInfoFiltered": "Filtro",
+                                "sInfoPostFix": "",
+                                "sInfoThousands": ".",
+                                "sLengthMenu": "Mostrar _MENU_ Registros ",
+                                "sLoadingRecords": "Verificando..",
+                                "sProcessing": "Verificando..",
+                                "sSearch": "Buscar",
+                                "sZeroRecords": "No hay entradas disponibles.",
+                                "oPaginate": {
+                                    "sNext": "<i class=\"fa fa-forward\"></i>",
+                                    "sPrevious": "<i class=\"fa fa-backward\"></i>",
+                                    "sFirst": "<i class=\"fa fa-step-backward\"></i>",
+                                    "sLast": "<i class=\"fa fa-step-forward\"></i>"
+                                }
+
+                            },
+                            data: dataSet,
+                            "scrollY": "290px",
+                            ordering: false,
+
+                            "pageLength": 100,
+
+
+                            //  searching: false,
+                            columns: [
+                                { "data": "icon" },
+                                { "data": "nombre" },
+                                { "data": "dist" }
+
+                            ]
+
+
+                        });
+
+                        var d1 = document.getElementById('table-mardis_info');
+                        d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
                         permiso(result)
                     },
                     error: function () {
@@ -471,13 +622,15 @@
                     }
                 });
                 return null;
-            } function ir(lt, lg) {
+            }
+
+            function ir(lt, lg) {
                 zoomPunto(lt, lg);
             }
-                var latf;
-                        var lngf;
+            var latf;
+            var lngf;
             function LoadListbank(ct) {
-                   
+
 
                 var token = $("[name='__RequestVerificationToken']").val();
                 let _bdb = document.getElementById("bdb").checked
@@ -490,7 +643,7 @@
                 $.ajax({
                     url: "/Bancos/DataMax",
                     type: 'POST',
-                    async:true,
+                    async: true,
                     data: {
                         __RequestVerificationToken: token,
                         mlf: _mtf,
@@ -502,53 +655,52 @@
                         lgn: parseFloat(localStorage.getItem('lng'))
                     },
                     success: function (result) {
-                  
-                        let cont=0
+
+                        let cont = 0
                         result.map((dataResponse) => {
 
                             dataResponse.bancos.map((bancos) => {
                                 var dataSet2 = []
                                 let data = {
-                               nombre: "<b style='color:#1a237e;' onclick="+" 'ir("+bancos.latitud+","+bancos.longitud+")'"+">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
-                                    icon: '     <i class="material-icons pink prefix">adjust</i>  ',
+                                    nombre: "<b style='color:#1a237e; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
+                                    icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
                                     dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
                                 };
 
                                 dataSet.push(data)
-                                if (cont === 0) 
-                                    {
-                                        latf = bancos.latitud;
-                                        lngf = bancos.longitud;
-                                    }
-                                    cont++;
+                                if (cont === 0) {
+                                    latf = bancos.latitud;
+                                    lngf = bancos.longitud;
+                                }
+                                cont++;
 
                             })
                         })
 
 
                         $('#table-mardis').DataTable().destroy();
-                       $('#table-mardis').DataTable({
-                            "language":{
-                                      "sEmptyTable": "Cargando datos..",
-                                      "sInfo": "Página _PAGE_ de _PAGES_",
-                                      "sInfoEmpty": "No existen registros",
-                                      "sInfoFiltered": "Filtro",
-                                      "sInfoPostFix": "",
-                                      "sInfoThousands": ".",
-                                      "sLengthMenu": "Mostrar _MENU_ Registros ",
-                                      "sLoadingRecords": "Verificando..",
-                                      "sProcessing": "Verificando..",
-                                      "sSearch": "Buscar",
-                                      "sZeroRecords": "No hay entradas disponibles.",
-                               "oPaginate": {
-                                   "sNext": "<i class=\"fa fa-forward\"></i>",
-                                   "sPrevious": "<i class=\"fa fa-backward\"></i>",
-                                   "sFirst": "<i class=\"fa fa-step-backward\"></i>",
-                                   "sLast": "<i class=\"fa fa-step-forward\"></i>"
-                               }
-                                      
-                                    },
-                           data: dataSet,
+                        $('#table-mardis').DataTable({
+                            "language": {
+                                "sEmptyTable": "Cargando datos..",
+                                "sInfo": "Página _PAGE_ de _PAGES_",
+                                "sInfoEmpty": "No existen registros",
+                                "sInfoFiltered": "Filtro",
+                                "sInfoPostFix": "",
+                                "sInfoThousands": ".",
+                                "sLengthMenu": "Mostrar _MENU_ Registros ",
+                                "sLoadingRecords": "Verificando..",
+                                "sProcessing": "Verificando..",
+                                "sSearch": "Buscar",
+                                "sZeroRecords": "No hay entradas disponibles.",
+                                "oPaginate": {
+                                    "sNext": "<i class=\"fa fa-forward\"></i>",
+                                    "sPrevious": "<i class=\"fa fa-backward\"></i>",
+                                    "sFirst": "<i class=\"fa fa-step-backward\"></i>",
+                                    "sLast": "<i class=\"fa fa-step-forward\"></i>"
+                                }
+
+                            },
+                            data: dataSet,
                             "scrollY": "290px",
                             ordering: false,
 
@@ -562,15 +714,16 @@
                                 { "data": "dist" }
 
                             ]
-                      
 
-                       });
-                   
+
+                        });
+                        var d1 = document.getElementById('table-mardis_info');
+                        d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
                         changedata(result)
-                        
-                   
+
+
                     },
-                
+
                     error: function () {
                         if (window.location !== window.parent.location) {
                             var requestPermissonButton = document.getElementById('requestPermisson')
@@ -604,6 +757,46 @@
                                 text: item.Provice
                             }));
                         });
+                    },
+                    error: function () {
+                        if (window.location !== window.parent.location) {
+                            var requestPermissonButton = document.getElementById('requestPermisson')
+                            requestPermissonButton.style.display = "flex"
+
+                            var progressCircle = document.getElementById('progressCircle')
+                            progressCircle.style.display = "none"
+                        } else {
+
+                        }
+
+                    }
+                });
+                return null;
+            }
+            function LoadCity() {
+                var token = $("[name='__RequestVerificationToken']").val();
+                $.ajax({
+                    url: "/Bancos/City",
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: token
+                    },
+                    success: function (result) {
+
+                        StoreData = result
+                        $.each(StoreData, function (i, item) {
+                            $.each(item.Cites, function (i, item2) {
+
+                                $('#selectCities').append($('<option>', {
+                                    value: item2.City,
+                                    text: item2.City + "(" + item.Provice + ")",
+                                }));
+                            });
+
+
+                        });
+                        //  StoreData = result
+
                     },
                     error: function () {
                         if (window.location !== window.parent.location) {
@@ -661,7 +854,7 @@
             $(".OptionService").change(function () {
 
                 LoadListbank($('#selectCities').val())
-        
+
             })
         </script>
     }
