@@ -139,14 +139,15 @@ namespace SisMap.Business
                     Celular = x.telefono,
                     img = x.banner,
                     icon=x.trmSupervi,
-                    distancia = (Geo.Distancia(lat , lgn, float.Parse(x.latitud.ToString()), float.Parse(x.longitud.ToString())))/1
+                    tipo=x.tipo,
+                    distancia = Math.Round((Geo.Distancia(lat , lgn, float.Parse(x.latitud.ToString()), float.Parse(x.longitud.ToString())))/1)
 
 
 
             }).ToList();
                 if (city == "")
                 {
-                    _data.Where(t => t.provincia == item.provincia).First().bancos = bank.Where(x => x.distancia < 6).ToList();
+                    _data.Where(t => t.provincia == item.provincia).First().bancos = bank.Where(x => x.distancia < 20).ToList();
                
                 }
                 else {

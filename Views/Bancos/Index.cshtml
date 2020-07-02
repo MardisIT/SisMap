@@ -47,68 +47,102 @@
         </div>
     </div>
 </main>
-<footer>
+@*<footer>
     <p>Author: Hege Refsnes</p>
     <p><a href="mailto:hege@example.com">hege@example.com</a></p>
-</footer>
+</footer>*@
 @Html.AntiForgeryToken()
 <!--MARKER DRAWER-->
 <aside id="markerSite" class="sidenav drawerBackground">
     <!--MARKER NAVBAR-->
-    <img src="~/Content/img/CABECERA_BDB.png" class="cabeceraImage" />
+    @*<img src="~/Content/img/CABECERA_BDB.png" class="cabeceraImage" />
     <div class="TITLEBRAND">
         <p class="titleText">NOMBRE DEL NEGOCIO</p>
-    </div>
-    <nav class="drawerNavigator" style="background-color: #BE1C6C">
-        <span>
+    </div>*@
+    <nav class="drawerNavigator" style="background-color: #012244 ;    height: 146px;">
+        @*<span>
             <i id="closeDrawer" class=" lbar material-icons">arrow_back</i><p style="position: inherit;top: -10px;font-size: 12px;"> Regresar</p>
-        </span>
+        </span>*@
 
+        <img src="~/Content/img/logo (2).png" id="bgb" style=" width: 180px;" />
+        <img src="~/Content/img/Screen Shot 2020-06-18 at 3.03 1.png"  id="bbb"  style=" height: 146px; width:450px;"/>
+    
 
-        <p id="titleDrawer" class="titleText"></p>
-
-        <span>
+        @*<span>
             <i id="goTo" class="ibar material-icons">directions</i><p style="position: inherit;top: -10px;font-size: 12px;"> Cómo llegar</p>
-        </span>
+        </span>*@
 
     </nav>
     <ul class="drawerBody">
         @*<img id=localImage src="" class="imageHeader" hidden>*@
         @*<div>
-                NOMBRE DEL NEGOCIO
-                <p id="localName"></p>
-            </div>*@
-        <div>
-            TIPO DE NEGOCIO
-            <p id="localType"></p>
-        </div>
-        <!--
-            <div>
-                PROPIETARIO
-                <p id="localOwn"></p>
-            </div>
+            NOMBRE DEL NEGOCIO
+            <p id="localName"></p>
+        </div>*@
 
         <div>
-            TELÉFONO
-            <p id="localPhone"></p>
+            <p class="titleDrawerGrey" class="titleText">Dirrección</p>
+            <p class="titleDrawerblue" id="localDir"></p>
+            <span>
+                <i id="goTo" class="ibar material-icons">directions</i><small style="position: inherit;color:#C81D6F!important;top: -10px;font-size: 12px;"> Cómo llegar</small>
+            </span>
         </div>
-        -->
         <div>
-            DIRECCIÓN
-            <p id="localDir"></p>
+
+
         </div>
+        <div>
+            <p class="titleDrawerBluetitle" class="titleText">Punto de atención</p>
+            <p class="titleDrawerBluesmall" id="AgType"></p>
+
+        </div>
+        <div>
+            <p class="titleDrawerBluetitle" class="titleText">Ciudad</p>
+            <p class="titleDrawerBluesmall" id="localCity"></p>
+
+        </div>
+        <div>
+            <p class="titleDrawerBluetitle" class="titleText">Horarios</p>
+            <p class="titleDrawerBluesmall" id="localHorarioL"></p>
+            <p class="titleDrawerBluesmall" id="localHorarios"></p>
+        </div>
+        <div>
+            <p class="titleDrawerBluetitle" class="titleText">Tipo de Negocio</p>
+            <p class="titleDrawerBluesmall" id="localType"></p>
+
+        </div>
+        <div class="serviceUl">
+            <p class="titleDrawerBluetitle" class="titleText">Servicios</p>
+           
+            <ul>
+                  <li>Depósitos</li>
+                <li>Retiros</li>
+                <li>Pago de bonos</li>
+                <li>Cuenta Amiga</li>
+                <li>Pago de tarjetas de crédito</li>
+                <li> Recargas celular</li>
+                <li> Recargas TV paga</li>
+                <li> Pagos de servicios básicos y empresariales</li>
+           
+            </ul>
+        </div>
+        <!--
+        <div>
+            PROPIETARIO
+            <p id="localOwn"></p>
+        </div>
+
+    <div>
+        TELÉFONO
+        <p id="localPhone"></p>
+    </div>
+    -->
         @*<div>
-                PROVINCIA
-                <p id="localProv"></p>
-            </div>*@
-        <div>
-            CANTÓN
-            <p id="localCity"></p>
-        </div>
-        <div>
-            PARROQUIA
-            <p id="localPar"></p>
-        </div>
+            PROVINCIA
+            <p id="localProv"></p>
+        </div>*@
+
+
         <div style="display: none;">
             LATITUD
             <p id="localLat"></p>
@@ -118,16 +152,16 @@
             <p id="localLong"></p>
         </div>
         @*<div class="TITLEBRANDTI">
-                <H6><strong>SERVICIOS</strong></H6>
-            </div>*@
+            <H6><strong>SERVICIOS</strong></H6>
+        </div>*@
 
         @*<div style="text-align:center">
-                <img src="~/Content/img/LOGO_BG.png" class="imageFooterBG" />
-            </div>*@
+            <img src="~/Content/img/LOGO_BG.png" class="imageFooterBG" />
+        </div>*@
     </ul>
     <div style="text-align:center">
 
-        <img src="~/Content/img/SERVICIOS_BDB.jpg" class="imageFooter" />
+        
     </div>
 </aside>
 <!--LIST DRAWER-->
@@ -157,704 +191,726 @@
 <div class="container">
 
     <div class="row sidenav_bg  right-aligned" id="mapbg" name="i">
-        <nav class="navPageAll" style="        background-color: #BE1C6C">
-            <div class="col s6 m6" style=" LEFT: 25%;">
-                <p>PUNTOS DE <strong>ATENCIÓN</strong></p>
+        <nav class="navPageAll">
+            <div class="col s6 m6" style=" LEFT: -5%;">
+
+                <img src="~/Content/img/logo (2).png" style=" width: 130px;" />
+
             </div>
-            <div class="col s2 m2">
+            @*<div class="col s2 m2">
                 <a id="idcerrar" class="leaflet-control-zoom-out" style="text-align: right;/* LEFT: 100%; */FLOAT: right;MARGIN-TOP: 5PX;" ; href="#" title="Cerrar" role="button" aria-label="Cerrar">x</a>
-            </div>
+            </div>*@
 
         </nav>
 
 
-        <div class="col s12 m6" style=" top:10px;">
+        <div class="col s12 m6">
             <div>
                 <div class="card-content white-text">
+                    <div class="col s12 m10 ">
+                        <div class="input-field">
+
+                            <input id="icon_prefix" type="text" class="validate">
+                            <label for="icon_prefix">Buscar punto de atención </label>
+
+                        </div>
+
+                    </div>
+                    <div class="col s6 m2">
+                        <a class="btn transparent" id="BuscarID" style="position: absolute;    top: 10px;">
+                            @*<img src="~/Content/img/Path.png" style="width:25px" />*@
+                            <i class="material-icons" style="color:#b7b7b7">search</i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="row sidenav_bg_4 left-align" id="mapbg4" name="2">
+                <div class="card-content white-text">
+                    <div class="col s12 m12" style="margin-bottom: 15px;">
+                        <div class="col s6 m9">
+
+                            <strong class="text-bg3">Ver el punto más cercano</strong>
+
+                        </div>
+                        <div class="col s6 m2">
+
+                            <a class="btn transparent" id="Miubicacion" style="position: absolute;    top: 15px;     left: 2px;">
+
+                                <img src="~/Content/img/pin_drop_24px_outlined.svg" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row sidenav_bg_2  left-align" id="mapbg2" name="i2">
+                <div class="card-content white-text">
+
+                    <div class="col s12 m12" style="margin-bottom: 15px;">
+                        <strong class="text-bg2">Puntos de atención</strong>
+                    </div>
                     <div class="col s6 m6">
-                        <div class="switch" style="   text-align: center;    ">
-                            <label>
-                                <div class="contenedor">
-
-
-                                    <img src="~/Content/css/AGENCIABG.png" style="width:30PX" />
-                                    <div lass="centrado">                 Agencias</div>
-                                </div>
-
-                                <input type="checkbox" class="OptionService" id="agc" checked="checked">
-                                <span class="lever"></span>
-                            </label>
-                        </div>
-
+                        <label>
+                            <input type="checkbox" class="OptionService filled-in" id="bdb" checked="checked" />
+                            <span class="span_check"> Bancos de barrio</span>
+                        </label>
                     </div>
                     <div class="col s6 m6">
-
-                        <div class="switch" style="  text-align: center;    ">
-                            <label>
-                                <div class="contenedor">
-                                    <img src="~/Content/css/BBBG.png" style="width:30PX" />
-                                    @*<div class="texto-encima">Texto</div>*@
-                                    <div lass="centrado">  Bancos de barrio</div>
-                                </div>
-                                <input type="checkbox" class="OptionService" id="bdb" checked="checked">
-                                <span class="lever "></span>
-                            </label>
-                        </div>
-
+                        <label>
+                            <input type="checkbox" class=" OptionService filled-in" id="mtf" checked="checked" />
+                            <span class="span_check">Cajero Multifución</span>
+                        </label>
                     </div>
-                    <div class="col s6 m6" style="       text-align: center;">
-                        <div class="switch" style="  text-align: center;    ">
-                            <label>
-                                <div class="contenedor">
-                                    <img src="~/Content/css/CAJEROBG.png" style="width:30PX" />
-
-                                    <div lass="centrado">  Cajeros</div>
-                                </div>
-
-                                <input type="checkbox" class="OptionService" id="atm" checked="checked">
-                                <span class="lever"></span>
-                            </label>
-                        </div>
-
-
+                    <div class="col s6 m6">
+                        <label>
+                            <input type="checkbox" class="OptionService filled-in" id="atm" checked="checked" />
+                            <span class="span_check">Cajeros </span>
+                        </label>
                     </div>
-                    <div class="col s6 m6" style="       text-align: center;">
-
-                        <div class="switch" style="     text-align: center;">
-                            <label>
-
-                                <div class="contenedor">
-
-                                    <img src="~/Content/css/CAJERO MBG.png" style="width:30PX" />
-                                    @*<div class="texto-encima">Texto</div> *@
-                                    <div lass="centrado"> Cajero Multifución</div>
-                                </div>
-
-                                <input type="checkbox" class="OptionService" id="mtf" checked="checked">
-                                <span class="lever"></span>
-                            </label>
-                        </div>
+                    <div class="col s6 m6">
+                        <label>
+                            <input type="checkbox" class="OptionService filled-in" id="agc" checked="checked" />
+                            <span class="span_check">Agencia </span>
+                        </label>
                     </div>
 
-
-                </div>
-                @*<div class="col s12 m6">
-
-                        <select id="selectProvice" class="browser-default">
-                            <option value="" disabled selected>Provincia</option>
-                        </select>
-                    </div>*@
-                <div class="col s10 m10">
-
-                    <select id="selectCities" class="browser-default">
-                        <option value="" disabled selected>Ciudad</option>
-                    </select>
-                </div>
-                <div class="col s2 m2">
-
-                    <a class="btn transparent" id="Miubicacion">
-
-                        <img src="~/Content/css/UbicacionBG.png" style="width:25px" />
-                    </a>
-                </div>
-                <div class="col s9" id="serc">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">search</i>
-                            @*<input type="text" id="autocomplete-input" class="autocomplete">
-                                <label for="autocomplete-input">Buscar</label>*@
-
-                        </div>
-                    </div>
-                </div>
-                @*<div class="col s3">
-                        <div class="row">
-                            <div class="input-field col s12">
-
-                                <a class="waves-effect pink btn-small" style=" top: 50%;">Buscar</a>
-                            </div>
-                        </div>
-                    </div>*@
-                <div class="col s12" style="  height: 300PX" id="allSitesList">
-                    <div id="DatosTabla" style="transform: translateY(-10%);">
-                        <table id="table-mardis" class="display">
-                            <thead style="color:white">
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
 
 
 
+            <div class="row sidenav_bg_3 left-align" id="mapbg3" name="2">
+                <div class="card-content white-text">
+                    <div class="col s12 m12" style="margin-bottom: 15px;">
+                        <div class="col s6 m9">
+
+                            <strong class="text-bg3">Ver el punto más cercano</strong>
+
+                        </div>
+                        <div class="col s6 m2">
+
+                            <a class="btn transparent" id="MiMore" style="position: absolute;    top: 15px;     left: 2px;">
+
+                                <img src="~/Content/img/pin_drop_24px_outlined.svg" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="tooltip">
+
+                <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
+                <span class="tooltiptext tooltip-left">Mi ubicación</span>
+
+            </div>
+
+
 
         </div>
-        <div class="tooltip">
 
-            <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
-            <span class="tooltiptext tooltip-left">Mi ubicación</span>
+        @section scripts{
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
-        </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+            <script src="~/Content/js/mainBancos.js"></script>
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>*@
+            <script src="~/Content/js/dataTable.js"></script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
 
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
 
-
-    </div>
-
-    @section scripts{
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>*@
-        <script src="~/Content/js/mainBancos.js"></script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>*@
-        <script src="~/Content/js/dataTable.js"></script>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
-
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-
-            gtag('config', 'UA-165708090-1');
-        </script>
+                gtag('config', 'UA-165708090-1');
+            </script>
 
 
 
-        <script>
+            <script>
+                   let mapbg1 = document.getElementById('mapbg4')
+                        mapbg1.style.display = "none"
+                $('#icon_prefix').keypress(function () {
+                       let mapbg41 = document.getElementById('mapbg4')
+                        mapbg41.style.display = "none"
+                    if ($(this).val().length > 3) {
+                    var list=[]
+                               store.map((stores) => {
 
-            $(document).ready(function () {
-                $('#selectProvice').change(function () {
-                    let _model = StoreData.find(x => x.Provice === $(this).val());
-                    $('#selectCities').children().remove();
-                    $('#selectCities').append('<option value="" disabled selected>Ciudad</option>')
-                    $.each(_model.Cites, function (i, item) {
-                        $('#selectCities').append($('<option>', {
-                            value: item.City,
-                            text: item.City
-                        }));
-                    });
+                                   var _data = stores.bancos.filter(x => x.direccion.toUpperCase().includes($(this).val().toUpperCase()) == true)
+                       
+                                   _data.map((items) => {
+                                       list.push(items)
+                                })
+                            })
+                    list.sort((a, b) => Number(a.distancia) - Number(b.distancia));
+                    if (list.length > 0) {
 
-                });
-                $('#selectCities').change(function () {
+                  
+                       
+                        let reg = 1
+                        let tam=1
+                        let html=""
+                        list.map((items) => {
+                            if (reg < 4) {
+                          
+                      html +=   "    <tr   onclick= 'ir(" + items.latitud + "," + items.longitud + ")'> "+
 
-                    LoadListbank($(this).val())
-
-                });
-                $('#selectCities').change(function () {
-
-                    LoadListbank($(this).val())
-
-                });
-                $('#Miubicacion').click(function () {
-
-                    ReloadMap();
-
-                });
-
-
-
-            });
-
-
-            function checkMobile() {
-                return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-            }
-
-            var checkDevice = checkMobile();
-
-            if (window.location !== window.parent.location) {
-
-                var contentRequestPermisson = document.getElementById('contentRequestPermisson')
-                contentRequestPermisson.style.display = "flex"
-
-                var myLocationButton = document.getElementById('getNearest')
-                myLocationButton.style.display = "none";
-
-                var myLocationButton = document.getElementById('getMyLocation')
-                myLocationButton.style.display = "none";
+                            '      <td colspan="2">   '+ 
+                            '<div>'+
+                            ' <p class="titleDrawerBluetitlet" class="titleTextt">'+items.name+'</p>'+
+                            '<p class="titleDrawerBluesmallt" id="localTypet">'+items.direccion+'</p>' +
+                            ' </div>'
+                            + '</td>'
+                            +'<td scope="row"> <p class="titleDrawergreysmallt" id="localTypet">'+items.distancia+'km</p></td>'+
 
 
-                document.getElementById('requestPermisson').onclick = function () {
+                            '    </tr>'
+                                tam=tam+1
+                            }
+                            reg=reg+1
+                                     
+                        })
+                        let mapbg4 = document.getElementById('mapbg4')
+                        let hei = 65 * tam;
+                        let hei2 = (20*tam) + 260;
+                        let hei3= (20*tam) + 400;
+                        mapbg4.style.height = hei + "px"
+                        mapbg4.style.display = "flex"
+                        let mapbg2 = document.getElementById('mapbg2')
+                        mapbg2.style.top = hei2+"%"
+                          let mapbg3 = document.getElementById('mapbg3')
+                        mapbg3.style.top = hei3+"%"
+          
+                        $("#mapbg4").html('<table class="table table-borderless">' +
 
-                    if (!checkDevice) {
-                        var requestPermissonButton = document.getElementById('requestPermisson')
-                        requestPermissonButton.style.display = "none"
-                        var progressCircle = document.getElementById('progressCircle')
-                        progressCircle.style.display = "flex"
-                        LoadMap();
+                            '  <tbody>'+
+                            html+
+                          
+                            '  </tbody>'+
+                            '</table>'
+                             );
+
+
                     } else {
-                        window.open('https://bancoguayaquil.azurewebsites.net/');
-                    }
-                }
-            } else {
+                         let mapbg4 = document.getElementById('mapbg4')
+                        mapbg4.style.display = "none"
 
-                var contentRequestPermisson = document.getElementById('contentRequestPermisson')
-                contentRequestPermisson.style.display = "flex"
-
-                var requestPermissonButton = document.getElementById('requestPermisson')
-                requestPermissonButton.style.display = "none"
-
-                var progressCircle = document.getElementById('progressCircle')
-                progressCircle.style.display = "flex"
-
-                //var myLocationButton = document.getElementById('getNearest')
-                //myLocationButton.style.display = "none";
-
-                var myLocationButton = document.getElementById('getMyLocation')
-                myLocationButton.style.display = "none";
-
-                LoadCity();
-                //  LoadProvice();
-                LoadMap();
-            }
-
-            function ReloadMap() {
-
-                GetGeo();
-                var token = $("[name='__RequestVerificationToken']").val();
-                // let _bdb = $('#bdb').prop('checked')
-
-                $('#selectCities').children().remove();
-                $('#selectCities').append('<option value="" disabled selected>Ciudad</option>')
-                let _bdb = $('#bdb').prop('checked')
-                let _mtf = $('#mtf').prop('checked')
-                let _agc = $('#agc').prop('checked')
-                let _atm = $('#atm').prop('checked')
-                let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
-
-                var dataSet = []
-                $.ajax({
-                    url: "/Bancos/DataMax",
-                    type: 'POST',
-                    data: {
-                        __RequestVerificationToken: token,
-                        mlf: _mtf,
-                        bdb: _bdb,
-                        agc: _agc,
-                        atm: _atm,
-                        lat: parseFloat(localStorage.getItem('Lat')),
-                        lgn: parseFloat(localStorage.getItem('lng'))
-                    },
-                    success: function (result) {
-
-                        result.map((dataResponse) => {
-
-
-                            dataResponse.bancos.map((bancos) => {
-                                var dataSet2 = []
-                                let data = {
-                                    nombre: "<b style='color:#1a237e; ; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
-                                    icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
-                                    dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
-                                };
-
-                                dataSet.push(data)
-                                LoadCity();
-                            })
-                        })
-
-                        $('#table-mardis').DataTable().destroy();
-                        $('#table-mardis').DataTable({
-                            "language": {
-                                "sEmptyTable": "Cargando datos..",
-                                "sInfo": "Página _PAGE_ de _PAGES_",
-                                "sInfoEmpty": "No existen registros",
-                                "sInfoFiltered": "Filtro",
-                                "sInfoPostFix": "",
-                                "sInfoThousands": ".",
-                                "sLengthMenu": "Mostrar _MENU_ Registros ",
-                                "sLoadingRecords": "Verificando..",
-                                "sProcessing": "Verificando..",
-                                "sSearch": "Buscar",
-                                "sZeroRecords": "No hay entradas disponibles.",
-                                "oPaginate": {
-                                    "sNext": "<i class=\"fa fa-forward\"></i>",
-                                    "sPrevious": "<i class=\"fa fa-backward\"></i>",
-                                    "sFirst": "<i class=\"fa fa-step-backward\"></i>",
-                                    "sLast": "<i class=\"fa fa-step-forward\"></i>"
-                                }
-
-                            },
-                            data: dataSet,
-                            "scrollY": "290px",
-                            ordering: false,
-
-                            "pageLength": 100,
-
-
-                            //  searching: false,
-                            columns: [
-                                { "data": "icon" },
-                                { "data": "nombre" },
-                                { "data": "dist" }
-
-                            ]
-
-
-                        });
-
-                        var d1 = document.getElementById('table-mardis_info');
-                        d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
-                        changedata(result)
-                    },
-                    error: function () {
-                        if (window.location !== window.parent.location) {
-                            var requestPermissonButton = document.getElementById('requestPermisson')
-                            requestPermissonButton.style.display = "flex"
-
-                            var progressCircle = document.getElementById('progressCircle')
-                            progressCircle.style.display = "none"
-                        } else {
+                        let mapbg2 = document.getElementById('mapbg2')
+                        mapbg2.style.top = "120%"
+                              let mapbg3 = document.getElementById('mapbg3')
+                        mapbg3.style.top = "260%"
 
                         }
+                    } else {
+                        let mapbg4 = document.getElementById('mapbg2')
+                        mapbg4.style.top = "120%"
+                              let mapbg3 = document.getElementById('mapbg3')
+                        mapbg3.style.top = "260%"
 
                     }
-                });
-                return null;
-            }
-            function LoadMap() {
 
-                GetGeo();
-                var token = $("[name='__RequestVerificationToken']").val();
-                // let _bdb = $('#bdb').prop('checked')
-
-
-                let _bdb = $('#bdb').prop('checked')
-                let _mtf = $('#mtf').prop('checked')
-                let _agc = $('#agc').prop('checked')
-                let _atm = $('#atm').prop('checked')
-                let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
-
-                var dataSet = []
-                $.ajax({
-                    url: "/Bancos/DataMax",
-                    type: 'POST',
-                    data: {
-                        __RequestVerificationToken: token,
-                        mlf: _mtf,
-                        bdb: _bdb,
-                        agc: _agc,
-                        atm: _atm,
-                        lat: parseFloat(localStorage.getItem('Lat')),
-                        lgn: parseFloat(localStorage.getItem('lng'))
-                    },
-                    success: function (result) {
-
-                        result.map((dataResponse) => {
-
-
-                            dataResponse.bancos.map((bancos) => {
-                                var dataSet2 = []
-                                let data = {
-                                    nombre: "<b style='color:#1a237e; ; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
-                                    icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
-                                    dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
-                                };
-
-                                dataSet.push(data)
-                            })
-                        })
-
-
-                        $('#table-mardis').DataTable({
-                            "language": {
-                                "sEmptyTable": "Cargando datos..",
-                                "sInfo": "Página _PAGE_ de _PAGES_",
-                                "sInfoEmpty": "No existen registros",
-                                "sInfoFiltered": "Filtro",
-                                "sInfoPostFix": "",
-                                "sInfoThousands": ".",
-                                "sLengthMenu": "Mostrar _MENU_ Registros ",
-                                "sLoadingRecords": "Verificando..",
-                                "sProcessing": "Verificando..",
-                                "sSearch": "Buscar",
-                                "sZeroRecords": "No hay entradas disponibles.",
-                                "oPaginate": {
-                                    "sNext": "<i class=\"fa fa-forward\"></i>",
-                                    "sPrevious": "<i class=\"fa fa-backward\"></i>",
-                                    "sFirst": "<i class=\"fa fa-step-backward\"></i>",
-                                    "sLast": "<i class=\"fa fa-step-forward\"></i>"
-                                }
-
-                            },
-                            data: dataSet,
-                            "scrollY": "290px",
-                            ordering: false,
-
-                            "pageLength": 100,
-
-
-                            //  searching: false,
-                            columns: [
-                                { "data": "icon" },
-                                { "data": "nombre" },
-                                { "data": "dist" }
-
-                            ]
-
-
-                        });
-
-                        var d1 = document.getElementById('table-mardis_info');
-                        d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
-                        permiso(result)
-                    },
-                    error: function () {
-                        if (window.location !== window.parent.location) {
-                            var requestPermissonButton = document.getElementById('requestPermisson')
-                            requestPermissonButton.style.display = "flex"
-
-                            var progressCircle = document.getElementById('progressCircle')
-                            progressCircle.style.display = "none"
-                        } else {
-
-                        }
-
-                    }
-                });
-                return null;
-            }
-
-            function ir(lt, lg) {
-                zoomPunto(lt, lg);
-            }
-            var latf;
-            var lngf;
-            function LoadListbank(ct) {
-
-
-                var token = $("[name='__RequestVerificationToken']").val();
-                let _bdb = document.getElementById("bdb").checked
-                let _mtf = $('#mtf').prop('checked');
-                let _agc = $('#agc').prop('checked');
-                let _atm = $('#atm').prop('checked');
-
-                let city = ct
-                var dataSet = []
-                $.ajax({
-                    url: "/Bancos/DataMax",
-                    type: 'POST',
-                    async: true,
-                    data: {
-                        __RequestVerificationToken: token,
-                        mlf: _mtf,
-                        bdb: _bdb,
-                        agc: _agc,
-                        atm: _atm,
-                        city: city,
-                        lat: parseFloat(localStorage.getItem('Lat')),
-                        lgn: parseFloat(localStorage.getItem('lng'))
-                    },
-                    success: function (result) {
-
-                        let cont = 0
-                        result.map((dataResponse) => {
-
-                            dataResponse.bancos.map((bancos) => {
-                                var dataSet2 = []
-                                let data = {
-                                    nombre: "<b style='color:#1a237e; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
-                                    icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
-                                    dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
-                                };
-
-                                dataSet.push(data)
-                                if (cont === 0) {
-                                    latf = bancos.latitud;
-                                    lngf = bancos.longitud;
-                                }
-                                cont++;
-
-                            })
-                        })
-
-
-                        $('#table-mardis').DataTable().destroy();
-                        $('#table-mardis').DataTable({
-                            "language": {
-                                "sEmptyTable": "Cargando datos..",
-                                "sInfo": "Página _PAGE_ de _PAGES_",
-                                "sInfoEmpty": "No existen registros",
-                                "sInfoFiltered": "Filtro",
-                                "sInfoPostFix": "",
-                                "sInfoThousands": ".",
-                                "sLengthMenu": "Mostrar _MENU_ Registros ",
-                                "sLoadingRecords": "Verificando..",
-                                "sProcessing": "Verificando..",
-                                "sSearch": "Buscar",
-                                "sZeroRecords": "No hay entradas disponibles.",
-                                "oPaginate": {
-                                    "sNext": "<i class=\"fa fa-forward\"></i>",
-                                    "sPrevious": "<i class=\"fa fa-backward\"></i>",
-                                    "sFirst": "<i class=\"fa fa-step-backward\"></i>",
-                                    "sLast": "<i class=\"fa fa-step-forward\"></i>"
-                                }
-
-                            },
-                            data: dataSet,
-                            "scrollY": "290px",
-                            ordering: false,
-
-                            "pageLength": 100,
-
-
-                            //  searching: false,
-                            columns: [
-                                { "data": "icon" },
-                                { "data": "nombre" },
-                                { "data": "dist" }
-
-                            ]
-
-
-                        });
-                        var d1 = document.getElementById('table-mardis_info');
-                        d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
-                        changedata(result)
-
-
-                    },
-
-                    error: function () {
-                        if (window.location !== window.parent.location) {
-                            var requestPermissonButton = document.getElementById('requestPermisson')
-                            requestPermissonButton.style.display = "flex"
-
-                            var progressCircle = document.getElementById('progressCircle')
-                            progressCircle.style.display = "none"
-                        } else {
-
-                        }
-
-                    }
-                });
-                return null;
-            }
-
-
-            function LoadProvice() {
-                var token = $("[name='__RequestVerificationToken']").val();
-                $.ajax({
-                    url: "/Bancos/Provice",
-                    type: 'POST',
-                    data: {
-                        __RequestVerificationToken: token
-                    },
-                    success: function (result) {
-                        StoreData = result
-                        $.each(StoreData, function (i, item) {
-                            $('#selectProvice').append($('<option>', {
-                                value: item.Provice,
-                                text: item.Provice
+                    });
+                     $('#selectProvice').change(function () {
+                        let _model = StoreData.find(x => x.Provice === $(this).val());
+                        $('#selectCities').children().remove();
+                        $('#selectCities').append('<option value="" disabled selected>Ciudad</option>')
+                        $.each(_model.Cites, function (i, item) {
+                            $('#selectCities').append($('<option>', {
+                                value: item.City,
+                                text: item.City
                             }));
                         });
-                    },
-                    error: function () {
-                        if (window.location !== window.parent.location) {
-                            var requestPermissonButton = document.getElementById('requestPermisson')
-                            requestPermissonButton.style.display = "flex"
 
+                    });
+                    $('#selectCities').change(function () {
+
+                        LoadListbank($(this).val())
+
+                    });
+                    $('#selectCities').change(function () {
+
+                        LoadListbank($(this).val())
+
+                    });
+                    $('#Miubicacion').click(function () {
+
+                        ReloadMap();
+
+                    });
+                   $('#MiMore').click(function () {
+
+                       more();
+
+                    });
+
+                function more() {
+
+                          var list=[]
+                    store.map((stores) => {
+   
+                                   stores.bancos.map((items) => {
+                                       list.push(items)
+                                   })
+                                 })
+                    list.sort((a, b) => Number(a.distancia) - Number(b.distancia));
+                    let lat = 0
+                    let lng=0
+            
+                    if (list.length > 0) {
+                    ir(list[0].latitud, list[0].longitud)
+                    }
+                       
+                }
+
+                function checkMobile() {
+                    return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+                }
+
+                var checkDevice = checkMobile();
+
+                if (window.location !== window.parent.location) {
+
+                    var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+                    contentRequestPermisson.style.display = "flex"
+
+                    var myLocationButton = document.getElementById('getNearest')
+                    myLocationButton.style.display = "none";
+
+                    var myLocationButton = document.getElementById('getMyLocation')
+                    myLocationButton.style.display = "none";
+
+
+                    document.getElementById('requestPermisson').onclick = function () {
+
+                        if (!checkDevice) {
+                            var requestPermissonButton = document.getElementById('requestPermisson')
+                            requestPermissonButton.style.display = "none"
                             var progressCircle = document.getElementById('progressCircle')
-                            progressCircle.style.display = "none"
+                            progressCircle.style.display = "flex"
+                            LoadMap();
                         } else {
+                            window.open('https://bancoguayaquil.azurewebsites.net/');
+                        }
+                    }
+                } else {
+
+                    var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+                    contentRequestPermisson.style.display = "flex"
+
+                    var requestPermissonButton = document.getElementById('requestPermisson')
+                    requestPermissonButton.style.display = "none"
+
+                    var progressCircle = document.getElementById('progressCircle')
+                    progressCircle.style.display = "flex"
+
+                    //var myLocationButton = document.getElementById('getNearest')
+                    //myLocationButton.style.display = "none";
+
+                    var myLocationButton = document.getElementById('getMyLocation')
+                    myLocationButton.style.display = "none";
+
+                    LoadCity();
+                    //  LoadProvice();
+                    LoadMap();
+                }
+
+                function ReloadMap() {
+
+                    GetGeo();
+                    var token = $("[name='__RequestVerificationToken']").val();
+                    // let _bdb = $('#bdb').prop('checked')
+
+                    $('#selectCities').children().remove();
+                    $('#selectCities').append('<option value="" disabled selected>Ciudad</option>')
+                    let _bdb = $('#bdb').prop('checked')
+                    let _mtf = $('#mtf').prop('checked')
+                    let _agc = $('#agc').prop('checked')
+                    let _atm = $('#atm').prop('checked')
+                    let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
+
+                    var dataSet = []
+                    $.ajax({
+                        url: "/Bancos/DataMax",
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token,
+                            mlf: _mtf,
+                            bdb: _bdb,
+                            agc: _agc,
+                            atm: _atm,
+                            lat: parseFloat(localStorage.getItem('Lat')),
+                            lgn: parseFloat(localStorage.getItem('lng'))
+                        },
+                        success: function (result) {
+
+                            //result.map((dataResponse) => {
+
+
+                            ////    dataResponse.bancos.map((bancos) => {
+                            ////        var dataSet2 = []
+                            ////        let data = {
+                            ////            nombre: "<b style='color:#1a237e; ; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
+                            ////            icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
+                            ////            dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
+                            ////        };
+
+                            ////        dataSet.push(data)
+                            ////        LoadCity();
+                            ////    })
+                            ////})
+
+                            ////$('#table-mardis').DataTable().destroy();
+                            ////$('#table-mardis').DataTable({
+                            ////    "language": {
+                            ////        "sEmptyTable": "Cargando datos..",
+                            ////        "sInfo": "Página _PAGE_ de _PAGES_",
+                            ////        "sInfoEmpty": "No existen registros",
+                            ////        "sInfoFiltered": "Filtro",
+                            ////        "sInfoPostFix": "",
+                            ////        "sInfoThousands": ".",
+                            ////        "sLengthMenu": "Mostrar _MENU_ Registros ",
+                            ////        "sLoadingRecords": "Verificando..",
+                            ////        "sProcessing": "Verificando..",
+                            ////        "sSearch": "Buscar",
+                            ////        "sZeroRecords": "No hay entradas disponibles.",
+                            ////        "oPaginate": {
+                            ////            "sNext": "<i class=\"fa fa-forward\"></i>",
+                            ////            "sPrevious": "<i class=\"fa fa-backward\"></i>",
+                            ////            "sFirst": "<i class=\"fa fa-step-backward\"></i>",
+                            ////            "sLast": "<i class=\"fa fa-step-forward\"></i>"
+                            ////        }
+
+                            ////    },
+                            ////    data: dataSet,
+                            ////    "scrollY": "290px",
+                            ////    ordering: false,
+
+                            ////    "pageLength": 100,
+
+
+                            ////    //  searching: false,
+                            ////    columns: [
+                            ////        { "data": "icon" },
+                            ////        { "data": "nombre" },
+                            ////        { "data": "dist" }
+
+                            ////    ]
+
+
+                            //});
+
+                            //var d1 = document.getElementById('table-mardis_info');
+                            //d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
+                            changedata(result)
+                        },
+                        error: function () {
+                            if (window.location !== window.parent.location) {
+                                var requestPermissonButton = document.getElementById('requestPermisson')
+                                requestPermissonButton.style.display = "flex"
+
+                                var progressCircle = document.getElementById('progressCircle')
+                                progressCircle.style.display = "none"
+                            } else {
+
+                            }
 
                         }
+                    });
+                    return null;
+                }
+                var store
+                function LoadMap() {
 
-                    }
-                });
-                return null;
-            }
-            function LoadCity() {
-                var token = $("[name='__RequestVerificationToken']").val();
-                $.ajax({
-                    url: "/Bancos/City",
-                    type: 'POST',
-                    data: {
-                        __RequestVerificationToken: token
-                    },
-                    success: function (result) {
+                    GetGeo();
+                    var token = $("[name='__RequestVerificationToken']").val();
+                    // let _bdb = $('#bdb').prop('checked')
 
-                        StoreData = result
-                        $.each(StoreData, function (i, item) {
-                            $.each(item.Cites, function (i, item2) {
 
-                                $('#selectCities').append($('<option>', {
-                                    value: item2.City,
-                                    text: item2.City + "(" + item.Provice + ")",
+                    let _bdb = $('#bdb').prop('checked')
+                    let _mtf = $('#mtf').prop('checked')
+                    let _agc = $('#agc').prop('checked')
+                    let _atm = $('#atm').prop('checked')
+                    let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
+
+                    var dataSet = []
+                    $.ajax({
+                        url: "/Bancos/DataMax",
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token,
+                            mlf: _mtf,
+                            bdb: _bdb,
+                            agc: _agc,
+                            atm: _atm,
+                            lat: parseFloat(localStorage.getItem('Lat')),
+                            lgn: parseFloat(localStorage.getItem('lng'))
+                        },
+                        success: function (result) {
+                            store = result
+                            //result.map((dataResponse) => {
+
+
+                            //    dataResponse.bancos.map((bancos) => {
+                            //        var dataSet2 = []
+                            //        let data = {
+                            //            nombre: "<b style='color:#1a237e; ; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
+                            //            icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
+                            //            dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
+                            //        };
+
+                            //        dataSet.push(data)
+                            //    })
+                            //})
+
+
+                            ////$('#table-mardis').DataTable({
+                            ////    "language": {
+                            ////        "sEmptyTable": "Cargando datos..",
+                            ////        "sInfo": "Página _PAGE_ de _PAGES_",
+                            ////        "sInfoEmpty": "No existen registros",
+                            ////        "sInfoFiltered": "Filtro",
+                            ////        "sInfoPostFix": "",
+                            ////        "sInfoThousands": ".",
+                            ////        "sLengthMenu": "Mostrar _MENU_ Registros ",
+                            ////        "sLoadingRecords": "Verificando..",
+                            ////        "sProcessing": "Verificando..",
+                            ////        "sSearch": "Buscar",
+                            ////        "sZeroRecords": "No hay entradas disponibles.",
+                            ////        "oPaginate": {
+                            ////            "sNext": "<i class=\"fa fa-forward\"></i>",
+                            ////            "sPrevious": "<i class=\"fa fa-backward\"></i>",
+                            ////            "sFirst": "<i class=\"fa fa-step-backward\"></i>",
+                            ////            "sLast": "<i class=\"fa fa-step-forward\"></i>"
+                            ////        }
+
+                            ////    },
+                            ////    data: dataSet,
+                            ////    "scrollY": "290px",
+                            ////    ordering: false,
+
+                            ////    "pageLength": 100,
+
+
+                            ////    //  searching: false,
+                            ////    columns: [
+                            ////        { "data": "icon" },
+                            ////        { "data": "nombre" },
+                            ////        { "data": "dist" }
+
+                            ////    ]
+
+
+                            //});
+
+                            //var d1 = document.getElementById('table-mardis_info');
+                            //d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
+                            permiso(result)
+                        },
+                        error: function () {
+                            if (window.location !== window.parent.location) {
+                                var requestPermissonButton = document.getElementById('requestPermisson')
+                                requestPermissonButton.style.display = "flex"
+
+                                var progressCircle = document.getElementById('progressCircle')
+                                progressCircle.style.display = "none"
+                            } else {
+
+                            }
+
+                        }
+                    });
+                    return null;
+                }
+
+                function ir(lt, lg) {
+                    zoomPunto(lt, lg);
+                }
+                var latf;
+                var lngf;
+                function LoadListbank(ct) {
+
+
+                    var token = $("[name='__RequestVerificationToken']").val();
+                    let _bdb = document.getElementById("bdb").checked
+                    let _mtf = $('#mtf').prop('checked');
+                    let _agc = $('#agc').prop('checked');
+                    let _atm = $('#atm').prop('checked');
+
+                    let city = ct
+                    var dataSet = []
+                    $.ajax({
+                        url: "/Bancos/DataMax",
+                        type: 'POST',
+                        async: true,
+                        data: {
+                            __RequestVerificationToken: token,
+                            mlf: _mtf,
+                            bdb: _bdb,
+                            agc: _agc,
+                            atm: _atm,
+                            city: city,
+                            lat: parseFloat(localStorage.getItem('Lat')),
+                            lgn: parseFloat(localStorage.getItem('lng'))
+                        },
+                        success: function (result) {
+
+                            let cont = 0
+                              store = result
+
+                            changedata(result)
+
+
+                        },
+
+                        error: function () {
+                            if (window.location !== window.parent.location) {
+                                var requestPermissonButton = document.getElementById('requestPermisson')
+                                requestPermissonButton.style.display = "flex"
+
+                                var progressCircle = document.getElementById('progressCircle')
+                                progressCircle.style.display = "none"
+                            } else {
+
+                            }
+
+                        }
+                    });
+                    return null;
+                }
+
+
+                function LoadProvice() {
+                    var token = $("[name='__RequestVerificationToken']").val();
+                    $.ajax({
+                        url: "/Bancos/Provice",
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token
+                        },
+                        success: function (result) {
+                            StoreData = result
+                            $.each(StoreData, function (i, item) {
+                                $('#selectProvice').append($('<option>', {
+                                    value: item.Provice,
+                                    text: item.Provice
                                 }));
                             });
+                        },
+                        error: function () {
+                            if (window.location !== window.parent.location) {
+                                var requestPermissonButton = document.getElementById('requestPermisson')
+                                requestPermissonButton.style.display = "flex"
 
+                                var progressCircle = document.getElementById('progressCircle')
+                                progressCircle.style.display = "none"
+                            } else {
 
-                        });
-                        //  StoreData = result
-
-                    },
-                    error: function () {
-                        if (window.location !== window.parent.location) {
-                            var requestPermissonButton = document.getElementById('requestPermisson')
-                            requestPermissonButton.style.display = "flex"
-
-                            var progressCircle = document.getElementById('progressCircle')
-                            progressCircle.style.display = "none"
-                        } else {
+                            }
 
                         }
+                    });
+                    return null;
+                }
+                function LoadCity() {
+                    var token = $("[name='__RequestVerificationToken']").val();
+                    $.ajax({
+                        url: "/Bancos/City",
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token
+                        },
+                        success: function (result) {
 
-                    }
-                });
-                return null;
-            }
+                            StoreData = result
+                            $.each(StoreData, function (i, item) {
+                                $.each(item.Cites, function (i, item2) {
 
-            function ReadMap() {
+                                    $('#selectCities').append($('<option>', {
+                                        value: item2.City,
+                                        text: item2.City + "(" + item.Provice + ")",
+                                    }));
+                                });
 
-                var token = $("[name='__RequestVerificationToken']").val();
-                let _bdb = $('#bdb').prop('checked')
-                let _mtf = $('#mtf').prop('checked')
-                let _agc = $('#agc').prop('checked')
-                let _atm = $('#atm').prop('checked')
 
-                $.ajax({
-                    url: "/Bancos/DataMax",
-                    type: 'POST',
-                    data: {
-                        __RequestVerificationToken: token,
-                        mlf: _mtf,
-                        bdb: _bdb,
-                        agc: _agc,
-                        atm: _atm
+                            });
+                            //  StoreData = result
 
-                    },
-                    success: function (result) {
-                        changedata(result)
-                    },
-                    error: function () {
-                        if (window.location !== window.parent.location) {
-                            var requestPermissonButton = document.getElementById('requestPermisson')
-                            requestPermissonButton.style.display = "flex"
+                        },
+                        error: function () {
+                            if (window.location !== window.parent.location) {
+                                var requestPermissonButton = document.getElementById('requestPermisson')
+                                requestPermissonButton.style.display = "flex"
 
-                            var progressCircle = document.getElementById('progressCircle')
-                            progressCircle.style.display = "none"
-                        } else {
+                                var progressCircle = document.getElementById('progressCircle')
+                                progressCircle.style.display = "none"
+                            } else {
+
+                            }
 
                         }
+                    });
+                    return null;
+                }
 
-                    }
-                });
-                return null;
-            }
-            $(".OptionService").change(function () {
+                function ReadMap() {
 
-                LoadListbank($('#selectCities').val())
+                    var token = $("[name='__RequestVerificationToken']").val();
+                    let _bdb = $('#bdb').prop('checked')
+                    let _mtf = $('#mtf').prop('checked')
+                    let _agc = $('#agc').prop('checked')
+                    let _atm = $('#atm').prop('checked')
 
-            })
-        </script>
-    }
+                    $.ajax({
+                        url: "/Bancos/DataMax",
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token,
+                            mlf: _mtf,
+                            bdb: _bdb,
+                            agc: _agc,
+                            atm: _atm
+
+                        },
+                        success: function (result) {
+                            changedata(result)
+                        },
+                        error: function () {
+                            if (window.location !== window.parent.location) {
+                                var requestPermissonButton = document.getElementById('requestPermisson')
+                                requestPermissonButton.style.display = "flex"
+
+                                var progressCircle = document.getElementById('progressCircle')
+                                progressCircle.style.display = "none"
+                            } else {
+
+                            }
+
+                        }
+                    });
+                    return null;
+                }
+                $(".OptionService").change(function () {
+                   let mapbg1 = document.getElementById('mapbg4')
+                    mapbg1.style.display = "none"
+
+                      let mapbg4 = document.getElementById('mapbg2')
+                        mapbg4.style.top = "120%"
+                              let mapbg3 = document.getElementById('mapbg3')
+                        mapbg3.style.top = "260%"
+                    LoadListbank($('#selectCities').val())
+
+                })
+            </script>
+        }

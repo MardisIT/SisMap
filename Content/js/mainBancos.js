@@ -6,11 +6,11 @@ var layerGroup;
 //var dist = []
 //var ar = []
 
-document.getElementById("closeDrawer").addEventListener('click', (evt) => {
-    var elem = document.getElementById('markerSite')
-    var instance = M.Sidenav.getInstance(elem);
-    instance.close();
-})
+//document.getElementById("closeDrawer").addEventListener('click', (evt) => {
+//    var elem = document.getElementById('markerSite')
+//    var instance = M.Sidenav.getInstance(elem);
+//    instance.close();
+//})
 document.getElementById("opensearch").addEventListener('click', (evt) => {
     var elem = document.getElementById('opensearch')
     var elem1 = document.getElementById('mapbg')
@@ -19,23 +19,23 @@ document.getElementById("opensearch").addEventListener('click', (evt) => {
    
 
 })
-document.getElementById("idcerrar").addEventListener('click', (evt) => {
-    var elem = document.getElementById('opensearch')
-    var elem1 = document.getElementById('mapbg')
-    elem.style.display = "flex";
-    elem1.style.display = "none";
-    //var id = $("#mapbg").attr('name')
-    //if (id === 'i') {
-    //    elem.style.display = "none";
-    //    $("#mapbg").attr('name', 'n')
-    //} else {
-    //    elem.style.display = "flex";
-    //    $("#mapbg").attr('name', 'i')
-    //}
+//document.getElementById("idcerrar").addEventListener('click', (evt) => {
+//    var elem = document.getElementById('opensearch')
+//    var elem1 = document.getElementById('mapbg')
+//    elem.style.display = "flex";
+//    elem1.style.display = "none";
+//    //var id = $("#mapbg").attr('name')
+//    //if (id === 'i') {
+//    //    elem.style.display = "none";
+//    //    $("#mapbg").attr('name', 'n')
+//    //} else {
+//    //    elem.style.display = "flex";
+//    //    $("#mapbg").attr('name', 'i')
+//    //}
 
 
 
-})
+//})
 
 document.getElementById("goTo").onclick = function (evt) {
     var latEnd = document.getElementById("localLat").innerHTML
@@ -619,8 +619,8 @@ function initializarMapa() {
         inDuration: 250,
         outDuration: 200,
         onOpenStart: function () {
-            var closeIcon = document.getElementById('closeDrawer')
-            closeIcon.style.color = "#FFFFFF";
+            //var closeIcon = document.getElementById('closeDrawer')
+            //closeIcon.style.color = "#FFFFFF";
             var gotoIcon = document.getElementById('goTo')
             gotoIcon.style.color = "#FFFFFF";
             var elem1 = document.getElementById('mapbg')
@@ -736,7 +736,7 @@ function initializarMapa() {
             var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIconI });
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
-                document.getElementById("titleDrawer").innerHTML = bancos.name
+                //document.getElementById("titleDrawer").innerHTML = bancos.name
                 //if (bancos.img != 'HTTP') {
                 //    document.getElementById("localImage").src = bancos.img;
                 //    document.getElementById("localImage").style.display = "flex";
@@ -745,15 +745,30 @@ function initializarMapa() {
                 //}
                 // document.getElementById("localName").innerHTML = bancos.name
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
+                document.getElementById("AgType").innerHTML = bancos.tipo  
                 //document.getElementById("localOwn").innerHTML = bancos.name
                 //document.getElementById("localPhone").innerHTML = bancos.Celular
                 document.getElementById("localDir").innerHTML = bancos.direccion
                 //document.getElementById("localProv").innerHTML = dataResponse.provincia
                 document.getElementById("localCity").innerHTML = bancos.Canton
-                document.getElementById("localPar").innerHTML = bancos.Parroquia
+                //document.getElementById("localPar").innerHTML = bancos.Parroquia
                 document.getElementById("localLat").innerHTML = bancos.latitud
                 document.getElementById("localLong").innerHTML = bancos.longitud
+                if (bancos.icon === "bdb") {
 
+                    var elembb = document.getElementById('bgb')
+                    var elembg = document.getElementById('bbb')
+
+                    elembb.style.display = "none";
+                    elembg.style.display = "flex";
+                } else {
+
+                    var elembb1 = document.getElementById('bgb')
+                    var elembg1 = document.getElementById('bbb')
+
+                    elembb1.style.display = "flex";
+                    elembg1.style.display = "none";
+                }
                 latLngs = [marker.getLatLng()];
                 markerBounds = L.latLngBounds(latLngs);
                 mymap.fitBounds(markerBounds);
@@ -767,15 +782,30 @@ function initializarMapa() {
             liCollapsibleItem.id = dataResponse.provincia + bancos.name
             liCollapsibleItem.style.cursor = "pointer"
             ulCollapsibleContentList.appendChild(liCollapsibleItem)
+        
+            if (bancos.icon === "bdb") {
 
-            liCollapsibleItem.addEventListener("click", () => {
-                mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 24);
-                var elem = document.getElementById('allsites')
-                var instance = M.Sidenav.getInstance(elem);
-                var elem1 = document.getElementById('mapbg')
-                elem1.style.display = "none";
-                instance.close();
-            }, false)
+                liCollapsibleItem.addEventListener("click", () => {
+                    mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 24);
+                    var elem = document.getElementById('allsites')
+               
+                    var instance = M.Sidenav.getInstance(elem);
+                    var elem1 = document.getElementById('mapbg')
+                    elem1.style.display = "none";
+                    instance.close();
+                }, false)
+            } else {
+                liCollapsibleItem.addEventListener("click", () => {
+                    mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 24);
+                    var elem = document.getElementById('allsites')
+                    var instance = M.Sidenav.getInstance(elem);
+                    var elem1 = document.getElementById('mapbg')
+                    elem1.style.display = "none";
+                    instance.close();
+                   
+                }, false)
+            }
+
 
             markerGroup.push(marker)
 
@@ -994,7 +1024,7 @@ function ReolizarMapa() {
             myIconI=null
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
-                document.getElementById("titleDrawer").innerHTML = bancos.name
+                //document.getElementById("titleDrawer").innerHTML = bancos.name
                 //if (bancos.img != 'HTTP') {
                 //    document.getElementById("localImage").src = bancos.img;
                 //    document.getElementById("localImage").style.display = "flex";
@@ -1003,15 +1033,30 @@ function ReolizarMapa() {
                 //}
                 // document.getElementById("localName").innerHTML = bancos.name
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
+                document.getElementById("AgType").innerHTML = bancos.tipo  
                 //document.getElementById("localOwn").innerHTML = bancos.name
                 //document.getElementById("localPhone").innerHTML = bancos.Celular
                 document.getElementById("localDir").innerHTML = bancos.direccion
                 //document.getElementById("localProv").innerHTML = dataResponse.provincia
                 document.getElementById("localCity").innerHTML = bancos.Canton
-                document.getElementById("localPar").innerHTML = bancos.Parroquia
+               // document.getElementById("localPar").innerHTML = bancos.Parroquia
                 document.getElementById("localLat").innerHTML = bancos.latitud
                 document.getElementById("localLong").innerHTML = bancos.longitud
+                if (bancos.icon === "bdb") {
 
+                    var elembb = document.getElementById('bgb')
+                    var elembg = document.getElementById('bbb')
+
+                    elembb.style.display = "none";
+                    elembg.style.display = "flex";
+                } else {
+
+                    var elembb1 = document.getElementById('bgb')
+                    var elembg1 = document.getElementById('bbb')
+
+                    elembb1.style.display = "flex";
+                    elembg1.style.display = "none";
+                }
                 latLngs = [marker.getLatLng()];
                 markerBounds = L.latLngBounds(latLngs);
                 mymap.fitBounds(markerBounds);
@@ -1051,7 +1096,7 @@ function ReolizarMapa() {
     return mymap;
 }
 function zoomPunto(lat, lng) {
-
-    mymap.panTo(new L.LatLng(lat, lng), 24);
+    mymap.setZoom(24);
+    mymap.panTo(new L.LatLng(lat, lng), 30);
 }
 

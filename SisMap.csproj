@@ -232,10 +232,16 @@
     <Content Include="Content\img\atm.png" />
     <Content Include="Content\img\BancoBarrio.png" />
     <Content Include="Content\img\CABECERA_BDB.png" />
+    <Content Include="Content\img\logo %282%29.png" />
     <Content Include="Content\img\LOGO-BANCO-DE-GUAYAQUIL.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\LOGO_BG.png" />
     <Content Include="Content\img\myLocation.png" />
+    <Content Include="Content\img\Path.png" />
+    <Content Include="Content\img\pin_drop_24px_outlined.svg" />
     <Content Include="Content\img\puntoceleste.png" />
+    <Content Include="Content\img\Screen Shot 2020-06-18 at 3.03 1.png" />
     <Content Include="Content\img\SERVICIOS_BDB.jpg" />
     <Content Include="Content\img\store_icon.png" />
     <Content Include="Content\img\mardis.png" />

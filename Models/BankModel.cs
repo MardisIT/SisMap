@@ -10,6 +10,8 @@ namespace SisMap.Models
         public string trmId { get; set; }
         public string name { get; set; }
         public string dtrmNombre { get; set; }
+        public string tipo { get; set; }
+        
         public string direccion { get; set; }
         public string ruc_cedula { get; set; }
         public double? latitud { get; set; }
