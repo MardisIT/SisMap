@@ -6,19 +6,20 @@ var layerGroup;
 //var dist = []
 //var ar = []
 
-//document.getElementById("closeDrawer").addEventListener('click', (evt) => {
-//    var elem = document.getElementById('markerSite')
-//    var instance = M.Sidenav.getInstance(elem);
-//    instance.close();
-//})
-document.getElementById("opensearch").addEventListener('click', (evt) => {
-    var elem = document.getElementById('opensearch')
-    var elem1 = document.getElementById('mapbg')
-    elem1.style.display = "flex";
-    elem.style.display = "none";
+document.getElementById("closeDrawer").addEventListener('click', (evt) => {
+    var elem = document.getElementById('markerSite')
+    var instance = M.Sidenav.getInstance(elem);
+    instance.close();
+})
+//document.getElementById("opensearch").addEventListener('click', (evt) => {
+//    var elem = document.getElementById('opensearch')
+//    var elem1 = document.getElementById('mapbg')
+//    var elem1 = document.getElementById('mapbg')
+//    elem1.style.display = "flex";
+//    elem.style.display = "none";
    
 
-})
+//})
 //document.getElementById("idcerrar").addEventListener('click', (evt) => {
 //    var elem = document.getElementById('opensearch')
 //    var elem1 = document.getElementById('mapbg')
@@ -560,7 +561,7 @@ function success(position, mymap) {
         shadowAnchor: [22, 50]
     });
     var marker = L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);
-    marker.bindPopup('Mi Ubicación').openPopup();
+    marker.bindPopup('Estas aquí').openPopup();
     marker.on('click', function (evt) {
         var latLngs = [marker.getLatLng()];
         var markerBounds = L.latLngBounds(latLngs);
@@ -619,8 +620,8 @@ function initializarMapa() {
         inDuration: 250,
         outDuration: 200,
         onOpenStart: function () {
-            //var closeIcon = document.getElementById('closeDrawer')
-            //closeIcon.style.color = "#FFFFFF";
+            var closeIcon = document.getElementById('closeDrawer')
+            closeIcon.style.color = "#FFFFFF";
             var gotoIcon = document.getElementById('goTo')
             gotoIcon.style.color = "#FFFFFF";
             var elem1 = document.getElementById('mapbg')
@@ -713,13 +714,19 @@ function initializarMapa() {
         dataResponse.bancos.map((bancos) => {
             var latLngs;
             var markerBounds;
-            let uconbank = '../Content/img/puntoceleste.png'
+            let uconbank = '../Content/img/bg/agencias.png'
             switch (bancos.icon) {
                 case "atm":
-                    uconbank = '../Content/img/ATM Azul.png'
+                    uconbank = '../Content/img/bg/atm.png'
+                    break;
+                case "mlf":
+                    uconbank = '../Content/img/bg/mtf.png'
                     break;
                 case "bdb":
-                    uconbank = '../Content/img/BancoBarrio.png'
+                    uconbank = '../Content/img/bg/bdb.png'
+                    break;
+                case "atb":
+                    uconbank = '../Content/img/bg/autobanco.png'
                     break;
                 default:
                 // code block
@@ -733,9 +740,36 @@ function initializarMapa() {
                 shadowSize: [40, 30],
                 shadowAnchor: [22, 30]
             });
-            var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIconI });
+            var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIconI, id: 1});
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
+                let uconbank = '../Content/img/bg/agenciasS.png'
+                switch (bancos.icon) {
+                    case "atm":
+                        uconbank = '../Content/img/bg/atmS.png'
+                        break;
+                    case "mlf":
+                        uconbank = '../Content/img/bg/mtfS.png'
+                        break;
+                    case "bdb":
+                        uconbank = '../Content/img/bg/bdbS.png'
+                        break;
+                    case "atb":
+                        uconbank = '../Content/img/bg/autobancoS.png'
+                        break;
+                    default:
+                    // code block
+                }
+
+                let myIconI = L.icon({
+                    iconUrl: uconbank,
+                    iconSize: [30, 30],
+                    iconAnchor: [22, 30],
+                    popupAnchor: [-3, -30],
+                    shadowSize: [40, 30],
+                    shadowAnchor: [22, 30]
+                });
+                evt.target.setIcon(myIconI);
                 //document.getElementById("titleDrawer").innerHTML = bancos.name
                 //if (bancos.img != 'HTTP') {
                 //    document.getElementById("localImage").src = bancos.img;
@@ -754,25 +788,39 @@ function initializarMapa() {
                 //document.getElementById("localPar").innerHTML = bancos.Parroquia
                 document.getElementById("localLat").innerHTML = bancos.latitud
                 document.getElementById("localLong").innerHTML = bancos.longitud
+                document.getElementById("localHorarioL").innerHTML = bancos.LV;
+                document.getElementById("localHorariosS").innerHTML = bancos.DS;
+                let ilv=""
+                bancos.servicios.map((ser) => {
+                    ilv += "<li>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio+"</li>"
+
+                })
+                document.getElementById("idUSerc").innerHTML = ilv;
                 if (bancos.icon === "bdb") {
 
                     var elembb = document.getElementById('bgb')
                     var elembg = document.getElementById('bbb')
-
+                    var elemsec = document.getElementById('idsehorario')    
+                    elemsec.style.display = "none";
                     elembb.style.display = "none";
                     elembg.style.display = "flex";
                 } else {
 
                     var elembb1 = document.getElementById('bgb')
                     var elembg1 = document.getElementById('bbb')
-
+                    var elemsec1 = document.getElementById('idsehorario')
+                    elemsec1.style.display = "block";
                     elembb1.style.display = "flex";
                     elembg1.style.display = "none";
                 }
                 latLngs = [marker.getLatLng()];
                 markerBounds = L.latLngBounds(latLngs);
+                console.log(markerBounds)
                 mymap.fitBounds(markerBounds);
+
+               
                 instance.open()
+
             })
 
             let liCollapsibleItem = document.createElement('li');
@@ -1000,17 +1048,25 @@ function ReolizarMapa() {
         dataResponse.bancos.map((bancos) => {
             var latLngs;
             var markerBounds;
-            let uconbank = '../Content/img/puntoceleste.png'
+            let uconbank = '../Content/img/bg/agencias.png'
             switch (bancos.icon) {
                 case "atm":
-                    uconbank = '../Content/img/ATM Azul.png'
+                    uconbank = '../Content/img/bg/atm.png'
+                    break;
+                case "mlf":
+                    uconbank = '../Content/img/bg/mtf.png'
                     break;
                 case "bdb":
-                    uconbank = '../Content/img/BancoBarrio.png'
+                    uconbank = '../Content/img/bg/bdb.png'
+                    break;
+                case "atb":
+                    uconbank = '../Content/img/bg/autobanco.png'
                     break;
                 default:
                 // code block
             }
+
+            
 
             let myIconI = L.icon({
                 iconUrl: uconbank,
@@ -1024,6 +1080,33 @@ function ReolizarMapa() {
             myIconI=null
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
+                let uconbank = '../Content/img/bg/agenciasS.png'
+                switch (bancos.icon) {
+                    case "atm":
+                        uconbank = '../Content/img/bg/atmS.png'
+                        break;
+                    case "mlf":
+                        uconbank = '../Content/img/bg/mtfS.png'
+                        break;
+                    case "bdb":
+                        uconbank = '../Content/img/bg/bdbS.png'
+                        break;
+                    case "atb":
+                        uconbank = '../Content/img/bg/autobancoS.png'
+                        break;
+                    default:
+                    // code block
+                }
+
+                let myIconI = L.icon({
+                    iconUrl: uconbank,
+                    iconSize: [30, 30],
+                    iconAnchor: [22, 30],
+                    popupAnchor: [-3, -30],
+                    shadowSize: [40, 30],
+                    shadowAnchor: [22, 30]
+                });
+                evt.target.setIcon(myIconI);
                 //document.getElementById("titleDrawer").innerHTML = bancos.name
                 //if (bancos.img != 'HTTP') {
                 //    document.getElementById("localImage").src = bancos.img;
@@ -1033,34 +1116,48 @@ function ReolizarMapa() {
                 //}
                 // document.getElementById("localName").innerHTML = bancos.name
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
-                document.getElementById("AgType").innerHTML = bancos.tipo  
+                document.getElementById("AgType").innerHTML = bancos.tipo
                 //document.getElementById("localOwn").innerHTML = bancos.name
                 //document.getElementById("localPhone").innerHTML = bancos.Celular
                 document.getElementById("localDir").innerHTML = bancos.direccion
                 //document.getElementById("localProv").innerHTML = dataResponse.provincia
                 document.getElementById("localCity").innerHTML = bancos.Canton
-               // document.getElementById("localPar").innerHTML = bancos.Parroquia
+                //document.getElementById("localPar").innerHTML = bancos.Parroquia
                 document.getElementById("localLat").innerHTML = bancos.latitud
                 document.getElementById("localLong").innerHTML = bancos.longitud
+                document.getElementById("localHorarioL").innerHTML = bancos.LV;
+                document.getElementById("localHorariosS").innerHTML = bancos.DS;
+                let ilv = ""
+                bancos.servicios.map((ser) => {
+                    ilv += "<li>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "</li>"
+
+                })
+                document.getElementById("idUSerc").innerHTML = ilv;
                 if (bancos.icon === "bdb") {
 
                     var elembb = document.getElementById('bgb')
                     var elembg = document.getElementById('bbb')
-
+                    var elemsec = document.getElementById('idsehorario')
+                    elemsec.style.display = "none";
                     elembb.style.display = "none";
                     elembg.style.display = "flex";
                 } else {
 
                     var elembb1 = document.getElementById('bgb')
                     var elembg1 = document.getElementById('bbb')
-
+                    var elemsec1 = document.getElementById('idsehorario')
+                    elemsec1.style.display = "block";
                     elembb1.style.display = "flex";
                     elembg1.style.display = "none";
                 }
                 latLngs = [marker.getLatLng()];
                 markerBounds = L.latLngBounds(latLngs);
+                console.log(markerBounds)
                 mymap.fitBounds(markerBounds);
+
+
                 instance.open()
+
             })
 
             let liCollapsibleItem = document.createElement('li');
@@ -1096,7 +1193,8 @@ function ReolizarMapa() {
     return mymap;
 }
 function zoomPunto(lat, lng) {
-    mymap.setZoom(24);
+
     mymap.panTo(new L.LatLng(lat, lng), 30);
+    mymap.setZoom(24);
 }
 

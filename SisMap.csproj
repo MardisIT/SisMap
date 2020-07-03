@@ -198,6 +198,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BG.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\tb_bancos_descripcion.cs">
+      <DependentUpon>BG.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +208,7 @@
     <Compile Include="Models\ProvinceModel.cs" />
     <Compile Include="Models\SelectCity.cs" />
     <Compile Include="Models\SelectProvince.cs" />
+    <Compile Include="Models\ServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,22 +232,36 @@
     <Content Include="Content\css\reset.min.css" />
     <Content Include="Content\css\UbicacionBG.png" />
     <Content Include="Content\img\afiche.jpg" />
+    <Content Include="Content\img\AI.Iconos.geo.JUN 1.png" />
     <Content Include="Content\img\ATM Azul.png" />
     <Content Include="Content\img\atm.png" />
-    <Content Include="Content\img\BancoBarrio.png" />
+    <Content Include="Content\img\aub.png" />
+    <Content Include="Content\img\BancoBarrio_1.png" />
+    <Content Include="Content\img\bg\agencias.png" />
+    <Content Include="Content\img\bg\agenciasS.png" />
+    <Content Include="Content\img\bg\atm.png" />
+    <Content Include="Content\img\bg\atmS.png" />
+    <Content Include="Content\img\bg\autobanco.png" />
+    <Content Include="Content\img\bg\autobancoS.png" />
+    <Content Include="Content\img\bg\bdb.png" />
+    <Content Include="Content\img\bg\bdbS.png" />
+    <Content Include="Content\img\bg\mtf.png" />
+    <Content Include="Content\img\bg\mtfS.png" />
+    <Content Include="Content\img\bg\Rectangle 2.jpg" />
+    <Content Include="Content\img\bg\Vector.png" />
     <Content Include="Content\img\CABECERA_BDB.png" />
+    <Content Include="Content\img\Ellipse1.png" />
     <Content Include="Content\img\logo %282%29.png" />
     <Content Include="Content\img\LOGO-BANCO-DE-GUAYAQUIL.jpg" />
-    <Content Include="Content\img\logo.jpg" />
-    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logo3.png" />
     <Content Include="Content\img\LOGO_BG.png" />
     <Content Include="Content\img\myLocation.png" />
+    <Content Include="Content\img\my_location_24px.png" />
     <Content Include="Content\img\Path.png" />
     <Content Include="Content\img\pin_drop_24px_outlined.svg" />
     <Content Include="Content\img\puntoceleste.png" />
     <Content Include="Content\img\Screen Shot 2020-06-18 at 3.03 1.png" />
     <Content Include="Content\img\SERVICIOS_BDB.jpg" />
-    <Content Include="Content\img\store_icon.png" />
     <Content Include="Content\img\mardis.png" />
     <Content Include="Content\js\5b1c5b69fb.js" />
     <Content Include="Content\js\dataTable.js" />
@@ -277,6 +295,7 @@
     <Content Include="Content\fonts\roboto\Roboto-Regular.woff2" />
     <Content Include="Content\fonts\roboto\Roboto-Thin.woff" />
     <Content Include="Content\fonts\roboto\Roboto-Thin.woff2" />
+    <Content Include="Content\css\Latin.json" />
     <EntityDeploy Include="Data\BG.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BG.Designer.cs</LastGenOutput>
@@ -284,7 +303,10 @@
     <Content Include="Data\BG.edmx.diagram">
       <DependentUpon>BG.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\css\Latin.json" />
+    <Content Include="Content\css\fonts\NunitoSans-Regular.ttf" />
+    <None Include="Properties\PublishProfiles\bancoguayaquil - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bancoguayaquil - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bancoguayaquil - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - Web Deploy.pubxml" />

@@ -1,4 +1,10 @@
-.sidenav-overlay {
+
+@font-face {
+    font-family: 'BgFont';
+    src: url('fonts/NunitoSans-Regular.ttf') format('truetype');
+}
+
+    .sidenav-overlay {
     opacity: 0 !important;
 }
 input {
@@ -16,8 +22,20 @@ input {
 .fa-user-circle-o {
     color: gray;
 }
+label {
+    font-family: BgFont !important;
+}
+strong {
+    font-family: BgFont !important;
+}
+li {
+    font-family: BgFont !important;
+}
+span_check {
+    font-family: BgFont !important;
+}
 .titleDrawerBluetitle {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: bold;
     font-size: 18px !important;
@@ -31,7 +49,7 @@ input {
     column-count: 2;
 }
 .serviceUl li {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -50,7 +68,7 @@ input {
 
 }
 .titleDrawerBluetitlet {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: bold;
     font-size: 15px !important;
@@ -60,7 +78,7 @@ input {
     color: #012244 !important;
 }
 .titleDrawerBluesmallt {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: normal;
     font-size: 15px !important;
@@ -68,10 +86,10 @@ input {
     display: flex;
     align-items: center;
     color: #012244 !important;
-    text-transform: capitalize;
+    
 }
 .titleDrawergreysmallt {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: normal;
     font-size: 15px !important;
@@ -83,7 +101,7 @@ input {
 }
 
 .titleDrawerBluesmall {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: normal;
     font-size: 18px !important;
@@ -91,7 +109,7 @@ input {
     display: flex;
     align-items: center;
     color: #012244 !important;
-    text-transform: capitalize;
+   
 }
 .sidenav_bg {
     position: fixed;
@@ -117,10 +135,9 @@ input {
     font-size: 24px !important;
     height: 0px !important;
     line-height: 0px !important;
-    top: 8px !important;
+    top: 7px !important;
     color: #C81D6F !important;
-    /* left: 27%; */
-    position: relative !important;
+   left:2px !important ;
 }
 input:not([type]) + label:after, input[type=text]:not(.browser-default) + label:after, input[type=password]:not(.browser-default) + label:after, input[type=email]:not(.browser-default) + label:after, input[type=url]:not(.browser-default) + label:after, input[type=time]:not(.browser-default) + label:after, input[type=date]:not(.browser-default) + label:after, input[type=datetime]:not(.browser-default) + label:after, input[type=datetime-local]:not(.browser-default) + label:after, input[type=tel]:not(.browser-default) + label:after, input[type=number]:not(.browser-default) + label:after, input[type=search]:not(.browser-default) + label:after, textarea.materialize-textarea + label:after, .select-wrapper + label:after {
     border-bottom: none !important;
@@ -135,7 +152,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     box-shadow: 0 1px 0 0 #fff !important;
 }
 .titleDrawerGrey {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: bold;
     font-size: 18px !important;
@@ -145,14 +162,92 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     color: #C3C8CD !important
     ;
 }
+[type="checkbox"].filled-in:checked + span:not(.lever):before {
+    top: -1px !important;
+    left: 2px !important;
+    /* bottom: 40px; */
+    width: 8px !important;
+    height: 13px !important;
+}
+.comollegar {
+  
+    height: 25px;
+    left: 3.07%;
+    right: 91.51%;
+    top: calc(50% - 25px/2 - 333px);
+    font-family: BgFont;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    /* identical to box height */
+   
+    align-items: center;
+    color: #C81D6F;
+}
+.input-field > label:not(.label-icon).active {
+    display: none !important;
+}
 .table p {
     margin-bottom: 1px !important
 }
 .drawerBody p {
     margin-bottom: 1px !important
 }
+
+.drawerBackground {
+    background-color: white !important;
+}
+.busBG {
+    width: 320px !important;
+    height: 50px;
+    left: 55px;
+    top: 189px;
+    background: #FFFFFF;
+    box-shadow: 6px 5px 10px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 10px !important;
+    border-bottom: none !important;
+}
+    /*.busBG input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+        height: 50px;
+        left: 55px;
+        top: 189px;
+        background: #FFFFFF;
+        box-shadow: 6px 5px 10px rgba(0, 0, 0, 0.12) ;
+        border-radius: 10px !important;
+        border-bottom: none !important;
+    }
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-radius: 0px !important;
+    box-shadow: none !important;
+}*/
+.buscaIco {
+    /* transform: translateX(1000%); */
+    /* transform: translateX(1000%); */
+    TOP: 170PX;
+    /* transform: translateY(-300%); */
+    POSITION: FIXED;
+    display: inline-table;
+    /* left: 99%; */
+    left: 330px !important;
+}
+.buscaIcoX {
+    TOP: 160PX;
+    /* transform: translateY(-300%); */
+    POSITION: FIXED;
+    display: inline-table;
+    /* left: 99%; */
+    height: 45px;
+    left: 368px !important;
+    box-shadow: 6px 5px 10px rgba(0, 0, 0, 0.12) !important;
+    background-color: rebeccapurple;
+    border-radius: 10px !important;
+}
+.white-text_ban {
+    margin-left: 1px !important;
+}
 .titleDrawerblue {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: bold;
     font-size: 18px !important;
@@ -170,6 +265,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 }
 #icon_prefix {
     border-bottom: none !important;
+
 }
 .sidenav {
     width: 450px !important;
@@ -181,7 +277,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     top: 120%;
     -webkit-transform: translateX(-100%);
     border-radius: 8px 8px 8px 8px;
-    height: 152px;
+    height: 160px;
     height: -moz-calc(100%);
     padding-bottom: 60px;
     background-color: #fff;
@@ -191,7 +287,12 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     backface-visibility: hidden;
     -webkit-transform: translateX(-105%);
     margin-left: -12% !important;
-    
+}
+.ElipLis {
+    width: 5px;
+    height: 5px;
+
+    MARGIN: 0PX 8PX;
 }
 .sidenav_bg_4 {
     position: fixed;
@@ -213,7 +314,37 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     margin-left: -12% !important;
     padding-left: 15px;
 }
+.sidenav_bg_5 {
 
+    padding-top: 5px;
+    position: fixed !important;
+    background: beige;
+    width: 320px;
+    left: 100px;
+    /* top: 101%; */
+    transition: color 0.8s linear 0.2s;
+    /* -webkit-transform: translateX(-100%); */
+    display: none;
+    border-radius: 8px 8px 8px 8px;
+    height: 0px;
+    height: -moz-calc(100%);
+    padding-bottom: 60px;
+    background-color: #fff;
+    z-index: 999;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* -webkit-transform: translateX(-105%); */
+    margin-left: -12% !important;
+    padding-left: 15px;
+    margin-bottom: 100px;
+    border-bottom: 1px black;
+
+}
+    .sidenav_bg_5 table {
+        background: white;
+        box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.12) !important;
+    }
 .sidenav_bg_3 {
     position: fixed;
     width: 430px;
@@ -251,7 +382,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     height: 22px;
     left: 10px;
     top: 0px;
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -266,7 +397,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 .text-bg2 {
     color: #012244;
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -274,7 +405,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     position: static;
 }
 .text-bg3 {
-    font-family: Nunito Sans;
+    font-family: BgFont;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -380,11 +511,64 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
         margin-left: 30% !important;
     }
 }
+.footerBg{
+    display:none;
+
+}
+cercano. {
+    display: none;
+}
 @media (max-width: 510px) {
     .sidenav_bg {
-        margin-left: 60% !important;
+        position: fixed;
+        width: 100%;
+        left: -1%        !important ;
+        top: -3px;
+        -webkit-transform: none !important;
+        border-radius: 1px 1px 1px 1px;
+        height: 125px;
+        height: -moz-calc(100%);
+        padding-bottom: 60px;
+        background-color: #fff;
+        z-index: 999;
+        will-change: transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: none !important;
+        margin-left: 1% !important;
     }
-}   
+    .sidenav_bg_4 {
+        width: 100%;
+        margin-left: -13% !important;
+    }
+
+    .sidenav_bg_3 {
+        display: none;
+        width: 100%;
+        margin-left: -13% !important;
+    }
+
+    .sidenav_bg_2 {
+    
+        width: 100%;
+        margin-left: -13% !important;
+    }
+    .map {
+      
+        height: 94vh !important;
+    }
+    .footerBg {
+        display: flex;
+    }
+    .movil-cercano {
+        display: flex;
+        background-color: white;
+    }
+    .sidenav {
+     
+        WIDTH: 100% !important;
+    }
+    }   
 
 
 

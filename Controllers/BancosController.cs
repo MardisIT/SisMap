@@ -1,4 +1,5 @@
 ﻿using SisMap.Business;
+using SisMap.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,25 @@ namespace SisMap.Controllers
     public class BancosController : Controller
     {
         private DOABancoBarrio _BancoBarioDOA = new DOABancoBarrio();
-        public ActionResult Index()
+        public ActionResult Index(bool mlf=true, bool bdb=true, bool agc=true, bool atm=true, bool atb = true)
         {
-
+            ViewData["mlf"] = mlf;
+            ViewData["bdb"] = bdb;
+            ViewData["agc"] = agc;
+            ViewData["atm"] = atm;
+            ViewData["atb"] = atb;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult DataMax(string __RequestVerificationToken, string mlf , string bdb, string agc, string atm,string City="", string lat = "0", string lgn ="0")
+        public JsonResult DataMax(string __RequestVerificationToken, string mlf,  string bdb, string agc, string atm, string atb, string City="", string lat = "0", string lgn ="0")
         {
             try
             {
 
 
 
-  var statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, City, float.Parse(lat), float.Parse(lgn));
+             List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb,  City, float.Parse(lat), float.Parse(lgn));
 
 
 ///   var statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));

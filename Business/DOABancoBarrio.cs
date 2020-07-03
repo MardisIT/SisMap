@@ -13,7 +13,7 @@ namespace SisMap.Business
       
         public int GetCount() {
 
-            return _context.BancosBarrio.Count();
+            return _context.BancosBarrios.Count();
         }
 
 
@@ -27,13 +27,13 @@ namespace SisMap.Business
                      _model = _redis.Get<List<BancosBarrio>>("_redisBancoBarrio");
                     if (_model == null)
                     {
-                        _model = _context.BancosBarrio.Where(x => x.estado == "A").ToList();
+                        _model = _context.BancosBarrios.Where(x => x.estado == "A").ToList();
                         _redis.Set("_redisBancoBarrio", _model);
                     }
                 }
                 catch (Exception)
                 {
-                    _model = _context.BancosBarrio.Where(x => x.estado == "A").ToList();
+                    _model = _context.BancosBarrios.Where(x => x.estado == "A").ToList();
                   
                 }
          
@@ -68,26 +68,30 @@ namespace SisMap.Business
             return _data;
         }
 
-        public List<ProvinceModel> GetDataBank(string mlf, string bdb, string agc, string atm,string city, float lat , float lgn)
+        public List<ProvinceModel> GetDataBank(string mlf, string bdb, string agc, string atm, string atb, string city, float lat , float lgn)
         {
 
             List<ProvinceModel> _data = new List<ProvinceModel>();
             List<BancosBG> _model = new List<BancosBG>();
+            List<tb_bancos_descripcion> serviciosT = new List<tb_bancos_descripcion>();
             try
             {
                 _model = _redis.Get<List<BancosBG>>("_redisBancos");
+                serviciosT = _redis.Get<List<tb_bancos_descripcion>>("_redisBancosServ");
                 if (_model == null)
                 {
-                    _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
+                    _model = _context.BancosBGs.Where(x => x.estado == "A").ToList();
                     _redis.Set("_redisBancos", _model);
+                    serviciosT = _context.tb_bancos_descripcion.ToList();
+                    _redis.Set("_redisBancosServ", serviciosT);
                 }
             }
             catch (Exception)
             {
-                _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
+                _model = _context.BancosBGs.Where(x => x.estado == "A").ToList();
 
             }
-            string[] source = new string[4];
+            string[] source = new string[5];
             if (bool.Parse(mlf)) {
                 source[0] = "mlf";
             }
@@ -103,29 +107,32 @@ namespace SisMap.Business
             {
                 source[3] = "atm";
             }
-           
-        var cites = _model.Select(x => x.ciudad.ToUpper()).Distinct().ToList();
+            if (bool.Parse(atb))
+            {
+                source[4] = "atb";
+            }
+            var cites = _model.Select(x => x.ciudad.ToUpper()).Distinct().ToList();
             if (city != "")
             {
                 cites.Clear();
                 cites.Add(city);
             }
-           
-       
+
+
             //    var ubicacion = geo.Split(';');
             //var lat = double.Parse(ubicacion[0]);
             //var lng = float.Parse(ubicacion[1]);
 
 
-
+    
             ProvinceModel _provice = new ProvinceModel();
-            foreach (var item in _model.Where(x=> source.Contains(x.trmSupervi) && cites.Contains(x.ciudad.ToUpper())).Select(x => x.provincia).Distinct())
+            foreach (var item in _model.Where(x => source.Contains(x.trmSupervi) && cites.Contains(x.ciudad.ToUpper())).Select(x => x.provincia).Distinct())
             {
                 _data.Add(new ProvinceModel { provincia = item });
             }
             foreach (var item in _data)
             {
-                var bank = _model.Where(x => x.provincia == item.provincia && source.Contains(x.trmSupervi)&& cites.Contains(x.ciudad.ToUpper())).Select(x => new BankModel
+                var bank = _model.Where(x => x.provincia == item.provincia && source.Contains(x.trmSupervi)).Select(x => new BankModel
                 {
                     name = x.nombreLocal,
                     dtrmNombre = x.propietario,
@@ -140,11 +147,15 @@ namespace SisMap.Business
                     img = x.banner,
                     icon=x.trmSupervi,
                     tipo=x.tipo,
+                    LV=x.horarioLV,
+                    DS=x.horarioSD,
                     distancia = Math.Round((Geo.Distancia(lat , lgn, float.Parse(x.latitud.ToString()), float.Parse(x.longitud.ToString())))/1)
+                  
+                     ,servicios= serviciosT.Where(xs=>xs.codigo==x.trmSupervi).Select(s=> new ServiceModel {servicio=s.nombre }).ToList()
 
 
 
-            }).ToList();
+                }).ToList();
                 if (city == "")
                 {
                     _data.Where(t => t.provincia == item.provincia).First().bancos = bank.Where(x => x.distancia < 20).ToList();
@@ -172,13 +183,13 @@ namespace SisMap.Business
                 _model = _redis.Get<List<BancosBG>>("_redisBancos");
                 if (_model == null)
                 {
-                    _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
+                    _model = _context.BancosBGs.Where(x => x.estado == "A").ToList();
                     _redis.Set("_redisBancos", _model);
                 }
             }
             catch (Exception)
             {
-                _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
+                _model = _context.BancosBGs.Where(x => x.estado == "A").ToList();
 
             }
             string[] source = new string[4];
@@ -208,13 +219,13 @@ namespace SisMap.Business
                 _model = _redis.Get<List<BancosBG>>("_redisBancos");
                 if (_model == null)
                 {
-                    _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
+                    _model = _context.BancosBGs.Where(x => x.estado == "A").ToList();
                     _redis.Set("_redisBancos", _model);
                 }
             }
             catch (Exception)
             {
-                _model = _context.BancosBG.Where(x => x.estado == "A").ToList();
+                _model = _context.BancosBGs.Where(x => x.estado == "A").ToList();
 
             }
             //string[] source = new string[4];

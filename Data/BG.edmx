@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="BG_DbsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BG_Dbs.dbo.tb_bancos_descripcion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tb_bancos_descripcion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="200" />
+          <Property Name="descripcion" Type="varchar(max)" />
+          <Property Name="codigo" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="BancosBarrio">
           <Key>
             <PropertyRef Name="id" />
@@ -31,9 +42,22 @@
           <Property Name="fecha_Modificacion" Type="datetime" />
           <Property Name="estado" Type="varchar" MaxLength="10" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BG_Dbs.MardisCommon.BancosBG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="BancosBG">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="idbg" />
+            <PropertyRef Name="tipo" />
+            <PropertyRef Name="nombreLocal" />
+            <PropertyRef Name="propietario" />
+            <PropertyRef Name="direccion" />
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="tiponegocio" />
+            <PropertyRef Name="provincia" />
+            <PropertyRef Name="ciudad" />
+            <PropertyRef Name="parroquia" />
+            <PropertyRef Name="telefono" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idbg" Type="varchar" MaxLength="1000" Nullable="false" />
@@ -56,10 +80,46 @@
           <Property Name="banner" Type="varchar" MaxLength="1000" />
           <Property Name="fecha_Modificacion" Type="datetime" />
           <Property Name="estado" Type="varchar" MaxLength="10" />
+          <Property Name="horarioLV" Type="varchar" MaxLength="100" />
+          <Property Name="horarioSD" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="BG_DbsModelStoreContainer">
           <EntitySet Name="BancosBarrio" EntityType="Self.BancosBarrio" Schema="MardisCommon" store:Type="Tables" />
-          <EntitySet Name="BancosBG" EntityType="Self.BancosBG" Schema="MardisCommon" store:Type="Tables" />
+          <EntitySet Name="tb_bancos_descripcion" EntityType="Self.tb_bancos_descripcion" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tb_bancos_descripcion].[id] AS [id], 
+    [tb_bancos_descripcion].[nombre] AS [nombre], 
+    [tb_bancos_descripcion].[descripcion] AS [descripcion], 
+    [tb_bancos_descripcion].[codigo] AS [codigo]
+    FROM [dbo].[tb_bancos_descripcion] AS [tb_bancos_descripcion]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BancosBG" EntityType="Self.BancosBG" store:Type="Tables" store:Schema="MardisCommon">
+            <DefiningQuery>SELECT 
+    [BancosBG].[id] AS [id], 
+    [BancosBG].[idbg] AS [idbg], 
+    [BancosBG].[tipo] AS [tipo], 
+    [BancosBG].[nombreLocal] AS [nombreLocal], 
+    [BancosBG].[propietario] AS [propietario], 
+    [BancosBG].[direccion] AS [direccion], 
+    [BancosBG].[cedula] AS [cedula], 
+    [BancosBG].[tiponegocio] AS [tiponegocio], 
+    [BancosBG].[provincia] AS [provincia], 
+    [BancosBG].[ciudad] AS [ciudad], 
+    [BancosBG].[parroquia] AS [parroquia], 
+    [BancosBG].[trmOfficia] AS [trmOfficia], 
+    [BancosBG].[trmSupervi] AS [trmSupervi], 
+    [BancosBG].[telefono] AS [telefono], 
+    [BancosBG].[codigomardis] AS [codigomardis], 
+    [BancosBG].[latitud] AS [latitud], 
+    [BancosBG].[longitud] AS [longitud], 
+    [BancosBG].[digitador] AS [digitador], 
+    [BancosBG].[banner] AS [banner], 
+    [BancosBG].[fecha_Modificacion] AS [fecha_Modificacion], 
+    [BancosBG].[estado] AS [estado], 
+    [BancosBG].[horarioLV] AS [horarioLV], 
+    [BancosBG].[horarioSD] AS [horarioSD]
+    FROM [MardisCommon].[BancosBG] AS [BancosBG]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -92,9 +152,29 @@
           <Property Name="fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tb_bancos_descripcion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="codigo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="BancosBG">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="idbg" />
+            <PropertyRef Name="tipo" />
+            <PropertyRef Name="nombreLocal" />
+            <PropertyRef Name="propietario" />
+            <PropertyRef Name="direccion" />
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="tiponegocio" />
+            <PropertyRef Name="provincia" />
+            <PropertyRef Name="ciudad" />
+            <PropertyRef Name="parroquia" />
+            <PropertyRef Name="telefono" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idbg" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
@@ -117,10 +197,13 @@
           <Property Name="banner" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="horarioLV" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="horarioSD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="BG_DbsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BancosBarrio" EntityType="Self.BancosBarrio" />
-          <EntitySet Name="BancosBG" EntityType="Self.BancosBG" />
+          <EntitySet Name="BancosBarrios" EntityType="Self.BancosBarrio" />
+          <EntitySet Name="tb_bancos_descripcion" EntityType="Self.tb_bancos_descripcion" />
+          <EntitySet Name="BancosBGs" EntityType="Self.BancosBG" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -128,7 +211,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BG_DbsModelStoreContainer" CdmEntityContainer="BG_DbsEntities">
-          <EntitySetMapping Name="BancosBarrio">
+          <EntitySetMapping Name="BancosBarrios">
             <EntityTypeMapping TypeName="BG_DbsModel.BancosBarrio">
               <MappingFragment StoreEntitySet="BancosBarrio">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -155,7 +238,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BancosBG">
+          <EntitySetMapping Name="tb_bancos_descripcion">
+            <EntityTypeMapping TypeName="BG_DbsModel.tb_bancos_descripcion">
+              <MappingFragment StoreEntitySet="tb_bancos_descripcion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BancosBGs">
             <EntityTypeMapping TypeName="BG_DbsModel.BancosBG">
               <MappingFragment StoreEntitySet="BancosBG">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -179,6 +272,8 @@
                 <ScalarProperty Name="banner" ColumnName="banner" />
                 <ScalarProperty Name="fecha_Modificacion" ColumnName="fecha_Modificacion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="horarioLV" ColumnName="horarioLV" />
+                <ScalarProperty Name="horarioSD" ColumnName="horarioSD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -196,10 +291,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

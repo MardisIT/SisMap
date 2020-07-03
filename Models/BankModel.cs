@@ -22,7 +22,10 @@ namespace SisMap.Models
         public string Celular { get; set; }
         public string img { get; set; }
         public string icon { get; set; }
-        public double? distancia { get; set; } 
-    }
+        public double? distancia { get; set; }
+        public string LV { get; set; }
+        public string DS { get; set; }
+        public List<ServiceModel> servicios  { get; set; }
+}
 
     }

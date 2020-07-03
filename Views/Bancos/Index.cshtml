@@ -2,6 +2,15 @@
 @{
     ViewBag.Title = "Index";
 }
+@{
+    var mlf = (bool)ViewData["mlf"];
+    var bdb = (bool)ViewData["bdb"];
+    var agc = (bool)ViewData["agc"];
+    var atm = (bool)ViewData["atm"];
+    var atb = (bool)ViewData["atb"];
+}
+ 
+    <link href='//fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href="~/Content/css/mainBG.css" rel="stylesheet" />
 <div id="contentRequestPermisson" class="dialogModal">
     <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
@@ -40,56 +49,146 @@
     </nav>*@
 
 <main class="map" id="mapid">
-    <div class="leaflet-top leaflet-right">
-        <div class="leaflet-control-zoom leaflet-bar leaflet-control" style="right:30%">
+    <div class="leaflet-bottom leaflet-right">
+        <div class="leaflet-control-zoom leaflet-bar leaflet-control" style="top: -70px;">
 
-            <img id="opensearch" style="display:none" src="~/Content/img/LOGO-BANCO-DE-GUAYAQUIL.jpg" width="100px" />
+            <a class="leaflet-control-zoom-in" id="Miubicacion" title="Encuentrame" role="button" aria-label="Centrame">  <img src="~/Content/img/my_location_24px.png" width="15px" /></a>
+        </div>
+    </div>
+    @*<div class="leaflet-bottom leaflet-center">
+        <div class="card-content white-text leaflet-control">
+            <div class="card-content white-text ">
+                <div class="col s12 m12 movil-cercano" id="MiMore2">
+                    <div class="col s12 m12 " style="margin-bottom: 15px;">
+                        <strong class="text-bg2">Puntos de atención</strong>
+                    </div>
+                    <div >
+                        <label>
+                            <input type="checkbox" class="OptionService filled-in" id="bdb1" />
+                            <span class="span_check"> Banco del Barrio</span>
+                        </label>
+                    </div>
+                    <div >
+                        <label>
+                            <input type="checkbox" class=" OptionService filled-in" id="mtf1" />
+                            <span class="span_check">Cajeros Multifución</span>
+                        </label>
+                    </div>
+                    <div >
+                        <label>
+                            <input type="checkbox" class="OptionService filled-in" id="atm1" />
+                            <span class="span_check">Cajeros </span>
+                        </label>
+                    </div>
+                    <div >
+                        <label>
+                            <input type="checkbox" class="OptionService filled-in" id="agc1" />
+                            <span class="span_check">Agencias </span>
+                        </label>
+                    </div>
+                    <div >
+                        <label>
+                            <input type="checkbox" class="OptionService filled-in" id="atb1" />
+                            <span class="span_check">Autobanco </span>
+                        </label>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>*@
+    <div class="leaflet-bottom leaflet-center">
+        <div class="card-content white-text leaflet-control">
+            <div class="col s12 m12 movil-cercano" id="MiMore1">
+                <div class="col s6 m9">
+
+                    <strong class="text-bg3">Ver el punto más cercano</strong>
+
+                </div>
+                <div class="col s6 m2">
+
+                    <a class=" transparent" style="position: absolute;    top: 20px;     left: 2px;">
+
+                        <img src="~/Content/img/pin_drop_24px_outlined.svg" />
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </main>
-@*<footer>
-    <p>Author: Hege Refsnes</p>
-    <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+@*<footer class="footerBg">
+ 
+        <div class="card-content white-text">
+            <div class="col s12 m12" style="margin-bottom: 15px;" id="MiMore">
+                <div class="col s6 m9">
+
+                    <strong class="text-bg3">Ver el punto más cercano</strong>
+
+                </div>
+                <div class="col s6 m2">
+
+                    <a class=" transparent" style="position: absolute;    top: 20px;     left: 2px;">
+
+                        <img src="~/Content/img/pin_drop_24px_outlined.svg" />
+                    </a>
+                </div>
+            </div>
+        </div>
+   
 </footer>*@
 @Html.AntiForgeryToken()
 <!--MARKER DRAWER-->
 <aside id="markerSite" class="sidenav drawerBackground">
-    <!--MARKER NAVBAR-->
-    @*<img src="~/Content/img/CABECERA_BDB.png" class="cabeceraImage" />
-    <div class="TITLEBRAND">
-        <p class="titleText">NOMBRE DEL NEGOCIO</p>
-    </div>*@
-    <nav class="drawerNavigator" style="background-color: #012244 ;    height: 146px;">
-        @*<span>
-            <i id="closeDrawer" class=" lbar material-icons">arrow_back</i><p style="position: inherit;top: -10px;font-size: 12px;"> Regresar</p>
-        </span>*@
 
-        <img src="~/Content/img/logo (2).png" id="bgb" style=" width: 180px;" />
-        <img src="~/Content/img/Screen Shot 2020-06-18 at 3.03 1.png"  id="bbb"  style=" height: 146px; width:450px;"/>
-    
+    <nav class="drawerNavigator" style="background-color: #012244 ;    height: 136px;">
 
-        @*<span>
-            <i id="goTo" class="ibar material-icons">directions</i><p style="position: inherit;top: -10px;font-size: 12px;"> Cómo llegar</p>
-        </span>*@
+        <img src="~/Content/img/logo3.png" id="bgb" style=" height: 136px; width: 100%;" />
+        <img src="~/Content/img/Screen Shot 2020-06-18 at 3.03 1.png" id="bbb" style=" height: 136px; width:100%;" />
+
+
 
     </nav>
     <ul class="drawerBody">
-        @*<img id=localImage src="" class="imageHeader" hidden>*@
-        @*<div>
-            NOMBRE DEL NEGOCIO
-            <p id="localName"></p>
-        </div>*@
+        <div class="white-text_ban col s12 m10 ">
 
-        <div>
-            <p class="titleDrawerGrey" class="titleText">Dirrección</p>
-            <p class="titleDrawerblue" id="localDir"></p>
-            <span>
-                <i id="goTo" class="ibar material-icons">directions</i><small style="position: inherit;color:#C81D6F!important;top: -10px;font-size: 12px;"> Cómo llegar</small>
-            </span>
+
+            <input type="email" class="busBG" id="busBGId"aria-describedby="emailHelp" placeholder="Buscar punto de atención">
+
+            <a class=" buscaIco">
+                <img src="~/Content/img/Path.png" style="width:25px" />
+            </a>
+            <a class="btn buscaIcoX transparent" id="closeDrawer">
+                <img src="~/Content/img/bg/Vector.png" style="/* top: 100px; */width:25px;top: 100px;display: block;padding-top: 7px;padding-left: 5px;" />
+            </a>
+
+            <div class="row sidenav_bg_5 left-align" id="mapbg5" name="2">
+                <div class="card-content white-text">
+                    <div class="col s12 m12" style="margin-bottom: 15px;">
+                        <div class="col s6 m9">
+
+                            <strong class="text-bg3">Ver el punto más cercano</strong>
+
+                        </div>
+                        <div class="col s6 m2">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
+            <p class="titleDrawerGrey" class="titleText">Dirección</p>
+            <p class="titleDrawerblue" id="localDir"></p>
 
-
+        </div>
+        <div id="goTo" style="
+                    /*margin-left: -9px;*/
+                    padding-top: 2px;
+                ">
+            <span>
+                <small class="comollegar"> Cómo llegar</small>
+            </span>
+            <i class="ibar material-icons">directions</i>
         </div>
         <div>
             <p class="titleDrawerBluetitle" class="titleText">Punto de atención</p>
@@ -101,21 +200,37 @@
             <p class="titleDrawerBluesmall" id="localCity"></p>
 
         </div>
-        <div>
+        <div id="idsehorario">
             <p class="titleDrawerBluetitle" class="titleText">Horarios</p>
-            <p class="titleDrawerBluesmall" id="localHorarioL"></p>
-            <p class="titleDrawerBluesmall" id="localHorarios"></p>
+            <table class="table table-borderless">
+
+                <tbody>
+                    <tr>
+                        <td style="padding:1px !important"> <p class="titleDrawerBluesmall" class="titleText">Lunes a viernes</p></td>
+                        <td style="padding:1px !important"> <p class="titleDrawerBluesmall" id="localHorarioL"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:1px !important"> <p class="titleDrawerBluesmall" class="titleText">Sábados</p></td>
+                        <td style="padding:1px !important"> <p class="titleDrawerBluesmall" id="localHorariosS"></p></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:1px !important"> <p class="titleDrawerBluesmall" class="titleText">Domingos </p></td>
+                        <td style="padding:1px !important"> <p class="titleDrawerBluesmall" id="localHorariosD"> 09H00 a 21H00</p></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div>
+        <div style="display:none">
             <p class="titleDrawerBluetitle" class="titleText">Tipo de Negocio</p>
             <p class="titleDrawerBluesmall" id="localType"></p>
 
         </div>
         <div class="serviceUl">
             <p class="titleDrawerBluetitle" class="titleText">Servicios</p>
-           
-            <ul>
-                  <li>Depósitos</li>
+
+            <ul id="idUSerc">
+                <li>Depósitos</li>
                 <li>Retiros</li>
                 <li>Pago de bonos</li>
                 <li>Cuenta Amiga</li>
@@ -123,7 +238,7 @@
                 <li> Recargas celular</li>
                 <li> Recargas TV paga</li>
                 <li> Pagos de servicios básicos y empresariales</li>
-           
+
             </ul>
         </div>
         <!--
@@ -161,11 +276,14 @@
     </ul>
     <div style="text-align:center">
 
-        
+
     </div>
 </aside>
 <!--LIST DRAWER-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.google.com/">
+
+
 <aside id="allsites" class="sidenav" style=" display:none !important">
     @*<nav class="navPageAll" style="background-color: #BE1C6C;" >
             <p> Banco Guayaquil</p>
@@ -198,8 +316,8 @@
 
             </div>
             @*<div class="col s2 m2">
-                <a id="idcerrar" class="leaflet-control-zoom-out" style="text-align: right;/* LEFT: 100%; */FLOAT: right;MARGIN-TOP: 5PX;" ; href="#" title="Cerrar" role="button" aria-label="Cerrar">x</a>
-            </div>*@
+                    <a id="idcerrar" class="leaflet-control-zoom-out" style="text-align: right;/* LEFT: 100%; */FLOAT: right;MARGIN-TOP: 5PX;" ; href="#" title="Cerrar" role="button" aria-label="Cerrar">x</a>
+                </div>*@
 
         </nav>
 
@@ -208,7 +326,7 @@
             <div>
                 <div class="card-content white-text">
                     <div class="col s12 m10 ">
-                        <div class="input-field">
+                        <div id="itemBus "class="input-field">
 
                             <input id="icon_prefix" type="text" class="validate">
                             <label for="icon_prefix">Buscar punto de atención </label>
@@ -217,9 +335,11 @@
 
                     </div>
                     <div class="col s6 m2">
-                        <a class="btn transparent" id="BuscarID" style="position: absolute;    top: 10px;">
-                            @*<img src="~/Content/img/Path.png" style="width:25px" />*@
-                            <i class="material-icons" style="color:#b7b7b7">search</i>
+                        <a class=" transparent" id="BuscarID" style="position: absolute;   left:25px; top: 15px;">
+                            <img src="~/Content/img/Path.png" style="width:25px" />
+
+
+
                         </a>
 
                     </div>
@@ -242,15 +362,12 @@
                         </div>
                         <div class="col s6 m2">
 
-                            <a class="btn transparent" id="Miubicacion" style="position: absolute;    top: 15px;     left: 2px;">
 
-                                <img src="~/Content/img/pin_drop_24px_outlined.svg" />
-                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row sidenav_bg_2  left-align" id="mapbg2" name="i2">
+            <div class="row sidenav_bg_2  left-align" id="mapbg2" name="">
                 <div class="card-content white-text">
 
                     <div class="col s12 m12" style="margin-bottom: 15px;">
@@ -258,29 +375,34 @@
                     </div>
                     <div class="col s6 m6">
                         <label>
-                            <input type="checkbox" class="OptionService filled-in" id="bdb" checked="checked" />
-                            <span class="span_check"> Bancos de barrio</span>
+                            <input type="checkbox" class="OptionService filled-in" id="bdb" />
+                            <span class="span_check"> Banco del Barrio</span>
                         </label>
                     </div>
                     <div class="col s6 m6">
                         <label>
-                            <input type="checkbox" class=" OptionService filled-in" id="mtf" checked="checked" />
-                            <span class="span_check">Cajero Multifución</span>
+                            <input type="checkbox" class=" OptionService filled-in" id="mtf" />
+                            <span class="span_check">Cajeros Multifución</span>
                         </label>
                     </div>
                     <div class="col s6 m6">
                         <label>
-                            <input type="checkbox" class="OptionService filled-in" id="atm" checked="checked" />
+                            <input type="checkbox" class="OptionService filled-in" id="atm" />
                             <span class="span_check">Cajeros </span>
                         </label>
                     </div>
                     <div class="col s6 m6">
                         <label>
-                            <input type="checkbox" class="OptionService filled-in" id="agc" checked="checked" />
-                            <span class="span_check">Agencia </span>
+                            <input type="checkbox" class="OptionService filled-in" id="agc" />
+                            <span class="span_check">Agencias </span>
                         </label>
                     </div>
-
+                    <div class="col s6 m6">
+                        <label>
+                            <input type="checkbox" class="OptionService filled-in" id="atb" />
+                            <span class="span_check">Autobancos </span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
@@ -288,7 +410,7 @@
 
             <div class="row sidenav_bg_3 left-align" id="mapbg3" name="2">
                 <div class="card-content white-text">
-                    <div class="col s12 m12" style="margin-bottom: 15px;">
+                    <div class="col s12 m12" style="margin-bottom: 15px;" id="MiMore">
                         <div class="col s6 m9">
 
                             <strong class="text-bg3">Ver el punto más cercano</strong>
@@ -296,7 +418,7 @@
                         </div>
                         <div class="col s6 m2">
 
-                            <a class="btn transparent" id="MiMore" style="position: absolute;    top: 15px;     left: 2px;">
+                            <a class=" transparent"  style="position: absolute;    top: 20px;     left: 2px;">
 
                                 <img src="~/Content/img/pin_drop_24px_outlined.svg" />
                             </a>
@@ -305,82 +427,96 @@
                 </div>
             </div>
         </div>
-            <div class="tooltip">
+        <div class="tooltip">
 
-                <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
-                <span class="tooltiptext tooltip-left">Mi ubicación</span>
-
-            </div>
-
-
+            <i id="getMyLocation" class="material-icons getMyLocation">gps_fixed</i>
+            <span class="tooltiptext tooltip-left">Mi ubicación</span>
 
         </div>
 
-        @section scripts{
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-            <script src="~/Content/js/mainBancos.js"></script>
-            <!-- Global site tag (gtag.js) - Google Analytics -->
-            @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>*@
-            <script src="~/Content/js/dataTable.js"></script>
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
-
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag() { dataLayer.push(arguments); }
-                gtag('js', new Date());
-
-                gtag('config', 'UA-165708090-1');
-            </script>
 
 
+    </div>
 
-            <script>
-                   let mapbg1 = document.getElementById('mapbg4')
-                        mapbg1.style.display = "none"
-                $('#icon_prefix').keypress(function () {
+    @section scripts{
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+        <script src="~/Content/js/mainBancos.js"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>*@
+        <script src="~/Content/js/dataTable.js"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
+
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-165708090-1');
+        </script>
+
+
+
+        <script>
+                var mlfR =('@Html.Raw(mlf)'==='True');
+                var bdbR =('@Html.Raw(bdb)'==='True');
+                var agcR =('@Html.Raw(agc)'==='True');
+                var atmR = ('@Html.Raw(atm)' === 'True');
+                var atbR =('@Html.Raw(atb)'==='True');
+                     $('#mtf').attr('checked', mlfR)
+                     $('#bdb').attr('checked',bdbR)
+                     $('#agc').attr('checked',agcR)
+            $('#atm').attr('checked', atmR)
+         
+           
+                $('#atb').attr('checked', atbR)
+
+                  var  mapbg2=    document.getElementById('mapbg5')
+                        mapbg2.style.display = "none"
+                   var  mapbg1=    document.getElementById('mapbg4')
+            mapbg1.style.display = "none"
+                        //$('#busBGId').focusout(function () {
+                        //    var mapbg2 = document.getElementById('mapbg5')
+                        //    mapbg2.style.display = "none"
+                        //});
+         
+                        $('#icon_prefix').keypress(function () {
                        let mapbg41 = document.getElementById('mapbg4')
                         mapbg41.style.display = "none"
                     if ($(this).val().length > 3) {
                     var list=[]
                                store.map((stores) => {
-
                                    var _data = stores.bancos.filter(x => x.direccion.toUpperCase().includes($(this).val().toUpperCase()) == true)
-                       
-                                   _data.map((items) => {
+                                 _data.map((items) => {
                                        list.push(items)
-                                })
+                                      })
                             })
                     list.sort((a, b) => Number(a.distancia) - Number(b.distancia));
                     if (list.length > 0) {
-
-                  
-                       
                         let reg = 1
                         let tam=1
                         let html=""
                         list.map((items) => {
                             if (reg < 4) {
-                          
-                      html +=   "    <tr   onclick= 'ir(" + items.latitud + "," + items.longitud + ")'> "+
 
-                            '      <td colspan="2">   '+ 
-                            '<div>'+
-                            ' <p class="titleDrawerBluetitlet" class="titleTextt">'+items.name+'</p>'+
-                            '<p class="titleDrawerBluesmallt" id="localTypet">'+items.direccion+'</p>' +
-                            ' </div>'
-                            + '</td>'
-                            +'<td scope="row"> <p class="titleDrawergreysmallt" id="localTypet">'+items.distancia+'km</p></td>'+
+                                      html +=   "    <tr   onclick= 'ir(" + items.latitud + "," + items.longitud + ")'> "+
 
-
-                            '    </tr>'
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt">'+items.name+'</p>'+
+                                    '<p class="titleDrawerBluesmallt" id="localTypet">'+items.direccion+'</p>' +
+                                    ' </div>'
+                                    + '</td>'
+                                    +'<td scope="row"> <p class="titleDrawergreysmallt" id="localTypet">'+items.distancia+'km</p></td>'+
+                                    '    </tr>'
                                 tam=tam+1
                             }
                             reg=reg+1
-                                     
+
                         })
                         let mapbg4 = document.getElementById('mapbg4')
                         let hei = 65 * tam;
@@ -388,17 +524,18 @@
                         let hei3= (20*tam) + 400;
                         mapbg4.style.height = hei + "px"
                         mapbg4.style.display = "flex"
-                        let mapbg2 = document.getElementById('mapbg2')
-                        mapbg2.style.top = hei2+"%"
-                          let mapbg3 = document.getElementById('mapbg3')
-                        mapbg3.style.top = hei3+"%"
-          
+                           var w = screen.width;
+             
+                        if (w > 550) {
+                            let mapbg2 = document.getElementById('mapbg2')
+                            mapbg2.style.top = hei2 + "%"
+                            let mapbg3 = document.getElementById('mapbg3')
+                            mapbg3.style.top = hei3 + "%"
+                        }
                         $("#mapbg4").html('<table class="table table-borderless">' +
-
                             '  <tbody>'+
-                            html+
-                          
-                            '  </tbody>'+
+                                   html+
+                            ' </tbody>'+
                             '</table>'
                              );
 
@@ -406,22 +543,93 @@
                     } else {
                          let mapbg4 = document.getElementById('mapbg4')
                         mapbg4.style.display = "none"
-
-                        let mapbg2 = document.getElementById('mapbg2')
-                        mapbg2.style.top = "120%"
-                              let mapbg3 = document.getElementById('mapbg3')
-                        mapbg3.style.top = "260%"
-
+                           var w = screen.width;
+             
+                        if (w > 550) {
+                            let mapbg2 = document.getElementById('mapbg2')
+                            mapbg2.style.top = "120%"
+                            let mapbg3 = document.getElementById('mapbg3')
+                            mapbg3.style.top = "260%"
+                        }
                         }
                     } else {
+                            var w = screen.width;
+             
+                        if (w > 550) {
                         let mapbg4 = document.getElementById('mapbg2')
                         mapbg4.style.top = "120%"
                               let mapbg3 = document.getElementById('mapbg3')
                         mapbg3.style.top = "260%"
+   }
+                    }
+
+                        });
+                
+                  $('#busBGId').keypress(function () {
+                       let mapbg41 = document.getElementById('mapbg5')
+                        mapbg41.style.display = "none"
+                    if ($(this).val().length > 3) {
+                    var list=[]
+                               store.map((stores) => {
+                                   var _data = stores.bancos.filter(x => x.direccion.toUpperCase().includes($(this).val().toUpperCase()) == true)
+                                 _data.map((items) => {
+                                       list.push(items)
+                                      })
+                            })
+                    list.sort((a, b) => Number(a.distancia) - Number(b.distancia));
+                    if (list.length > 0) {
+                        let reg = 1
+                        let tam=1
+                        let html=""
+                        list.map((items) => {
+                            if (reg < 4) {
+
+                                      html +=   "    <tr   onclick= 'ir(" + items.latitud + "," + items.longitud + ")'> "+
+
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt">'+items.name+'</p>'+
+                                    '<p class="titleDrawerBluesmallt" id="localTypet">'+items.direccion+'</p>' +
+                                    ' </div>'
+                                    + '</td>'
+                                    +'<td scope="row"> <p class="titleDrawergreysmallt" id="localTypet">'+items.distancia+'km</p></td>'+
+                                    '    </tr>'
+                                tam=tam+1
+                            }
+                            reg=reg+1
+
+                        })
+                        let mapbg4 = document.getElementById('mapbg5')
+                        let hei = 65 * tam;
+                        mapbg4.style.height = hei + "px"
+                        mapbg4.style.display = "flex"
+                        mapbg4.style.position = "initial"   
+
+                        $("#mapbg5").html("<table class='table table-borderless' id='Idtav'>" +
+                            '  <tbody>'+
+                                   html+
+                            ' </tbody>'+
+                            '</table>'
+                             );
+
+
+                    } else {
+                         let mapbg4 = document.getElementById('mapbg5')
+                        mapbg4.style.display = "none"
+
+              
+
+                        }
+                    } else {
+             
 
                     }
 
-                    });
+                        });
+            
+
+
+
                      $('#selectProvice').change(function () {
                         let _model = StoreData.find(x => x.Provice === $(this).val());
                         $('#selectCities').children().remove();
@@ -453,13 +661,18 @@
 
                        more();
 
+                   });
+                 $('#MiMore1').click(function () {
+
+                       more();
+
                     });
 
                 function more() {
 
                           var list=[]
                     store.map((stores) => {
-   
+
                                    stores.bancos.map((items) => {
                                        list.push(items)
                                    })
@@ -467,12 +680,35 @@
                     list.sort((a, b) => Number(a.distancia) - Number(b.distancia));
                     let lat = 0
                     let lng=0
-            
+
                     if (list.length > 0) {
                     ir(list[0].latitud, list[0].longitud)
                     }
-                       
+
+            }
+            WiLoad();
+            function WiLoad() {
+                var w = screen.width;
+                var h = (screen.height / 2);
+                let mapbg22 = document.getElementById('MiMore1')
+                   let mapbg2 = document.getElementById('mapbg2')
+                    mapbg22.style.display = "none";  
+                if (w < 550) {
+                    
+                    let mapbg2 = document.getElementById('mapbg2')
+                    mapbg2.style.top = h+"%";
+                      let mapbg3 = document.getElementById('mapbg3')
+                    mapbg3.style.display = "none";
+                      mapbg22.style.display = "flex";  
+
                 }
+                if (h < 700 & w < 550) {
+                       h = (screen.height / 2.2);
+                     mapbg2.style.top = h+"%";
+                }
+            
+            
+            }
 
                 function checkMobile() {
                     return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
@@ -490,6 +726,9 @@
 
                     var myLocationButton = document.getElementById('getMyLocation')
                     myLocationButton.style.display = "none";
+
+
+
 
 
                     document.getElementById('requestPermisson').onclick = function () {
@@ -515,14 +754,12 @@
                     var progressCircle = document.getElementById('progressCircle')
                     progressCircle.style.display = "flex"
 
-                    //var myLocationButton = document.getElementById('getNearest')
-                    //myLocationButton.style.display = "none";
 
                     var myLocationButton = document.getElementById('getMyLocation')
                     myLocationButton.style.display = "none";
 
                     LoadCity();
-                    //  LoadProvice();
+
                     LoadMap();
                 }
 
@@ -530,14 +767,14 @@
 
                     GetGeo();
                     var token = $("[name='__RequestVerificationToken']").val();
-                    // let _bdb = $('#bdb').prop('checked')
-
                     $('#selectCities').children().remove();
                     $('#selectCities').append('<option value="" disabled selected>Ciudad</option>')
                     let _bdb = $('#bdb').prop('checked')
                     let _mtf = $('#mtf').prop('checked')
                     let _agc = $('#agc').prop('checked')
                     let _atm = $('#atm').prop('checked')
+                    let _atb = $('#atb').prop('checked')
+
                     let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
 
                     var dataSet = []
@@ -550,69 +787,11 @@
                             bdb: _bdb,
                             agc: _agc,
                             atm: _atm,
+                            atb:_atb,
                             lat: parseFloat(localStorage.getItem('Lat')),
                             lgn: parseFloat(localStorage.getItem('lng'))
                         },
                         success: function (result) {
-
-                            //result.map((dataResponse) => {
-
-
-                            ////    dataResponse.bancos.map((bancos) => {
-                            ////        var dataSet2 = []
-                            ////        let data = {
-                            ////            nombre: "<b style='color:#1a237e; ; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
-                            ////            icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
-                            ////            dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
-                            ////        };
-
-                            ////        dataSet.push(data)
-                            ////        LoadCity();
-                            ////    })
-                            ////})
-
-                            ////$('#table-mardis').DataTable().destroy();
-                            ////$('#table-mardis').DataTable({
-                            ////    "language": {
-                            ////        "sEmptyTable": "Cargando datos..",
-                            ////        "sInfo": "Página _PAGE_ de _PAGES_",
-                            ////        "sInfoEmpty": "No existen registros",
-                            ////        "sInfoFiltered": "Filtro",
-                            ////        "sInfoPostFix": "",
-                            ////        "sInfoThousands": ".",
-                            ////        "sLengthMenu": "Mostrar _MENU_ Registros ",
-                            ////        "sLoadingRecords": "Verificando..",
-                            ////        "sProcessing": "Verificando..",
-                            ////        "sSearch": "Buscar",
-                            ////        "sZeroRecords": "No hay entradas disponibles.",
-                            ////        "oPaginate": {
-                            ////            "sNext": "<i class=\"fa fa-forward\"></i>",
-                            ////            "sPrevious": "<i class=\"fa fa-backward\"></i>",
-                            ////            "sFirst": "<i class=\"fa fa-step-backward\"></i>",
-                            ////            "sLast": "<i class=\"fa fa-step-forward\"></i>"
-                            ////        }
-
-                            ////    },
-                            ////    data: dataSet,
-                            ////    "scrollY": "290px",
-                            ////    ordering: false,
-
-                            ////    "pageLength": 100,
-
-
-                            ////    //  searching: false,
-                            ////    columns: [
-                            ////        { "data": "icon" },
-                            ////        { "data": "nombre" },
-                            ////        { "data": "dist" }
-
-                            ////    ]
-
-
-                            //});
-
-                            //var d1 = document.getElementById('table-mardis_info');
-                            //d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
                             changedata(result)
                         },
                         error: function () {
@@ -635,13 +814,11 @@
 
                     GetGeo();
                     var token = $("[name='__RequestVerificationToken']").val();
-                    // let _bdb = $('#bdb').prop('checked')
-
-
                     let _bdb = $('#bdb').prop('checked')
                     let _mtf = $('#mtf').prop('checked')
                     let _agc = $('#agc').prop('checked')
                     let _atm = $('#atm').prop('checked')
+                     let _atb = $('#atb').prop('checked')
                     let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
 
                     var dataSet = []
@@ -654,68 +831,13 @@
                             bdb: _bdb,
                             agc: _agc,
                             atm: _atm,
+                                atb: _atb,
                             lat: parseFloat(localStorage.getItem('Lat')),
                             lgn: parseFloat(localStorage.getItem('lng'))
                         },
                         success: function (result) {
+                            console.log(result)
                             store = result
-                            //result.map((dataResponse) => {
-
-
-                            //    dataResponse.bancos.map((bancos) => {
-                            //        var dataSet2 = []
-                            //        let data = {
-                            //            nombre: "<b style='color:#1a237e; ; font-size:12Px' onclick=" + " 'ir(" + bancos.latitud + "," + bancos.longitud + ")'" + ">" + bancos.name + "</b></br><small>" + bancos.direccion + "</small> ",
-                            //            icon: '  <img src="/Content/css/ICONO BGBG.png" style="width:25PX" />',
-                            //            dist: "</br><small style='color:grey;'>" + bancos.distancia + " Km" + "</small> "
-                            //        };
-
-                            //        dataSet.push(data)
-                            //    })
-                            //})
-
-
-                            ////$('#table-mardis').DataTable({
-                            ////    "language": {
-                            ////        "sEmptyTable": "Cargando datos..",
-                            ////        "sInfo": "Página _PAGE_ de _PAGES_",
-                            ////        "sInfoEmpty": "No existen registros",
-                            ////        "sInfoFiltered": "Filtro",
-                            ////        "sInfoPostFix": "",
-                            ////        "sInfoThousands": ".",
-                            ////        "sLengthMenu": "Mostrar _MENU_ Registros ",
-                            ////        "sLoadingRecords": "Verificando..",
-                            ////        "sProcessing": "Verificando..",
-                            ////        "sSearch": "Buscar",
-                            ////        "sZeroRecords": "No hay entradas disponibles.",
-                            ////        "oPaginate": {
-                            ////            "sNext": "<i class=\"fa fa-forward\"></i>",
-                            ////            "sPrevious": "<i class=\"fa fa-backward\"></i>",
-                            ////            "sFirst": "<i class=\"fa fa-step-backward\"></i>",
-                            ////            "sLast": "<i class=\"fa fa-step-forward\"></i>"
-                            ////        }
-
-                            ////    },
-                            ////    data: dataSet,
-                            ////    "scrollY": "290px",
-                            ////    ordering: false,
-
-                            ////    "pageLength": 100,
-
-
-                            ////    //  searching: false,
-                            ////    columns: [
-                            ////        { "data": "icon" },
-                            ////        { "data": "nombre" },
-                            ////        { "data": "dist" }
-
-                            ////    ]
-
-
-                            //});
-
-                            //var d1 = document.getElementById('table-mardis_info');
-                            //d1.innerHTML = ' <img src="/Content/css/LogoBG.png" style="width:130px" />';
                             permiso(result)
                         },
                         error: function () {
@@ -734,8 +856,11 @@
                     return null;
                 }
 
-                function ir(lt, lg) {
-                    zoomPunto(lt, lg);
+            function ir(lt, lg) {
+                       var mapbg2 = document.getElementById('mapbg5')
+                            mapbg2.style.display = "flex"
+                zoomPunto(lt, lg);
+                                mapbg2.style.display = "none"
                 }
                 var latf;
                 var lngf;
@@ -747,7 +872,7 @@
                     let _mtf = $('#mtf').prop('checked');
                     let _agc = $('#agc').prop('checked');
                     let _atm = $('#atm').prop('checked');
-
+                    let _atb = $('#atb').prop('checked')
                     let city = ct
                     var dataSet = []
                     $.ajax({
@@ -760,15 +885,14 @@
                             bdb: _bdb,
                             agc: _agc,
                             atm: _atm,
+                            atb: _atb,
                             city: city,
                             lat: parseFloat(localStorage.getItem('Lat')),
                             lgn: parseFloat(localStorage.getItem('lng'))
                         },
                         success: function (result) {
-
                             let cont = 0
-                              store = result
-
+                            store = result
                             changedata(result)
 
 
@@ -845,8 +969,6 @@
 
 
                             });
-                            //  StoreData = result
-
                         },
                         error: function () {
                             if (window.location !== window.parent.location) {
@@ -871,7 +993,7 @@
                     let _mtf = $('#mtf').prop('checked')
                     let _agc = $('#agc').prop('checked')
                     let _atm = $('#atm').prop('checked')
-
+                     let _atb = $('#atb').prop('checked')
                     $.ajax({
                         url: "/Bancos/DataMax",
                         type: 'POST',
@@ -880,10 +1002,11 @@
                             mlf: _mtf,
                             bdb: _bdb,
                             agc: _agc,
-                            atm: _atm
-
+                            atm: _atm,
+                             atb: _atb,
                         },
                         success: function (result) {
+                            store = result
                             changedata(result)
                         },
                         error: function () {
@@ -904,13 +1027,16 @@
                 $(".OptionService").change(function () {
                    let mapbg1 = document.getElementById('mapbg4')
                     mapbg1.style.display = "none"
-
-                      let mapbg4 = document.getElementById('mapbg2')
+                          var w = screen.width;
+             
+                    if (w > 550) {
+                        let mapbg4 = document.getElementById('mapbg2')
                         mapbg4.style.top = "120%"
-                              let mapbg3 = document.getElementById('mapbg3')
+                        let mapbg3 = document.getElementById('mapbg3')
                         mapbg3.style.top = "260%"
+                    }
                     LoadListbank($('#selectCities').val())
 
                 })
-            </script>
-        }
+        </script>
+    }
