@@ -4,9 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BG_DbsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'BG_Dbs.dbo.tb_bancos_descripcion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="BG_DbsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BG_Dbs.dbo.tb_bancos_descripcion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="tb_bancos_descripcion">
           <Key>
             <PropertyRef Name="id" />
@@ -42,8 +42,8 @@ warning 6002: The table/view 'BG_Dbs.dbo.tb_bancos_descripcion' does not have a 
           <Property Name="fecha_Modificacion" Type="datetime" />
           <Property Name="estado" Type="varchar" MaxLength="10" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'BG_Dbs.MardisCommon.BancosBG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BG_Dbs.MardisCommon.BancosBG' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="BancosBG">
           <Key>
             <PropertyRef Name="id" />
@@ -81,6 +81,8 @@ warning 6002: The table/view 'BG_Dbs.MardisCommon.BancosBG' does not have a prim
           <Property Name="fecha_Modificacion" Type="datetime" />
           <Property Name="estado" Type="varchar" MaxLength="10" />
           <Property Name="horarioLV" Type="varchar" MaxLength="100" />
+          <Property Name="horarioS" Type="varchar" MaxLength="100" />
+          <Property Name="horarioD" Type="varchar" MaxLength="100" />
           <Property Name="horarioSD" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="BG_DbsModelStoreContainer">
@@ -117,12 +119,13 @@ warning 6002: The table/view 'BG_Dbs.MardisCommon.BancosBG' does not have a prim
     [BancosBG].[fecha_Modificacion] AS [fecha_Modificacion], 
     [BancosBG].[estado] AS [estado], 
     [BancosBG].[horarioLV] AS [horarioLV], 
+    [BancosBG].[horarioS] AS [horarioS], 
+    [BancosBG].[horarioD] AS [horarioD], 
     [BancosBG].[horarioSD] AS [horarioSD]
     FROM [MardisCommon].[BancosBG] AS [BancosBG]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BG_DbsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -199,6 +202,8 @@ warning 6002: The table/view 'BG_Dbs.MardisCommon.BancosBG' does not have a prim
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="horarioLV" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="horarioSD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="horarioS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="horarioD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="BG_DbsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BancosBarrios" EntityType="Self.BancosBarrio" />
@@ -251,6 +256,8 @@ warning 6002: The table/view 'BG_Dbs.MardisCommon.BancosBG' does not have a prim
           <EntitySetMapping Name="BancosBGs">
             <EntityTypeMapping TypeName="BG_DbsModel.BancosBG">
               <MappingFragment StoreEntitySet="BancosBG">
+                <ScalarProperty Name="horarioD" ColumnName="horarioD" />
+                <ScalarProperty Name="horarioS" ColumnName="horarioS" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idbg" ColumnName="idbg" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />

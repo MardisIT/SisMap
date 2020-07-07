@@ -9,5 +9,8 @@ namespace SisMap.Models
     { 
  
         public string servicio { get; set; }
+        public string descript { get; set; }
+
+        public List<CaracteristicasModel> caract=new List<CaracteristicasModel>();
     }
 }

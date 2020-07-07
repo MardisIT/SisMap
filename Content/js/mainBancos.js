@@ -17,7 +17,7 @@ document.getElementById("closeDrawer").addEventListener('click', (evt) => {
 //    var elem1 = document.getElementById('mapbg')
 //    elem1.style.display = "flex";
 //    elem.style.display = "none";
-   
+
 
 //})
 //document.getElementById("idcerrar").addEventListener('click', (evt) => {
@@ -625,6 +625,8 @@ function initializarMapa() {
             var gotoIcon = document.getElementById('goTo')
             gotoIcon.style.color = "#FFFFFF";
             var elem1 = document.getElementById('mapbg')
+            var elem8 = document.getElementById('mapbg9')
+            elem8.style.display = "none";
             elem1.style.display = "none";
             /*var menuSteps = document.getElementById('menuSteps')
             var floatStepsDialog = document.getElementById('floatSteps')
@@ -643,7 +645,9 @@ function initializarMapa() {
             } else {
                 menuSteps.style.display = "none";
             }*/
-            var elem1 = document.getElementById('mapbg')
+            var elem8 = document.getElementById('mapbg')
+            elem8.style.display = "flex";
+            var elem1 = document.getElementById('mapbg9')
             elem1.style.display = "flex";
         },
     });
@@ -740,7 +744,7 @@ function initializarMapa() {
                 shadowSize: [40, 30],
                 shadowAnchor: [22, 30]
             });
-            var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIconI, id: 1});
+            var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIconI, id: 1 });
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
                 let uconbank = '../Content/img/bg/agenciasS.png'
@@ -777,9 +781,9 @@ function initializarMapa() {
                 //} else {
                 //    document.getElementById("localImage").style.display = "none";
                 //}
-                // document.getElementById("localName").innerHTML = bancos.name
+                document.getElementById("localnames").innerHTML = bancos.name
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
-                document.getElementById("AgType").innerHTML = bancos.tipo  
+                document.getElementById("AgType").innerHTML = bancos.tipo
                 //document.getElementById("localOwn").innerHTML = bancos.name
                 //document.getElementById("localPhone").innerHTML = bancos.Celular
                 document.getElementById("localDir").innerHTML = bancos.direccion
@@ -789,18 +793,31 @@ function initializarMapa() {
                 document.getElementById("localLat").innerHTML = bancos.latitud
                 document.getElementById("localLong").innerHTML = bancos.longitud
                 document.getElementById("localHorarioL").innerHTML = bancos.LV;
-                document.getElementById("localHorariosS").innerHTML = bancos.DS;
-                let ilv=""
-                bancos.servicios.map((ser) => {
-                    ilv += "<li>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio+"</li>"
+                document.getElementById("localHorariosS").innerHTML = bancos.S;
+                document.getElementById("localHorariosD").innerHTML = bancos.D;
+                let ilv = ""
 
+                var res = Service(bancos.icon);
+
+                var _servicio = res
+
+                _servicio.map((ser) => {
+                    lis = "";
+                    ser.caract.map((cart) => {
+                        lis += "<li style='display: none; padding-left: 30px;'> -" + cart.caract + "</li>"
+
+                    })
+                    if (lis !== "")
+                        ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "<img src='../Content/img/VectorAbajo.png'  class='ElipLisV'/>" + lis + "</ul>"
+                    if (lis === "")
+                        ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "</ul>"
                 })
                 document.getElementById("idUSerc").innerHTML = ilv;
                 if (bancos.icon === "bdb") {
 
                     var elembb = document.getElementById('bgb')
                     var elembg = document.getElementById('bbb')
-                    var elemsec = document.getElementById('idsehorario')    
+                    var elemsec = document.getElementById('idsehorario')
                     elemsec.style.display = "none";
                     elembb.style.display = "none";
                     elembg.style.display = "flex";
@@ -818,7 +835,7 @@ function initializarMapa() {
                 console.log(markerBounds)
                 mymap.fitBounds(markerBounds);
 
-               
+
                 instance.open()
 
             })
@@ -830,29 +847,7 @@ function initializarMapa() {
             liCollapsibleItem.id = dataResponse.provincia + bancos.name
             liCollapsibleItem.style.cursor = "pointer"
             ulCollapsibleContentList.appendChild(liCollapsibleItem)
-        
-            if (bancos.icon === "bdb") {
 
-                liCollapsibleItem.addEventListener("click", () => {
-                    mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 24);
-                    var elem = document.getElementById('allsites')
-               
-                    var instance = M.Sidenav.getInstance(elem);
-                    var elem1 = document.getElementById('mapbg')
-                    elem1.style.display = "none";
-                    instance.close();
-                }, false)
-            } else {
-                liCollapsibleItem.addEventListener("click", () => {
-                    mymap.panTo(new L.LatLng(bancos.latitud, bancos.longitud), 24);
-                    var elem = document.getElementById('allsites')
-                    var instance = M.Sidenav.getInstance(elem);
-                    var elem1 = document.getElementById('mapbg')
-                    elem1.style.display = "none";
-                    instance.close();
-                   
-                }, false)
-            }
 
 
             markerGroup.push(marker)
@@ -912,7 +907,7 @@ function permiso(_model) {
     }
 }
 function GetGeo() {
- 
+
     //se debe  poner en negado la siguiente función
     if (window.location !== window.parent.location) {
         if (navigator.geolocation) {
@@ -934,10 +929,10 @@ function GetGeo() {
 }
 function InitGeo(position) {
     let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;    
+    let longitude = position.coords.longitude;
     localStorage.setItem("Lat", latitude);
     localStorage.setItem("lng", longitude);
-   
+
 }
 function changedata(_model) {
     data_engine = [];
@@ -980,7 +975,7 @@ function ReolizarMapa() {
     var elementAll = document.getElementById('allsites');
 
     clearRoutes()
-    mymap.remove(); 
+    mymap.remove();
     mymap = L.map('mapid', {
         zoomControl: false
     }).setView([-1.591400, -79.002356], 100);
@@ -989,7 +984,7 @@ function ReolizarMapa() {
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Chariot - 2020' }).addTo(mymap);
     document.getElementById("listCollapsible").innerHTML = "";
-   
+
     //datos que toma del api:
     let datos = data_engine
 
@@ -1066,7 +1061,7 @@ function ReolizarMapa() {
                 // code block
             }
 
-            
+
 
             let myIconI = L.icon({
                 iconUrl: uconbank,
@@ -1077,7 +1072,7 @@ function ReolizarMapa() {
                 shadowAnchor: [22, 30]
             });
             var marker = L.marker([bancos.latitud, bancos.longitud], { icon: myIconI });
-            myIconI=null
+            myIconI = null
             // y una funciona para cada marker que abre el modal pero antes cambiando el texto de los p
             marker.on('click', function (evt) {
                 let uconbank = '../Content/img/bg/agenciasS.png'
@@ -1115,6 +1110,7 @@ function ReolizarMapa() {
                 //    document.getElementById("localImage").style.display = "none";
                 //}
                 // document.getElementById("localName").innerHTML = bancos.name
+                document.getElementById("localnames").innerHTML = bancos.name;
                 document.getElementById("localType").innerHTML = bancos.TipoNegocio
                 document.getElementById("AgType").innerHTML = bancos.tipo
                 //document.getElementById("localOwn").innerHTML = bancos.name
@@ -1126,11 +1122,24 @@ function ReolizarMapa() {
                 document.getElementById("localLat").innerHTML = bancos.latitud
                 document.getElementById("localLong").innerHTML = bancos.longitud
                 document.getElementById("localHorarioL").innerHTML = bancos.LV;
-                document.getElementById("localHorariosS").innerHTML = bancos.DS;
+                document.getElementById("localHorariosS").innerHTML = bancos.S;
+                document.getElementById("localHorariosD").innerHTML = bancos.D;
                 let ilv = ""
-                bancos.servicios.map((ser) => {
-                    ilv += "<li>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "</li>"
 
+                var res = Service(bancos.icon);
+
+                var _servicio = res
+
+                _servicio.map((ser) => {
+                    lis = "";
+                    ser.caract.map((cart) => {
+                        lis += "<li style='display: none; padding-left: 30px;'> -" + cart.caract + "</li>"
+
+                    })
+                    if (lis !== "")
+                        ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "<img src='../Content/img/VectorAbajo.png'  class='ElipLisV'/>" + lis + "</ul>"
+                    if (lis === "")
+                        ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "</ul>"
                 })
                 document.getElementById("idUSerc").innerHTML = ilv;
                 if (bancos.icon === "bdb") {
@@ -1186,7 +1195,7 @@ function ReolizarMapa() {
 
         document.getElementById("listCollapsible").appendChild(liHeader)
     })
-  
+
 
     layerGroup = L.layerGroup(markerGroup).addTo(mymap).toGeoJSON();
 
@@ -1198,3 +1207,25 @@ function zoomPunto(lat, lng) {
     mymap.setZoom(24);
 }
 
+function Service(_tpo) {
+    var datserv;
+
+    $.ajax({
+        url: "/Bancos/Servicios",
+        type: 'POST',
+        async: false,
+        data: {
+            tpo: _tpo
+        },
+        success: function (result) {
+
+            datserv = result;
+
+        },
+        error: function () {
+
+        }
+    });
+
+    return datserv;
+}

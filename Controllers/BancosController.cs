@@ -29,10 +29,10 @@ namespace SisMap.Controllers
 
 
 
-             List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb,  City, float.Parse(lat), float.Parse(lgn));
+        //   List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb,  City, float.Parse(lat), float.Parse(lgn));
 
 
-///   var statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
+ var statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb, City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
 
                 return Json(statustask);
 
@@ -57,6 +57,31 @@ namespace SisMap.Controllers
 
 
                 var statustask = _BancoBarioDOA.GetProvice();
+
+
+
+
+                return Json(statustask);
+
+            }
+
+            catch (Exception e)
+            {
+
+                return null;
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult Servicios(string tpo)
+        {
+            try
+            {
+
+
+
+                var statustask = _BancoBarioDOA.ServiciosGet(tpo);
 
 
 

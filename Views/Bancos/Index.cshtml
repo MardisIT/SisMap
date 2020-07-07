@@ -52,89 +52,106 @@
     <div class="leaflet-bottom leaflet-right">
         <div class="leaflet-control-zoom leaflet-bar leaflet-control" style="top: -70px;">
 
-            <a class="leaflet-control-zoom-in" id="Miubicacion" title="Encuentrame" role="button" aria-label="Centrame">  <img src="~/Content/img/my_location_24px.png" width="15px" /></a>
+            <a class="" id="Miubicacion" title="Encuentrame" role="button" aria-label="Centrame">  <img src="~/Content/img/my_location_24px.png" width="15px" /></a>
         </div>
     </div>
     @*<div class="leaflet-bottom leaflet-center">
-        <div class="card-content white-text leaflet-control">
-            <div class="card-content white-text ">
-                <div class="col s12 m12 movil-cercano" id="MiMore2">
-                    <div class="col s12 m12 " style="margin-bottom: 15px;">
-                        <strong class="text-bg2">Puntos de atención</strong>
+            <div class="card-content white-text leaflet-control">
+                <div class="card-content white-text ">
+                    <div class="col s12 m12 movil-cercano" id="MiMore2">
+                        <div class="col s12 m12 " style="margin-bottom: 15px;">
+                            <strong class="text-bg2">Puntos de atención</strong>
+                        </div>
+                        <div >
+                            <label>
+                                <input type="checkbox" class="OptionService filled-in" id="bdb1" />
+                                <span class="span_check"> Banco del Barrio</span>
+                            </label>
+                        </div>
+                        <div >
+                            <label>
+                                <input type="checkbox" class=" OptionService filled-in" id="mtf1" />
+                                <span class="span_check">Cajeros Multifución</span>
+                            </label>
+                        </div>
+                        <div >
+                            <label>
+                                <input type="checkbox" class="OptionService filled-in" id="atm1" />
+                                <span class="span_check">Cajeros </span>
+                            </label>
+                        </div>
+                        <div >
+                            <label>
+                                <input type="checkbox" class="OptionService filled-in" id="agc1" />
+                                <span class="span_check">Agencias </span>
+                            </label>
+                        </div>
+                        <div >
+                            <label>
+                                <input type="checkbox" class="OptionService filled-in" id="atb1" />
+                                <span class="span_check">Autobanco </span>
+                            </label>
+                        </div>
                     </div>
-                    <div >
-                        <label>
-                            <input type="checkbox" class="OptionService filled-in" id="bdb1" />
-                            <span class="span_check"> Banco del Barrio</span>
-                        </label>
-                    </div>
-                    <div >
-                        <label>
-                            <input type="checkbox" class=" OptionService filled-in" id="mtf1" />
-                            <span class="span_check">Cajeros Multifución</span>
-                        </label>
-                    </div>
-                    <div >
-                        <label>
-                            <input type="checkbox" class="OptionService filled-in" id="atm1" />
-                            <span class="span_check">Cajeros </span>
-                        </label>
-                    </div>
-                    <div >
-                        <label>
-                            <input type="checkbox" class="OptionService filled-in" id="agc1" />
-                            <span class="span_check">Agencias </span>
-                        </label>
-                    </div>
-                    <div >
-                        <label>
-                            <input type="checkbox" class="OptionService filled-in" id="atb1" />
-                            <span class="span_check">Autobanco </span>
-                        </label>
                     </div>
                 </div>
-                </div>
-            </div>
-    </div>*@
-    <div class="leaflet-bottom leaflet-center">
-        <div class="card-content white-text leaflet-control">
+        </div>*@
+    @*<div class="leaflet-bottom leaflet-center" id="mapbg8" >
+        <div class="card-content white-text leaflet-control" >
             <div class="col s12 m12 movil-cercano" id="MiMore1">
                 <div class="col s6 m9">
 
-                    <strong class="text-bg3">Ver el punto más cercano</strong>
+                    <strong class="text-bg7">Ver el punto más cercano</strong>
 
                 </div>
                 <div class="col s6 m2">
 
-                    <a class=" transparent" style="position: absolute;    top: 20px;     left: 2px;">
-
+                    <a class=" transparent" style="position: absolute;    top: 12px;     left: 2px;">
                         <img src="~/Content/img/pin_drop_24px_outlined.svg" />
+
                     </a>
                 </div>
             </div>
+        </div>
+    </div>*@
+    <div class="leaflet-bottom leaflet-center" id="mapbg9">
+        <div class="card-content white-text leaflet-control">
+          
+            
         </div>
     </div>
 </main>
-@*<footer class="footerBg">
- 
-        <div class="card-content white-text">
-            <div class="col s12 m12" style="margin-bottom: 15px;" id="MiMore">
-                <div class="col s6 m9">
+<footer class="footerBg">
 
-                    <strong class="text-bg3">Ver el punto más cercano</strong>
+    <div class="col s12 m12 movil-cercano" id="MiMore2">
+        <div class="col s6 m9">
 
-                </div>
-                <div class="col s6 m2">
+            <strong class="text-bg9">Puntos de Atención</strong>
 
-                    <a class=" transparent" style="position: absolute;    top: 20px;     left: 2px;">
-
-                        <img src="~/Content/img/pin_drop_24px_outlined.svg" />
-                    </a>
-                </div>
-            </div>
         </div>
-   
-</footer>*@
+        <div class="col s6 m2">
+
+            <a class=" transparent" style="position: absolute;    top:  15px;    left: 90%;">
+                <img src="~/Content/img/chevron_right_24px.png" />
+
+            </a>
+        </div>
+    </div>
+    <div class="col s12 m12 movil-cercano" id="MiMore1">
+        <div class="col s6 m9">
+
+            <strong class="text-bg7">Ver el punto más cercano</strong>
+
+        </div>
+        <div class="col s6 m2">
+
+            <a class=" transparent" style="position: absolute;    top: 12px;     left: 90%;">
+                <img src="~/Content/img/pin_drop_24px_outlined.svg" />
+
+            </a>
+        </div>
+    </div>
+</footer>
 @Html.AntiForgeryToken()
 <!--MARKER DRAWER-->
 <aside id="markerSite" class="sidenav drawerBackground">
@@ -151,7 +168,7 @@
         <div class="white-text_ban col s12 m10 ">
 
 
-            <input type="email" class="busBG" id="busBGId"aria-describedby="emailHelp" placeholder="Buscar punto de atención">
+            <input type="email" class="busBG" id="busBGId" aria-describedby="emailHelp" placeholder="Buscar punto de atención">
 
             <a class=" buscaIco">
                 <img src="~/Content/img/Path.png" style="width:25px" />
@@ -160,7 +177,7 @@
                 <img src="~/Content/img/bg/Vector.png" style="/* top: 100px; */width:25px;top: 100px;display: block;padding-top: 7px;padding-left: 5px;" />
             </a>
 
-            <div class="row sidenav_bg_5 left-align" id="mapbg5" name="2">
+            <div class="row sidenav_bg_5 left-align" style="padding-top: 0px;" id="mapbg5" name="2">
                 <div class="card-content white-text">
                     <div class="col s12 m12" style="margin-bottom: 15px;">
                         <div class="col s6 m9">
@@ -177,13 +194,18 @@
             </div>
         </div>
         <div>
+            @*<p class="titleDrawerGrey" class="titleText">Nombre</p>*@
+            <p class="titleDrawerblue" id="localnames"></p>
+
+        </div>
+        <div>
             <p class="titleDrawerGrey" class="titleText">Dirección</p>
             <p class="titleDrawerblue" id="localDir"></p>
 
         </div>
         <div id="goTo" style="
                     /*margin-left: -9px;*/
-                    padding-top: 2px;
+                    padding-top: 2px;cursor:pointer
                 ">
             <span>
                 <small class="comollegar"> Cómo llegar</small>
@@ -229,17 +251,8 @@
         <div class="serviceUl">
             <p class="titleDrawerBluetitle" class="titleText">Servicios</p>
 
-            <ul id="idUSerc">
-                <li>Depósitos</li>
-                <li>Retiros</li>
-                <li>Pago de bonos</li>
-                <li>Cuenta Amiga</li>
-                <li>Pago de tarjetas de crédito</li>
-                <li> Recargas celular</li>
-                <li> Recargas TV paga</li>
-                <li> Pagos de servicios básicos y empresariales</li>
-
-            </ul>
+            <div id="idUSerc">
+            </div>
         </div>
         <!--
         <div>
@@ -326,15 +339,15 @@
             <div>
                 <div class="card-content white-text">
                     <div class="col s12 m10 ">
-                        <div id="itemBus "class="input-field">
+                        <div id="itemBus " class="input-field">
 
                             <input id="icon_prefix" type="text" class="validate">
                             <label for="icon_prefix">Buscar punto de atención </label>
-
+                         
                         </div>
 
                     </div>
-                    <div class="col s6 m2">
+                    <div class="mobillupa col s6 m2 ">
                         <a class=" transparent" id="BuscarID" style="position: absolute;   left:25px; top: 15px;">
                             <img src="~/Content/img/Path.png" style="width:25px" />
 
@@ -372,6 +385,11 @@
 
                     <div class="col s12 m12" style="margin-bottom: 15px;">
                         <strong class="text-bg2">Puntos de atención</strong>
+                        <a class=" transparent abajomenu" id="Mimore3" style="    left: 90%;   top: 10px; position: fixed;">
+                         
+                            <img src="~/Content/img/bg/chevron_right_24px.png" />
+
+                        </a>
                     </div>
                     <div class="col s6 m6">
                         <label>
@@ -410,7 +428,7 @@
 
             <div class="row sidenav_bg_3 left-align" id="mapbg3" name="2">
                 <div class="card-content white-text">
-                    <div class="col s12 m12" style="margin-bottom: 15px;" id="MiMore">
+                    <div class="col s12 m12" style="margin-bottom: 15px;     cursor: pointer;" id="MiMore">
                         <div class="col s6 m9">
 
                             <strong class="text-bg3">Ver el punto más cercano</strong>
@@ -462,6 +480,21 @@
 
 
         <script>
+
+            function openli(e) {
+
+             
+                $(e).find('li').fadeToggle("fast");
+                var v = $(e).find('img.ElipLisV').attr('src');
+                console.log(v)
+
+                
+                if(v.includes("VectorArriba"))
+                    $(e).find('img.ElipLisV').attr('src', '../Content/img/VectorAbajo.png');
+                else
+                    $(e).find('img.ElipLisV').attr('src', '../Content/img/VectorArriba.png');
+            }
+        
                 var mlfR =('@Html.Raw(mlf)'==='True');
                 var bdbR =('@Html.Raw(bdb)'==='True');
                 var agcR =('@Html.Raw(agc)'==='True');
@@ -564,6 +597,91 @@
                     }
 
                         });
+
+
+
+            $('#BuscarID').click(function () {
+                       let mapbg41 = document.getElementById('mapbg4')
+                        mapbg41.style.display = "none"
+                    if ($('#icon_prefix').val().length > 3) {
+                    var list=[]
+                               store.map((stores) => {
+                                   var _data = stores.bancos.filter(x => x.direccion.toUpperCase().includes($('#icon_prefix').val().toUpperCase()) == true)
+                                 _data.map((items) => {
+                                       list.push(items)
+                                      })
+                            })
+                    list.sort((a, b) => Number(a.distancia) - Number(b.distancia));
+                    if (list.length > 0) {
+                        let reg = 1
+                        let tam=1
+                        let html=""
+                        list.map((items) => {
+                            if (reg < 4) {
+
+                                      html +=   "    <tr   onclick= 'ir(" + items.latitud + "," + items.longitud + ")'> "+
+
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt">'+items.name+'</p>'+
+                                    '<p class="titleDrawerBluesmallt" id="localTypet">'+items.direccion+'</p>' +
+                                    ' </div>'
+                                    + '</td>'
+                                    +'<td scope="row"> <p class="titleDrawergreysmallt" id="localTypet">'+items.distancia+'km</p></td>'+
+                                    '    </tr>'
+                                tam=tam+1
+                            }
+                            reg=reg+1
+
+                        })
+                        let mapbg4 = document.getElementById('mapbg4')
+                        let hei = 65 * tam;
+                        let hei2 = (20*tam) + 260;
+                        let hei3= (20*tam) + 400;
+                        mapbg4.style.height = hei + "px"
+                        mapbg4.style.display = "flex"
+                           var w = screen.width;
+             
+                        if (w > 550) {
+                            let mapbg2 = document.getElementById('mapbg2')
+                            mapbg2.style.top = hei2 + "%"
+                            let mapbg3 = document.getElementById('mapbg3')
+                            mapbg3.style.top = hei3 + "%"
+                        }
+                        $("#mapbg4").html('<table class="table table-borderless">' +
+                            '  <tbody>'+
+                                   html+
+                            ' </tbody>'+
+                            '</table>'
+                             );
+
+
+                    } else {
+                         let mapbg4 = document.getElementById('mapbg4')
+                        mapbg4.style.display = "none"
+                           var w = screen.width;
+             
+                        if (w > 550) {
+                            let mapbg2 = document.getElementById('mapbg2')
+                            mapbg2.style.top = "120%"
+                            let mapbg3 = document.getElementById('mapbg3')
+                            mapbg3.style.top = "260%"
+                        }
+                        }
+                    } else {
+                            var w = screen.width;
+             
+                        if (w > 550) {
+                        let mapbg4 = document.getElementById('mapbg2')
+                        mapbg4.style.top = "120%"
+                              let mapbg3 = document.getElementById('mapbg3')
+                        mapbg3.style.top = "260%"
+   }
+                    }
+
+                        });
+
+        
                 
                   $('#busBGId').keypress(function () {
                        let mapbg41 = document.getElementById('mapbg5')
@@ -666,6 +784,35 @@
 
                        more();
 
+                 });
+
+              $('#MiMore2').click(function () {
+
+                     let mapbg2 = document.getElementById('mapbg2')
+                      mapbg2.style.display = "flex";  
+                  let mapbg8 = document.getElementById('MiMore1')
+                  mapbg8.style.display = "flex";  
+                 let mapbg9= document.getElementById('MiMore2')
+                  mapbg9.style.display = "none";  
+                   var badBrowser = document.getElementsByClassName("leaflet-right"); 
+                      vh = (screen.height -400);
+                    for (i = 0; i < badBrowser.length; i++) {
+                        badBrowser[i].style.top = vh+"px";
+                    }
+              });
+              $('#Mimore3').click(function () {
+
+                     let mapbg2 = document.getElementById('mapbg2')
+                      mapbg2.style.display = "none";  
+                  let mapbg8 = document.getElementById('MiMore1')
+                  mapbg8.style.display = "none";  
+                 let mapbg9= document.getElementById('MiMore2')
+                  mapbg9.style.display = "flex";  
+                   var badBrowser = document.getElementsByClassName("leaflet-right"); 
+                      vh = (screen.height -220);
+                    for (i = 0; i < badBrowser.length; i++) {
+                        badBrowser[i].style.top = vh+"px";
+                    }
                     });
 
                 function more() {
@@ -688,27 +835,53 @@
             }
             WiLoad();
             function WiLoad() {
+           
                 var w = screen.width;
                 var h = (screen.height / 2);
+              // alert('h:'+screen.height +'- w:'+w)
                 let mapbg22 = document.getElementById('MiMore1')
-                   let mapbg2 = document.getElementById('mapbg2')
-                    mapbg22.style.display = "none";  
-                if (w < 550) {
-                    
+                let mapbg2 = document.getElementById('mapbg2')
+                mapbg22.style.display = "none";  
+                let mapbg8 = document.getElementById('MiMore1')
+                mapbg8.style.display = "none";  
+                
+                 let map = document.getElementById('mapid')
+                 let mapbg9 = document.getElementById('mapbg9')
+                mapbg9.style.display = "none";  
+                var f = isMobile();
+                if (isMobile()) {
+                        let mapbg9 = document.getElementById('mapbg9')
+                mapbg9.style.display = "flex";  
+                    var badBrowser = document.getElementsByClassName("leaflet-right"); 
+                      vh = (screen.height -120);
+                    for (i = 0; i < badBrowser.length; i++) {
+                        badBrowser[i].style.top = (vh-100)+"px";
+                    }
+                   
                     let mapbg2 = document.getElementById('mapbg2')
                     mapbg2.style.top = h+"%";
                       let mapbg3 = document.getElementById('mapbg3')
                     mapbg3.style.display = "none";
-                      mapbg22.style.display = "flex";  
+                        mapbg2.style.display = "none";
+                  //  mapbg22.style.display = "flex";  
+                    h = (screen.height - 380);
+                    map.style.height=(vh-100)+"px";
+                     mapbg2.style.top = h+"px";
 
                 }
-                if (h < 700 & w < 550) {
-                       h = (screen.height / 2.2);
-                     mapbg2.style.top = h+"%";
-                }
+             
             
             
             }
+           function isMobile() {
+                    try{ 
+                        document.createEvent("TouchEvent"); 
+                        return true; 
+                    }
+                    catch(e){ 
+                        return false;
+                    }
+                }
 
                 function checkMobile() {
                     return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
@@ -836,7 +1009,7 @@
                             lgn: parseFloat(localStorage.getItem('lng'))
                         },
                         success: function (result) {
-                            console.log(result)
+                          //  console.log(result)
                             store = result
                             permiso(result)
                         },
@@ -858,7 +1031,10 @@
 
             function ir(lt, lg) {
                        var mapbg2 = document.getElementById('mapbg5')
-                            mapbg2.style.display = "flex"
+                   if (isMobile()) {
+                    var mapbg2 = document.getElementById('mapbg4')
+                    mapbg2.style.display = "none"
+                }
                 zoomPunto(lt, lg);
                                 mapbg2.style.display = "none"
                 }

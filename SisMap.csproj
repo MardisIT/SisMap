@@ -205,6 +205,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BankModel.cs" />
+    <Compile Include="Models\CaracteristicasModel.cs" />
     <Compile Include="Models\ProvinceModel.cs" />
     <Compile Include="Models\SelectCity.cs" />
     <Compile Include="Models\SelectProvince.cs" />
@@ -245,11 +246,13 @@
     <Content Include="Content\img\bg\autobancoS.png" />
     <Content Include="Content\img\bg\bdb.png" />
     <Content Include="Content\img\bg\bdbS.png" />
+    <Content Include="Content\img\bg\chevron_right_24px.png" />
     <Content Include="Content\img\bg\mtf.png" />
     <Content Include="Content\img\bg\mtfS.png" />
     <Content Include="Content\img\bg\Rectangle 2.jpg" />
     <Content Include="Content\img\bg\Vector.png" />
     <Content Include="Content\img\CABECERA_BDB.png" />
+    <Content Include="Content\img\chevron_right_24px.png" />
     <Content Include="Content\img\Ellipse1.png" />
     <Content Include="Content\img\logo %282%29.png" />
     <Content Include="Content\img\LOGO-BANCO-DE-GUAYAQUIL.jpg" />
@@ -263,6 +266,8 @@
     <Content Include="Content\img\Screen Shot 2020-06-18 at 3.03 1.png" />
     <Content Include="Content\img\SERVICIOS_BDB.jpg" />
     <Content Include="Content\img\mardis.png" />
+    <Content Include="Content\img\VectorAbajo.png" />
+    <Content Include="Content\img\VectorArriba.png" />
     <Content Include="Content\js\5b1c5b69fb.js" />
     <Content Include="Content\js\dataTable.js" />
     <Content Include="Content\js\leaflet-knn.min.js" />

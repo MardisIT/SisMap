@@ -145,21 +145,35 @@ namespace SisMap.Business
                     Parroquia = x.parroquia,
                     Celular = x.telefono,
                     img = x.banner,
-                    icon=x.trmSupervi,
-                    tipo=x.tipo,
-                    LV=x.horarioLV,
-                    DS=x.horarioSD,
-                    distancia = Math.Round((Geo.Distancia(lat , lgn, float.Parse(x.latitud.ToString()), float.Parse(x.longitud.ToString())))/1)
-                  
-                     ,servicios= serviciosT.Where(xs=>xs.codigo==x.trmSupervi).Select(s=> new ServiceModel {servicio=s.nombre }).ToList()
+                    icon = x.trmSupervi,
+                    tipo = x.tipo,
+                    LV = x.horarioLV,
+                    S = x.horarioS,
+                    D = x.horarioD,
+                    distancia = Math.Round((Geo.Distancia(lat, lgn, float.Parse(x.latitud.ToString()), float.Parse(x.longitud.ToString()))) / 1)
 
+//                  ,servicios= serviciosT.Where(xs=>xs.codigo==x.trmSupervi).Select(s=> new ServiceModel {servicio=s.nombre }).ToList()
 
+                 //, servicios = ServiciosGet(x.trmSupervi)
 
                 }).ToList();
                 if (city == "")
                 {
-                    _data.Where(t => t.provincia == item.provincia).First().bancos = bank.Where(x => x.distancia < 20).ToList();
-               
+
+                    if (item.provincia == "Guayas")
+                    {
+                        // var backr= bank.Where(x => x.distancia < 20).ToList();
+                        var backr = bank.ToList();
+                        //backr.AsParallel()
+                        //.ForAll(s =>
+                        //{
+                        //    s.servicios = ServiciosGet(s.icon);
+                        //});
+                        _data.Where(t => t.provincia == item.provincia).First().bancos = backr;
+                    }
+                    //var backr = bank.Where(x => x.distancia < 20).ToList();
+                    //_data.Where(t => t.provincia == item.provincia).First().bancos = backr;
+
                 }
                 else {
                     _data.Where(t => t.provincia == item.provincia).First().bancos = bank;
@@ -168,9 +182,8 @@ namespace SisMap.Business
             }
 
 
-
-            
-            return _data;
+           
+                        return _data;
         }
 
         public List<SelectProvince> GetProvice()
@@ -216,11 +229,11 @@ namespace SisMap.Business
             List<BancosBG> _model = new List<BancosBG>();
             try
             {
-                _model = _redis.Get<List<BancosBG>>("_redisBancos");
+                _model = _redis.Get<List<BancosBG>>("_redisBancosServ");
                 if (_model == null)
                 {
                     _model = _context.BancosBGs.Where(x => x.estado == "A").ToList();
-                    _redis.Set("_redisBancos", _model);
+                    _redis.Set("_redisBancosServ", _model);
                 }
             }
             catch (Exception)
@@ -249,6 +262,91 @@ namespace SisMap.Business
             return _data;
         }
 
+
+        public List<ServiceModel> ServiciosGet(string tpo)
+        {
+
+            List<tb_bancos_descripcion> serviciosT = new List<tb_bancos_descripcion>(); ;
+            try
+            {
+                serviciosT = _redis.Get<List<tb_bancos_descripcion>>("_redisBancosServ");
+                if (serviciosT == null)
+                {
+                    serviciosT = _context.tb_bancos_descripcion.ToList();
+                    _redis.Set("_redisBancosServ", serviciosT);
+                }
+            }
+            catch (Exception)
+            {
+                serviciosT = _context.tb_bancos_descripcion.ToList();
+
+            }
+            List<ServiceModel> _data = new List<ServiceModel>(); ;
+            foreach (var item in serviciosT.Where(x=>x.codigo==tpo)) {
+                string titulo = "";
+                List<CaracteristicasModel> _datac = new List<CaracteristicasModel>(); ;
+
+                var descripcion = item.descripcion.Split('/');
+                if (descripcion.Length > 1) {
+                     titulo = descripcion[0];
+                       var cart = descripcion[1].Split('-');
+
+                    if (cart.Length > 0) {
+
+                        _datac.AddRange(cart.ToList().Select(x=>new CaracteristicasModel {caract=x }));
+
+
+                    } 
+                }
+                if (descripcion.Length == 1 && descripcion[0]!="")
+                {
+                    var cart = descripcion[0].Split('-');
+
+                    if (cart.Length > 0)
+                    {
+
+                        _datac.AddRange(cart.ToList().Select(x => new CaracteristicasModel { caract = x }));
+
+
+                    }
+                    else { 
+                    
+                    }
+                }
+
+
+                _data.Add(new ServiceModel
+                {
+                    servicio = item.nombre,
+                    descript = titulo,
+                    caract = _datac
+
+
+                }) ;
+
+
+
+            }
+
+            //string[] source = new string[4];
+
+
+            //foreach (var item in _model.Select(x => x.ciudad.ToUpper()).Distinct().ToList())
+            //{
+            //    var distinctCities = _model.Where(x => x.provincia == item).Select(x => x.ciudad.ToUpper()).Distinct().ToList();
+
+
+            //    var cites = distinctCities.Select(x => new SelectCity { City = x }).Distinct().ToList();
+
+
+            //    _data.Add(new SelectProvince { Provice = item.ToUpper(), Cites = cites });
+            //}
+
+
+
+
+            return _data;
+        }
     }
 
 

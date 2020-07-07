@@ -25,6 +25,8 @@ namespace SisMap.Models
         public double? distancia { get; set; }
         public string LV { get; set; }
         public string DS { get; set; }
+        public string S { get; set; }
+        public string D { get; set; }
         public List<ServiceModel> servicios  { get; set; }
 }
 
