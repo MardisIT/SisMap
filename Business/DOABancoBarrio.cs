@@ -160,19 +160,19 @@ namespace SisMap.Business
                 if (city == "")
                 {
 
-                    if (item.provincia == "Guayas")
-                    {
-                        // var backr= bank.Where(x => x.distancia < 20).ToList();
-                        var backr = bank.ToList();
-                        //backr.AsParallel()
-                        //.ForAll(s =>
-                        //{
-                        //    s.servicios = ServiciosGet(s.icon);
-                        //});
-                        _data.Where(t => t.provincia == item.provincia).First().bancos = backr;
-                    }
-                    //var backr = bank.Where(x => x.distancia < 20).ToList();
-                    //_data.Where(t => t.provincia == item.provincia).First().bancos = backr;
+                    //if (item.provincia == "Guayas")
+                    //{
+                    //    // var backr= bank.Where(x => x.distancia < 20).ToList();
+                    //    var backr = bank.ToList();
+                    //    //backr.AsParallel()
+                    //    //.ForAll(s =>
+                    //    //{
+                    //    //    s.servicios = ServiciosGet(s.icon);
+                    //    //});
+                    //    _data.Where(t => t.provincia == item.provincia).First().bancos = backr;
+                    //}
+                    var backr = bank.Where(x => x.distancia < 20).ToList();
+                    _data.Where(t => t.provincia == item.provincia).First().bancos = backr;
 
                 }
                 else {

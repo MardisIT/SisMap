@@ -247,6 +247,7 @@
     <Content Include="Content\img\bg\bdb.png" />
     <Content Include="Content\img\bg\bdbS.png" />
     <Content Include="Content\img\bg\chevron_right_24px.png" />
+    <Content Include="Content\img\bg\favicon.png" />
     <Content Include="Content\img\bg\mtf.png" />
     <Content Include="Content\img\bg\mtfS.png" />
     <Content Include="Content\img\bg\Rectangle 2.jpg" />
