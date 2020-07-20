@@ -504,15 +504,13 @@
                      $('#mtf').attr('checked', mlfR)
                      $('#bdb').attr('checked',bdbR)
                      $('#agc').attr('checked',agcR)
-            $('#atm').attr('checked', atmR)
-         
-           
-                $('#atb').attr('checked', atbR)
+                     $('#atm').attr('checked', atmR)
+                     $('#atb').attr('checked', atbR)
 
                   var  mapbg2=    document.getElementById('mapbg5')
                         mapbg2.style.display = "none"
                    var  mapbg1=    document.getElementById('mapbg4')
-            mapbg1.style.display = "none"
+                        mapbg1.style.display = "none"
                         //$('#busBGId').focusout(function () {
                         //    var mapbg2 = document.getElementById('mapbg5')
                         //    mapbg2.style.display = "none"
@@ -796,7 +794,7 @@
                  let mapbg9= document.getElementById('MiMore2')
                   mapbg9.style.display = "none";  
                    var badBrowser = document.getElementsByClassName("leaflet-right"); 
-                      vh = (screen.height -400);
+                      vh = (screen.height -460);
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = vh+"px";
                     }
@@ -810,7 +808,7 @@
                  let mapbg9= document.getElementById('MiMore2')
                   mapbg9.style.display = "flex";  
                    var badBrowser = document.getElementsByClassName("leaflet-right"); 
-                      vh = (screen.height -220);
+                      vh = (screen.height -230);
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = vh+"px";
                     }
@@ -851,10 +849,10 @@
                 mapbg9.style.display = "none";  
                 var f = isMobile();
                 if (isMobile()) {
-                        let mapbg9 = document.getElementById('mapbg9')
-                mapbg9.style.display = "flex";  
+                       let mapbg9 = document.getElementById('mapbg9')
+                        mapbg9.style.display = "flex";  
                     var badBrowser = document.getElementsByClassName("leaflet-right"); 
-                      vh = (screen.height -120);
+                      vh = (screen.height -130);
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = (vh-100)+"px";
                     }
@@ -890,40 +888,38 @@
 
                 var checkDevice = checkMobile();
 
-                if (window.location !== window.parent.location) {
+                //if (window.location !== window.parent.location) {
 
-                    var contentRequestPermisson = document.getElementById('contentRequestPermisson')
-                    contentRequestPermisson.style.display = "flex"
+                //    //var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+                //    //contentRequestPermisson.style.display = "flex"
 
-                    var myLocationButton = document.getElementById('getNearest')
-                    myLocationButton.style.display = "none";
-
-                    var myLocationButton = document.getElementById('getMyLocation')
-                    myLocationButton.style.display = "none";
+       
+                //    //var myLocationButton = document.getElementById('getMyLocation')
+                //    //myLocationButton.style.display = "none";
 
 
 
 
 
-                    document.getElementById('requestPermisson').onclick = function () {
+                //    //document.getElementById('requestPermisson').onclick = function () {
 
-                        if (!checkDevice) {
-                            var requestPermissonButton = document.getElementById('requestPermisson')
-                            requestPermissonButton.style.display = "none"
-                            var progressCircle = document.getElementById('progressCircle')
-                            progressCircle.style.display = "flex"
-                            LoadMap();
-                        } else {
-                            window.open('https://bancoguayaquil.azurewebsites.net/');
-                        }
-                    }
-                } else {
+                //    //    if (!checkDevice) {
+                //    //        var requestPermissonButton = document.getElementById('requestPermisson')
+                //    //        requestPermissonButton.style.display = "none"
+                //    //        var progressCircle = document.getElementById('progressCircle')
+                //    //        progressCircle.style.display = "flex"
+                //    //        LoadMap();
+                //    //    } else {
+                //    //        window.open('https://bancoguayaquil.azurewebsites.net/');
+                //    //    }
+                //    //}
+                //} else {
 
-                    var contentRequestPermisson = document.getElementById('contentRequestPermisson')
-                    contentRequestPermisson.style.display = "flex"
+                    //var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+                    //contentRequestPermisson.style.display = "flex"
 
-                    var requestPermissonButton = document.getElementById('requestPermisson')
-                    requestPermissonButton.style.display = "none"
+                    //var requestPermissonButton = document.getElementById('requestPermisson')
+                    //requestPermissonButton.style.display = "none"
 
                     var progressCircle = document.getElementById('progressCircle')
                     progressCircle.style.display = "flex"
@@ -935,7 +931,7 @@
                     LoadCity();
 
                     LoadMap();
-                }
+                //}
 
                 function ReloadMap() {
 

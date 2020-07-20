@@ -939,9 +939,14 @@ function changedata(_model) {
     data_engine = _model
     //se debe  poner en negado la siguiente función
     if (window.location !== window.parent.location) {
-        if (navigator.geolocation) {
+        let mymap = ReolizarMapa();
 
-            navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => success(position, mymap), error);
+
+            let contentRequestPermisson = document.getElementById('contentRequestPermisson')
+            contentRequestPermisson.style.display = "none"
+            //navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
 
         } else {
             console.lo("Geolocation is not supported by this browser.");
@@ -955,7 +960,7 @@ function changedata(_model) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => success(position, mymap), error);
 
-            var contentRequestPermisson = document.getElementById('contentRequestPermisson')
+            let contentRequestPermisson = document.getElementById('contentRequestPermisson')
             contentRequestPermisson.style.display = "none"
 
             //var myLocationButton = document.getElementById('getNearest')
