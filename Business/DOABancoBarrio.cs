@@ -171,8 +171,14 @@ namespace SisMap.Business
                     //    //});
                     //    _data.Where(t => t.provincia == item.provincia).First().bancos = backr;
                     //}
-                    var backr = bank.Where(x => x.distancia < 20).ToList();
-                    _data.Where(t => t.provincia == item.provincia).First().bancos = backr;
+                    //var backr = bank.Where(x => x.distancia < 20).ToList();
+
+                    //_data.Where(t => t.provincia == item.provincia).First().bancos = backr;
+
+
+                    var backr = bank.Where(x => x.distancia < 10);
+                    if(backr.Count()>0)
+                    _data.Where(t => t.provincia == item.provincia).First().bancos = bank.Where(x => x.Canton == backr.First().Canton).ToList();
 
                 }
                 else {
