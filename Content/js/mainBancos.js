@@ -1207,11 +1207,17 @@ function ReolizarMapa() {
     return mymap;
 }
 function zoomPunto(lat, lng) {
-
-    mymap.panTo(new L.LatLng(lat, lng), 30);
-    mymap.setZoom(24);
+    //mymap.setZoom(24);
+    //mymap.panTo(new L.LatLng(lat, lng));
+    mymap.setView(new L.LatLng(lat, lng), 24);
+   
+ ///   mymap.ZoomToResolution(140, new L.LatLng(lat, lng));  
 }
+function zoomIN() {
+  //  mymap.setZoom(24);
+  
 
+}
 function Service(_tpo) {
     var datserv;
 

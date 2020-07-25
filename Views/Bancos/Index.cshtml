@@ -519,7 +519,7 @@
                         $('#icon_prefix').keypress(function () {
                        let mapbg41 = document.getElementById('mapbg4')
                         mapbg41.style.display = "none"
-                    if ($(this).val().length > 3) {
+                    if ($(this).val().length > 2) {
                     var list=[]
                                store.map((stores) => {
                                    var _data = stores.bancos.filter(x => x.direccion.toUpperCase().includes($(this).val().toUpperCase()) == true)
@@ -602,7 +602,7 @@
             $('#BuscarID').click(function () {
                        let mapbg41 = document.getElementById('mapbg4')
                         mapbg41.style.display = "none"
-                    if ($('#icon_prefix').val().length > 3) {
+                    if ($('#icon_prefix').val().length > -1) {
                     var list=[]
                                store.map((stores) => {
                                    var _data = stores.bancos.filter(x => x.direccion.toUpperCase().includes($('#icon_prefix').val().toUpperCase()) == true)
@@ -675,7 +675,7 @@
                         mapbg4.style.top = "120%"
                               let mapbg3 = document.getElementById('mapbg3')
                         mapbg3.style.top = "260%"
-   }
+                       }
                     }
 
                         });
@@ -685,7 +685,7 @@
                   $('#busBGId').keypress(function () {
                        let mapbg41 = document.getElementById('mapbg5')
                         mapbg41.style.display = "none"
-                    if ($(this).val().length > 3) {
+                    if ($(this).val().length > -1) {
                     var list=[]
                                store.map((stores) => {
                                    var _data = stores.bancos.filter(x => x.direccion.toUpperCase().includes($(this).val().toUpperCase()) == true)
@@ -794,7 +794,7 @@
                  let mapbg9= document.getElementById('MiMore2')
                   mapbg9.style.display = "none";  
                    var badBrowser = document.getElementsByClassName("leaflet-right"); 
-                      vh = (screen.height -460);
+                      vh = (screen.height -380);
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = vh+"px";
                     }
@@ -808,7 +808,7 @@
                  let mapbg9= document.getElementById('MiMore2')
                   mapbg9.style.display = "flex";  
                    var badBrowser = document.getElementsByClassName("leaflet-right"); 
-                      vh = (screen.height -230);
+                      vh = (screen.height -280);
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = vh+"px";
                     }
@@ -852,7 +852,7 @@
                        let mapbg9 = document.getElementById('mapbg9')
                         mapbg9.style.display = "flex";  
                     var badBrowser = document.getElementsByClassName("leaflet-right"); 
-                      vh = (screen.height -130);
+                      vh = (screen.height -180);
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = (vh-100)+"px";
                     }
@@ -1027,13 +1027,15 @@
                 }
 
             function ir(lt, lg) {
-                       var mapbg2 = document.getElementById('mapbg5')
-                   if (isMobile()) {
+                //var mapbg2 = document.getElementById('mapbg5')
+                // mapbg2.style.display = "none"
+                 if (isMobile()) {
                     var mapbg2 = document.getElementById('mapbg4')
                     mapbg2.style.display = "none"
                 }
+                
                 zoomPunto(lt, lg);
-                                mapbg2.style.display = "none"
+               
                 }
                 var latf;
                 var lngf;
