@@ -767,7 +767,7 @@ function initializarMapa() {
 
                 let myIconI = L.icon({
                     iconUrl: uconbank,
-                    iconSize: [30, 30],
+                    iconSize: [50, 50],
                     iconAnchor: [22, 30],
                     popupAnchor: [-3, -30],
                     shadowSize: [40, 30],

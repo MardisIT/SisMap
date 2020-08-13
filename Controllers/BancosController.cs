@@ -21,17 +21,17 @@ namespace SisMap.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public JsonResult DataMax(string __RequestVerificationToken, string mlf,  string bdb, string agc, string atm, string atb, string City="", string lat = "0", string lgn ="0")
         {
             try
             {
 
 
+                //Para Publicar  
+                //List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb,  City, float.Parse(lat), float.Parse(lgn));
 
-                 // List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb,  City, float.Parse(lat), float.Parse(lgn));
-
-
+                //Para Pulicar Desarrollo
                 List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb, City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
 
                 return Json(statustask);
@@ -48,7 +48,7 @@ namespace SisMap.Controllers
 
    
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public JsonResult Provice(string __RequestVerificationToken)
         {
             try
@@ -97,7 +97,7 @@ namespace SisMap.Controllers
             }
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public JsonResult City(string __RequestVerificationToken)
         {
             try
