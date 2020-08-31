@@ -22,7 +22,7 @@ namespace SisMap.Controllers
         }
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public JsonResult DataMax(string __RequestVerificationToken, string mlf,  string bdb, string agc, string atm, string atb, string City="", string lat = "0", string lgn ="0")
+        public  JsonResult DataMax(string __RequestVerificationToken, string mlf,  string bdb, string agc, string atm, string atb, string City="", string lat = "0", string lgn ="0")
         {
             try
             {
@@ -33,7 +33,6 @@ namespace SisMap.Controllers
 
                 //Para Pulicar Desarrollo
                 List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb, City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
-
                 return Json(statustask);
 
             }

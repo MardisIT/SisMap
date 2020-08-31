@@ -9,9 +9,11 @@
     var atm = (bool)ViewData["atm"];
     var atb = (bool)ViewData["atb"];
 }
- 
-    <link href='//fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+
+<link href='//fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href="~/Content/css/mainBG.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
 <div id="contentRequestPermisson" class="dialogModal">
     <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
     <div id="progressCircle" class="preloader-wrapper big active progressMap">
@@ -97,27 +99,27 @@
                 </div>
         </div>*@
     @*<div class="leaflet-bottom leaflet-center" id="mapbg8" >
-        <div class="card-content white-text leaflet-control" >
-            <div class="col s12 m12 movil-cercano" id="MiMore1">
-                <div class="col s6 m9">
+            <div class="card-content white-text leaflet-control" >
+                <div class="col s12 m12 movil-cercano" id="MiMore1">
+                    <div class="col s6 m9">
 
-                    <strong class="text-bg7">Ver el punto más cercano</strong>
+                        <strong class="text-bg7">Ver el punto más cercano</strong>
 
-                </div>
-                <div class="col s6 m2">
+                    </div>
+                    <div class="col s6 m2">
 
-                    <a class=" transparent" style="position: absolute;    top: 12px;     left: 2px;">
-                        <img src="~/Content/img/pin_drop_24px_outlined.svg" />
+                        <a class=" transparent" style="position: absolute;    top: 12px;     left: 2px;">
+                            <img src="~/Content/img/pin_drop_24px_outlined.svg" />
 
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
     <div class="leaflet-bottom leaflet-center" id="mapbg9">
         <div class="card-content white-text leaflet-control">
-          
-            
+
+
         </div>
     </div>
 </main>
@@ -255,20 +257,20 @@
             </div>
         </div>
         <!--
-        <div>
-            PROPIETARIO
-            <p id="localOwn"></p>
-        </div>
+            <div>
+                PROPIETARIO
+                <p id="localOwn"></p>
+            </div>
 
-    <div>
-        TELÉFONO
-        <p id="localPhone"></p>
-    </div>
-    -->
+        <div>
+            TELÉFONO
+            <p id="localPhone"></p>
+        </div>
+        -->
         @*<div>
-            PROVINCIA
-            <p id="localProv"></p>
-        </div>*@
+                PROVINCIA
+                <p id="localProv"></p>
+            </div>*@
 
 
         <div style="display: none;">
@@ -280,12 +282,12 @@
             <p id="localLong"></p>
         </div>
         @*<div class="TITLEBRANDTI">
-            <H6><strong>SERVICIOS</strong></H6>
-        </div>*@
+                <H6><strong>SERVICIOS</strong></H6>
+            </div>*@
 
         @*<div style="text-align:center">
-            <img src="~/Content/img/LOGO_BG.png" class="imageFooterBG" />
-        </div>*@
+                <img src="~/Content/img/LOGO_BG.png" class="imageFooterBG" />
+            </div>*@
     </ul>
     <div style="text-align:center">
 
@@ -343,7 +345,7 @@
 
                             <input id="icon_prefix" type="text" class="validate">
                             <label for="icon_prefix">Buscar punto de atención </label>
-                         
+
                         </div>
 
                     </div>
@@ -437,7 +439,7 @@
                         </div>
                         <div class="col s6 m2">
 
-                            <a class=" transparent"  style="position: absolute;    top: 20px;     left: 2px;">
+                            <a class=" transparent" style="position: absolute;    top: 20px;     left: 2px;">
 
                                 <img src="~/Content/img/pin_drop_24px_outlined.svg" />
                             </a>
@@ -484,18 +486,18 @@
 
             function openli(e) {
 
-             
+
                 $(e).find('li').fadeToggle("fast");
                 var v = $(e).find('img.ElipLisV').attr('src');
                 console.log(v)
 
-                
+
                 if(v.includes("VectorArriba"))
                     $(e).find('img.ElipLisV').attr('src', '../Content/img/VectorAbajo.png');
                 else
                     $(e).find('img.ElipLisV').attr('src', '../Content/img/VectorArriba.png');
             }
-        
+
                 var mlfR =('@Html.Raw(mlf)'==='True');
                 var bdbR =('@Html.Raw(bdb)'==='True');
                 var agcR =('@Html.Raw(agc)'==='True');
@@ -515,23 +517,59 @@
                         //    var mapbg2 = document.getElementById('mapbg5')
                         //    mapbg2.style.display = "none"
                         //});
-         
+
                         $('#icon_prefix').keypress(function () {
                        let mapbg41 = document.getElementById('mapbg4')
-                        mapbg41.style.display = "none"
-                    if ($(this).val().length > 2) {
+                            mapbg41.style.display = "none"
+
+                    if ($(this).val().length > -1) {
                     var list=[]
                                store.map((stores) => {
                                    var _data = stores.bancos.filter(x => x.direccion.toUpperCase().includes($(this).val().toUpperCase()) == true)
                                  _data.map((items) => {
                                        list.push(items)
                                       })
-                            })
+                               })
+
+                         //CARGARDO
+                      let htmlaux = ""
+                        let tamaux=1
+
+                        htmlaux +=   "    <tr> "+
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt"><img src="../Content/img/bg/pageLoader.gif" width="10%" height="10%"  alt="loading" />  Un momento, por favor...</p>'+
+                                    ' </div>'
+                                    + '</td>'
+                                    '    </tr>'
+                        let mapbg4aux = document.getElementById('mapbg4')
+                        let heiaux = 65 * tamaux;
+                        let hei2aux = (20*tamaux) + 160;
+                        let hei3aux= (20*tamaux) + 300;
+                        mapbg4aux.style.height = heiaux + "px"
+                        mapbg4aux.style.display = "flex"
+                            var waux = screen.width;
+
+                             if (waux > 550) {
+                            let mapbg2aux = document.getElementById('mapbg2')
+                            mapbg2aux.style.top = hei2aux + "%"
+                            let mapbg3aux = document.getElementById('mapbg3')
+                            mapbg3aux.style.top = hei3aux + "%"
+                        }
+
+                $("#mapbg4").html('<table class="table table-borderless">' +
+                            '  <tbody>'+
+                                   htmlaux+
+                            ' </tbody>'+
+                            '</table>'
+                             );
+                      //CARGARDO
+
                     list.sort((a, b) => Number(a.distancia) - Number(b.distancia));
                     if (list.length > 0) {
                         let reg = 1
                         let tam=1
-                        let html=""
+                        let html = ""
                         list.map((items) => {
                             if (reg < 4) {
 
@@ -557,7 +595,7 @@
                         mapbg4.style.height = hei + "px"
                         mapbg4.style.display = "flex"
                            var w = screen.width;
-             
+
                         if (w > 550) {
                             let mapbg2 = document.getElementById('mapbg2')
                             mapbg2.style.top = hei2 + "%"
@@ -573,26 +611,45 @@
 
 
                     } else {
-                         let mapbg4 = document.getElementById('mapbg4')
-                        mapbg4.style.display = "none"
+                         let tam=1
+                        let html = ""
+                        html +=   "    <tr> "+
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt">No se encontraron servicios en "'+$('#icon_prefix').val()+'"</p>'+
+                                    ' </div>'
+                                    + '</td>'
+                                    '    </tr>'
+                        let mapbg4 = document.getElementById('mapbg4')
+                        let hei = 20 * tam;
+                        let hei2 = (20*tam) + 160;
+                        let hei3= (20*tam) + 300;
+                        mapbg4.style.height = hei + "px"
+                        mapbg4.style.display = "flex"
                            var w = screen.width;
-             
+
                         if (w > 550) {
                             let mapbg2 = document.getElementById('mapbg2')
-                            mapbg2.style.top = "120%"
+                            mapbg2.style.top = hei2 + "%"
                             let mapbg3 = document.getElementById('mapbg3')
-                            mapbg3.style.top = "260%"
+                            mapbg3.style.top = hei3 + "%"
                         }
+                        $("#mapbg4").html('<table class="table table-borderless">' +
+                            '  <tbody>'+
+                                   html+
+                            ' </tbody>'+
+                            '</table>'
+                             );
                         }
                     } else {
-                            var w = screen.width;
-             
-                        if (w > 550) {
-                        let mapbg4 = document.getElementById('mapbg2')
-                        mapbg4.style.top = "120%"
-                              let mapbg3 = document.getElementById('mapbg3')
-                        mapbg3.style.top = "260%"
-   }
+   //                         var w = screen.width;
+
+   //                     if (w > 550) {
+   //                     let mapbg4 = document.getElementById('mapbg2')
+   //                     mapbg4.style.top = "120%"
+   //                           let mapbg3 = document.getElementById('mapbg3')
+   //                     mapbg3.style.top = "260%"
+   //}
                     }
 
                         });
@@ -601,7 +658,42 @@
 
             $('#BuscarID').click(function () {
                        let mapbg41 = document.getElementById('mapbg4')
-                        mapbg41.style.display = "none"
+                mapbg41.style.display = "none"
+
+                        //CARGARDO
+                      let htmlaux = ""
+                        let tamaux=1
+
+                        htmlaux +=   "    <tr> "+
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt"><img src="../Content/img/bg/pageLoader.gif" width="10%" height="10%"  alt="loading" />  Un momento, por favor...</p>'+
+                                    ' </div>'
+                                    + '</td>'
+                                    '    </tr>'
+                        let mapbg4aux = document.getElementById('mapbg4')
+                        let hei = 65 * tamaux;
+                        let hei2 = (20*tamaux) + 260;
+                        let hei3= (20*tamaux) + 400;
+                        mapbg4aux.style.height = hei + "px"
+                        mapbg4aux.style.display = "flex"
+                var w = screen.width;
+                
+                        if (w > 550) {
+                            let mapbg2 = document.getElementById('mapbg2')
+                            mapbg2.style.top = hei2 + "%"
+                            let mapbg3 = document.getElementById('mapbg3')
+                            mapbg3.style.top = hei3 + "%"
+                        }
+
+                $("#mapbg4").html('<table class="table table-borderless">' +
+                            '  <tbody>'+
+                                   htmlaux+
+                            ' </tbody>'+
+                            '</table>'
+                             );
+                      //CARGARDO
+
                     if ($('#icon_prefix').val().length > -1) {
                     var list=[]
                                store.map((stores) => {
@@ -614,7 +706,7 @@
                     if (list.length > 0) {
                         let reg = 1
                         let tam=1
-                        let html=""
+                        let html = ""
                         list.map((items) => {
                             if (reg < 4) {
 
@@ -640,7 +732,7 @@
                         mapbg4.style.height = hei + "px"
                         mapbg4.style.display = "flex"
                            var w = screen.width;
-             
+
                         if (w > 550) {
                             let mapbg2 = document.getElementById('mapbg2')
                             mapbg2.style.top = hei2 + "%"
@@ -656,20 +748,39 @@
 
 
                     } else {
-                         let mapbg4 = document.getElementById('mapbg4')
-                        mapbg4.style.display = "none"
+                         let tam=1
+                        let html = ""
+                        html +=   "    <tr> "+
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt">No se encontraron servicios en: "'+$('#icon_prefix').val()+'"</p>'+
+                                    ' </div>'
+                                    + '</td>'
+                                    '    </tr>'
+                        let mapbg4 = document.getElementById('mapbg4')
+                        let hei = 20 * tam;
+                        let hei2 = (20*tam) + 160;
+                        let hei3= (20*tam) + 300;
+                        mapbg4.style.height = hei + "px"
+                        mapbg4.style.display = "flex"
                            var w = screen.width;
-             
+
                         if (w > 550) {
                             let mapbg2 = document.getElementById('mapbg2')
-                            mapbg2.style.top = "120%"
+                            mapbg2.style.top = hei2 + "%"
                             let mapbg3 = document.getElementById('mapbg3')
-                            mapbg3.style.top = "260%"
+                            mapbg3.style.top = hei3 + "%"
                         }
+                        $("#mapbg4").html('<table class="table table-borderless">' +
+                            '  <tbody>'+
+                                   html+
+                            ' </tbody>'+
+                            '</table>'
+                             );
                         }
                     } else {
                             var w = screen.width;
-             
+
                         if (w > 550) {
                         let mapbg4 = document.getElementById('mapbg2')
                         mapbg4.style.top = "120%"
@@ -680,11 +791,13 @@
 
                         });
 
-        
-                
+
+
                   $('#busBGId').keypress(function () {
                        let mapbg41 = document.getElementById('mapbg5')
-                        mapbg41.style.display = "none"
+                      mapbg41.style.display = "none"
+                      
+
                     if ($(this).val().length > -1) {
                     var list=[]
                                store.map((stores) => {
@@ -692,12 +805,38 @@
                                  _data.map((items) => {
                                        list.push(items)
                                       })
-                            })
+                               })
+
+                        //CARGARDO
+                      let htmlaux = ""
+                        let tamaux=1
+
+                        htmlaux +=   "    <tr> "+
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt"><img src="../Content/img/bg/pageLoader.gif" width="10%" height="10%" alt="loading" />  Un momento, por favor...</p>'+
+                                    ' </div>'
+                                    + '</td>'
+                                    '    </tr>'
+                        let mapbg4aux = document.getElementById('mapbg5')
+                        let hei = 20 * tamaux;
+                        mapbg4aux.style.height = hei + "px"
+                        mapbg4aux.style.display = "flex"
+                        mapbg4aux.style.position = "initial"
+                      
+                        $("#mapbg5").html('<table class="table table-borderless">' +
+                            '  <tbody>'+
+                                   htmlaux+
+                            ' </tbody>'+
+                            '</table>'
+                             );
+                      //CARGARDO
+
                     list.sort((a, b) => Number(a.distancia) - Number(b.distancia));
                     if (list.length > 0) {
                         let reg = 1
                         let tam=1
-                        let html=""
+                        let html = ""
                         list.map((items) => {
                             if (reg < 4) {
 
@@ -720,7 +859,7 @@
                         let hei = 65 * tam;
                         mapbg4.style.height = hei + "px"
                         mapbg4.style.display = "flex"
-                        mapbg4.style.position = "initial"   
+                        mapbg4.style.position = "initial"
 
                         $("#mapbg5").html("<table class='table table-borderless' id='Idtav'>" +
                             '  <tbody>'+
@@ -729,21 +868,37 @@
                             '</table>'
                              );
 
-
+                       
                     } else {
-                         let mapbg4 = document.getElementById('mapbg5')
-                        mapbg4.style.display = "none"
+                        let tam=1
+                        let html = ""
+                        html +=   "    <tr> "+
+                                    '      <td colspan="2">   '+
+                                    '<div>'+
+                                    ' <p class="titleDrawerBluetitlet" class="titleTextt">No se encontraron servicios en: "'+$('#busBGId').val()+'"</p>'+
+                                    ' </div>'
+                                    + '</td>'
+                                    '    </tr>'
+                        let mapbg4 = document.getElementById('mapbg5')
+                        let hei = 20 * tam;
+                        mapbg4.style.height = hei + "px"
+                        mapbg4.style.display = "flex"
+                        mapbg4.style.position = "initial"
 
-              
-
+                        $("#mapbg5").html('<table class="table table-borderless">' +
+                            '  <tbody>'+
+                                   html+
+                            ' </tbody>'+
+                            '</table>'
+                             );
                         }
                     } else {
-             
+
 
                     }
 
                         });
-            
+
 
 
 
@@ -788,12 +943,12 @@
               $('#MiMore2').click(function () {
 
                      let mapbg2 = document.getElementById('mapbg2')
-                      mapbg2.style.display = "flex";  
+                      mapbg2.style.display = "flex";
                   let mapbg8 = document.getElementById('MiMore1')
-                  mapbg8.style.display = "flex";  
+                  mapbg8.style.display = "flex";
                  let mapbg9= document.getElementById('MiMore2')
-                  mapbg9.style.display = "none";  
-                   var badBrowser = document.getElementsByClassName("leaflet-right"); 
+                  mapbg9.style.display = "none";
+                   var badBrowser = document.getElementsByClassName("leaflet-right");
                       vh = (screen.height -380);
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = vh+"px";
@@ -802,12 +957,12 @@
               $('#Mimore3').click(function () {
 
                      let mapbg2 = document.getElementById('mapbg2')
-                      mapbg2.style.display = "none";  
+                      mapbg2.style.display = "none";
                   let mapbg8 = document.getElementById('MiMore1')
-                  mapbg8.style.display = "none";  
+                  mapbg8.style.display = "none";
                  let mapbg9= document.getElementById('MiMore2')
-                  mapbg9.style.display = "flex";  
-                   var badBrowser = document.getElementsByClassName("leaflet-right"); 
+                  mapbg9.style.display = "flex";
+                   var badBrowser = document.getElementsByClassName("leaflet-right");
                       vh = (screen.height -280);
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = vh+"px";
@@ -834,50 +989,103 @@
             }
             WiLoad();
             function WiLoad() {
-           
+               
                 var w = screen.width;
                 var h = (screen.height / 2);
               // alert('h:'+screen.height +'- w:'+w)
                 let mapbg22 = document.getElementById('MiMore1')
                 let mapbg2 = document.getElementById('mapbg2')
-                mapbg22.style.display = "none";  
+                mapbg22.style.display = "none";
                 let mapbg8 = document.getElementById('MiMore1')
-                mapbg8.style.display = "none";  
-                
+                mapbg8.style.display = "none";
+
                  let map = document.getElementById('mapid')
                  let mapbg9 = document.getElementById('mapbg9')
-                mapbg9.style.display = "none";  
+                mapbg9.style.display = "none";
                 var f = isMobile();
+                var mobil = whatMobile();
                 if (isMobile()) {
                        let mapbg9 = document.getElementById('mapbg9')
-                        mapbg9.style.display = "flex";  
-                    var badBrowser = document.getElementsByClassName("leaflet-right"); 
-                      vh = (screen.height -180);
+                        mapbg9.style.display = "flex";
+                    var badBrowser = document.getElementsByClassName("leaflet-right");
+                    if (mobil == "ios") { vh = (screen.height - 180); }
+                    else if (mobil == "android") { vh = (screen.height - 120); }
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = (vh-100)+"px";
                     }
-                   
+
                     let mapbg2 = document.getElementById('mapbg2')
                     mapbg2.style.top = h+"%";
                       let mapbg3 = document.getElementById('mapbg3')
                     mapbg3.style.display = "none";
                         mapbg2.style.display = "none";
-                  //  mapbg22.style.display = "flex";  
+                  //  mapbg22.style.display = "flex";
                     h = (screen.height - 380);
                     map.style.height=(vh-100)+"px";
                      mapbg2.style.top = h+"px";
 
                 }
-             
-            
-            
+
+
+
             }
+
+
+
+            function whatMobile() {
+                var cual = ""
+                            var isMobil = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobil.Android() || isMobil.BlackBerry() || isMobil.iOS() || isMobil.Opera() || isMobil.Windows());
+    }
+};
+
+//                if(isMobil.any()) {
+//  console.log('Esto es un dispositivo móvil, si especificar cuál');
+//}
+                if (isMobil.Android()) {
+        cual = "android";
+    console.log('Esto es un dispositivo Android');
+}
+if(isMobil.BlackBerry()) {
+  //console.log('Esto es un dispositivo BlackBerry');
+}
+                if (isMobil.iOS()) {
+                    cual = "ios";
+  console.log('Esto es un dispositivo iOS');
+}
+if(isMobil.Opera()) {
+  //console.log('Esto es un dispositivo Opera');
+}
+if(isMobil.Windows()) {
+  //console.log('Esto es un dispositivo Windows');
+                }
+                return cual;
+            }
+ 
+
+
            function isMobile() {
-                    try{ 
-                        document.createEvent("TouchEvent"); 
-                        return true; 
+                    try{
+                        document.createEvent("TouchEvent");
+                        return true;
                     }
-                    catch(e){ 
+                    catch(e){
                         return false;
                     }
                 }
@@ -893,7 +1101,7 @@
                 //    //var contentRequestPermisson = document.getElementById('contentRequestPermisson')
                 //    //contentRequestPermisson.style.display = "flex"
 
-       
+
                 //    //var myLocationButton = document.getElementById('getMyLocation')
                 //    //myLocationButton.style.display = "none";
 
@@ -1033,9 +1241,9 @@
                     var mapbg2 = document.getElementById('mapbg4')
                     mapbg2.style.display = "none"
                 }
-                
+
                 zoomPunto(lt, lg);
-               
+
                 }
                 var latf;
                 var lngf;
@@ -1203,7 +1411,7 @@
                    let mapbg1 = document.getElementById('mapbg4')
                     mapbg1.style.display = "none"
                           var w = screen.width;
-             
+
                     if (w > 550) {
                         let mapbg4 = document.getElementById('mapbg2')
                         mapbg4.style.top = "120%"

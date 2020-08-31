@@ -250,6 +250,7 @@
     <Content Include="Content\img\bg\favicon.png" />
     <Content Include="Content\img\bg\mtf.png" />
     <Content Include="Content\img\bg\mtfS.png" />
+    <Content Include="Content\img\bg\pageLoader.gif" />
     <Content Include="Content\img\bg\Rectangle 2.jpg" />
     <Content Include="Content\img\bg\Vector.png" />
     <Content Include="Content\img\CABECERA_BDB.png" />
