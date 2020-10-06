@@ -68,7 +68,7 @@ namespace SisMap.Business
             return _data;
         }
 
-        public List<ProvinceModel> GetDataBank(string mlf, string bdb, string agc, string atm, string atb, string city, float lat , float lgn)
+        public List<ProvinceModel> GetDataBank(string mlf, string bdb, string agc, string atm, string atb, string province, string city, float lat , float lgn)
         {
 
             List<ProvinceModel> _data = new List<ProvinceModel>();
@@ -111,21 +111,21 @@ namespace SisMap.Business
             {
                 source[4] = "atb";
             }
+
             var cites = _model.Select(x => x.ciudad.ToUpper()).Distinct().ToList();
+
             if (city != "")
             {
                 cites.Clear();
                 cites.Add(city);
             }
 
-
             //    var ubicacion = geo.Split(';');
             //var lat = double.Parse(ubicacion[0]);
             //var lng = float.Parse(ubicacion[1]);
-
-
     
             ProvinceModel _provice = new ProvinceModel();
+            //foreach (var item in _model.Where(x => source.Contains(x.trmSupervi) && provinces.Contains(x.provincia.ToUpper())).Select(x => x.provincia).Distinct())
             foreach (var item in _model.Where(x => source.Contains(x.trmSupervi) && cites.Contains(x.ciudad.ToUpper())).Select(x => x.provincia).Distinct())
             {
                 _data.Add(new ProvinceModel { provincia = item });
@@ -141,6 +141,7 @@ namespace SisMap.Business
                     latitud = x.latitud,
                     longitud = x.longitud,
                     TipoNegocio = x.tiponegocio,
+                    Provincia = x.provincia, 
                     Canton = x.ciudad,
                     Parroquia = x.parroquia,
                     Celular = x.telefono,
@@ -165,6 +166,7 @@ namespace SisMap.Business
                     //    // var backr= bank.Where(x => x.distancia < 20).ToList();
                     //    var backr = bank.ToList();
                     //    //backr.AsParallel()
+
                     //    //.ForAll(s =>
                     //    //{
                     //    //    s.servicios = ServiciosGet(s.icon);
@@ -178,7 +180,7 @@ namespace SisMap.Business
 
                     var backr = bank.Where(x => x.distancia < 10);
                     if(backr.Count()>0)
-                    _data.Where(t => t.provincia == item.provincia).First().bancos = bank.Where(x => x.Canton == backr.First().Canton).ToList();
+                    _data.Where(t => t.provincia == item.provincia).First().bancos = bank.Where(x => x.Provincia == backr.First().Provincia).ToList();
 
                 }
                 else {
@@ -187,8 +189,6 @@ namespace SisMap.Business
                
             }
 
-
-           
                         return _data;
         }
 

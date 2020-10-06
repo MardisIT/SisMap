@@ -17,22 +17,26 @@ namespace SisMap.Controllers
             ViewData["bdb"] = bdb;
             ViewData["agc"] = agc;
             ViewData["atm"] = atm;
-            ViewData["atb"] = atb;
-            return View();
+            ViewData["atb"] = atb; 
+             return View();
         }
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public  JsonResult DataMax(string __RequestVerificationToken, string mlf,  string bdb, string agc, string atm, string atb, string City="", string lat = "0", string lgn ="0")
         {
+            //Geos de prueba
+            //float latPrueba = float.Parse("-2,2168469");
+            //float lonPrueba = float.Parse("-80,9535783");");
             try
             {
 
 
                 //Para Publicar  
-                //List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb,  City, float.Parse(lat), float.Parse(lgn));
+                //List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb, "",  City, float.Parse(lat), float.Parse(lgn));
 
                 //Para Pulicar Desarrollo
-                List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb, City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
+                List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb,"", City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
+                //List <ProvinceModel> statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb, "", City, lat, lgn);
                 return Json(statustask);
 
             }

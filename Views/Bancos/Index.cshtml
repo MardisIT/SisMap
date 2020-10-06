@@ -14,6 +14,23 @@
 <link href="~/Content/css/mainBG.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <center>
+        <div class="modal-content" style="width: 60%;height: 60%;">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje Informativo</h5>
+            </div>
+            <div class="modal-body">
+                <p>Para el correcto funcionamiento de la aplicacion debe conceder permisos de ubicación</p>
+            </div>
+            <div class="modal-footer">
+                <button id="myBtn" type="button" class="btn btn-primary">Cerrar</button>
+            </div>
+        </div>
+    </center>
+</div>
+
 <div id="contentRequestPermisson" class="dialogModal">
     <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
     <div id="progressCircle" class="preloader-wrapper big active progressMap">
@@ -51,9 +68,12 @@
     </nav>*@
 
 <main class="map" id="mapid">
+    <div id="cargando">
+        <p class="titleDrawerBluetitlet" class="titleTextt">
+            <img id="imgCargando" src="../Content/img/bg/pageLoader.gif" width="30%" height="20%" alt="loading" />  Un momento, por favor...</p>
+    </div>
     <div class="leaflet-bottom leaflet-right">
         <div class="leaflet-control-zoom leaflet-bar leaflet-control" style="top: -70px;">
-
             <a class="" id="Miubicacion" title="Encuentrame" role="button" aria-label="Centrame">  <img src="~/Content/img/my_location_24px.png" width="15px" /></a>
         </div>
     </div>
@@ -133,7 +153,7 @@
         </div>
         <div class="col s6 m2">
 
-            <a class=" transparent" style="position: absolute;    top:  15px;    left: 90%;">
+            <a id = "Abrir" class="transparent" style="position: absolute;    top:  15px;    left: 90%;">
                 <img src="~/Content/img/VectorArriba.png" />
 
             </a>
@@ -147,7 +167,7 @@
         </div>
         <div class="col s6 m2">
 
-            <a class=" transparent" style="position: absolute;    top: 12px;     left: 90%;">
+            <a class="transparent abajomenu" style="position: absolute;    top: 12px;     left: 90%;">
                 <img src="~/Content/img/pin_drop_24px_outlined.svg" />
 
             </a>
@@ -350,7 +370,7 @@
 
                     </div>
                     <div class="mobillupa col s6 m2 ">
-                        <a class=" transparent" id="BuscarID" style="position: absolute;   left:25px; top: 15px;">
+                        <a class=" transparent " id="BuscarID" style="position: absolute;   left:25px; top: 15px;">
                             <img src="~/Content/img/Path.png" style="width:25px" />
 
 
@@ -473,24 +493,24 @@
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165708090-1"></script>
 
         <script>
+            console.log("SOY PRIMERO INDEX0")
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
-
+            console.log("SOY PRIMERO INDEX1")
             gtag('config', 'UA-165708090-1');
         </script>
 
 
 
         <script>
-
+            console.log("SOY PRIMERO INDEX2")
             function openli(e) {
 
 
                 $(e).find('li').fadeToggle("fast");
                 var v = $(e).find('img.ElipLisV').attr('src');
                 console.log(v)
-
 
                 if(v.includes("VectorArriba"))
                     $(e).find('img.ElipLisV').attr('src', '../Content/img/VectorAbajo.png');
@@ -531,7 +551,7 @@
                                       })
                                })
 
-                         //CARGARDO
+                         //CARGANDO
                       let htmlaux = ""
                         let tamaux=1
 
@@ -541,7 +561,8 @@
                                     ' <p class="titleDrawerBluetitlet" class="titleTextt"><img src="../Content/img/bg/pageLoader.gif" width="10%" height="10%"  alt="loading" />  Un momento, por favor...</p>'+
                                     ' </div>'
                                     + '</td>'
-                                    '    </tr>'
+                        '    </tr>'
+
                         let mapbg4aux = document.getElementById('mapbg4')
                         let heiaux = 65 * tamaux;
                         let hei2aux = (20*tamaux) + 160;
@@ -678,7 +699,7 @@
                         mapbg4aux.style.height = hei + "px"
                         mapbg4aux.style.display = "flex"
                 var w = screen.width;
-                
+
                         if (w > 550) {
                             let mapbg2 = document.getElementById('mapbg2')
                             mapbg2.style.top = hei2 + "%"
@@ -796,7 +817,7 @@
                   $('#busBGId').keypress(function () {
                        let mapbg41 = document.getElementById('mapbg5')
                       mapbg41.style.display = "none"
-                      
+
 
                     if ($(this).val().length > -1) {
                     var list=[]
@@ -823,7 +844,7 @@
                         mapbg4aux.style.height = hei + "px"
                         mapbg4aux.style.display = "flex"
                         mapbg4aux.style.position = "initial"
-                      
+
                         $("#mapbg5").html('<table class="table table-borderless">' +
                             '  <tbody>'+
                                    htmlaux+
@@ -868,7 +889,7 @@
                             '</table>'
                              );
 
-                       
+
                     } else {
                         let tam=1
                         let html = ""
@@ -989,7 +1010,25 @@
             }
             WiLoad();
             function WiLoad() {
-               
+                let cargando = document.getElementById('cargando')
+                let imagen = document.getElementById('imgCargando')
+                var waux = screen.width;
+
+                cargando.style.paddingLeft = "40%"
+
+                if (waux > 550) {
+                    cargando.style.paddingTop = "5%"
+                } else {
+                    cargando.style.paddingTop = "50%"
+                    //imagen.width = "30%"
+                    //imagen.height = "20%"
+                }
+
+                console.log("SOY PRIMERO Wiload");
+                modal.style.display = "block";
+            }
+            function WiLoad2() {
+                console.log("SOY PRIMERO Wiload2")
                 var w = screen.width;
                 var h = (screen.height / 2);
               // alert('h:'+screen.height +'- w:'+w)
@@ -999,17 +1038,17 @@
                 let mapbg8 = document.getElementById('MiMore1')
                 mapbg8.style.display = "none";
 
-                 let map = document.getElementById('mapid')
+                let map = document.getElementById('mapid')
                  let mapbg9 = document.getElementById('mapbg9')
-                mapbg9.style.display = "none";
+                mapbg9.style.display = "flex";
                 var f = isMobile();
                 var mobil = whatMobile();
                 if (isMobile()) {
                        let mapbg9 = document.getElementById('mapbg9')
                         mapbg9.style.display = "flex";
                     var badBrowser = document.getElementsByClassName("leaflet-right");
-                    if (mobil == "ios") { vh = (screen.height - 180); }
-                    else if (mobil == "android") { vh = (screen.height - 120); }
+                    if (mobil == "ios") { vh = (screen.height - 80); }
+                    else if (mobil == "android") { vh = (screen.height - 60); }
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = (vh-100)+"px";
                     }
@@ -1020,7 +1059,7 @@
                     mapbg3.style.display = "none";
                         mapbg2.style.display = "none";
                   //  mapbg22.style.display = "flex";
-                    h = (screen.height - 380);
+                    h = (screen.height - 340);
                     map.style.height=(vh-100)+"px";
                      mapbg2.style.top = h+"px";
 
@@ -1077,7 +1116,7 @@ if(isMobil.Windows()) {
                 }
                 return cual;
             }
- 
+
 
 
            function isMobile() {
@@ -1138,7 +1177,7 @@ if(isMobil.Windows()) {
 
                     LoadCity();
 
-                    LoadMap();
+                    //LoadMap();
                 //}
 
                 function ReloadMap() {

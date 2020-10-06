@@ -6,6 +6,32 @@ var layerGroup;
 //var dist = []
 //var ar = []
 
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+var mapbgmm3 = document.getElementById("Abrir")
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function () {
+    modal.style.display = "none";
+    WiLoad2();
+    LoadMap();
+    mapbgmm3.click();
+}
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "block";
+    }
+}
+
 document.getElementById("closeDrawer").addEventListener('click', (evt) => {
     var elem = document.getElementById('markerSite')
     var instance = M.Sidenav.getInstance(elem);
@@ -808,7 +834,7 @@ function initializarMapa() {
 
                     })
                     if (lis !== "")
-                        ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "<img src='../Content/img/VectorAbajo.png'  class='ElipLisV'/>" + lis + "</ul>"
+                        ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "<img src='../Content/img/VectorArriba.png'  class='ElipLisV'/>" + lis + "</ul>"
                     if (lis === "")
                         ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "</ul>"
                 })
@@ -869,6 +895,53 @@ function initializarMapa() {
 
 function error() {
     alert('Se han denegado permisos de ubicación, active para acceder');
+    let latitude = -0.002247;
+    let longitude = -78.458078;
+
+    var myIcon = L.icon({
+        iconUrl: '../Content/img/myLocation.png',
+        iconSize: [50, 50],
+        iconAnchor: [22, 50],
+        popupAnchor: [-3, -50],
+        shadowSize: [68, 50],
+        shadowAnchor: [22, 50]
+    });
+    var marker = L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);
+    marker.bindPopup('Estas aquí').openPopup();
+    marker.on('click', function (evt) {
+        var latLngs = [marker.getLatLng()];
+        var markerBounds = L.latLngBounds(latLngs);
+        mymap.fitBounds(markerBounds);
+    })
+    myLocationMarker = marker
+    //  var latLngs = [marker.getLatLng()];
+    // var markerBounds = L.latLngBounds(latLngs);
+    mymap.setView([latitude, longitude], 14);
+}
+
+function error2() {
+    let latitude = 0;
+    let longitude = 0;
+
+    var myIcon = L.icon({
+        iconUrl: '../Content/img/myLocation.png',
+        iconSize: [50, 50],
+        iconAnchor: [22, 50],
+        popupAnchor: [-3, -50],
+        shadowSize: [68, 50],
+        shadowAnchor: [22, 50]
+    });
+    var marker = L.marker([latitude, longitude], { icon: myIcon }).addTo(mymap);
+    marker.bindPopup('Estas aquí').openPopup();
+    marker.on('click', function (evt) {
+        var latLngs = [marker.getLatLng()];
+        var markerBounds = L.latLngBounds(latLngs);
+        mymap.fitBounds(markerBounds);
+    })
+    myLocationMarker = marker
+    //  var latLngs = [marker.getLatLng()];
+    // var markerBounds = L.latLngBounds(latLngs);
+    mymap.setView([latitude, longitude], 14);
 }
 
 function permiso(_model) {
@@ -890,7 +963,7 @@ function permiso(_model) {
         let mymap = initializarMapa();
 
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => success(position, mymap), error);
+            navigator.geolocation.getCurrentPosition((position) => success(position, mymap), error2);
 
             var contentRequestPermisson = document.getElementById('contentRequestPermisson')
             contentRequestPermisson.style.display = "none"
@@ -1142,7 +1215,7 @@ function ReolizarMapa() {
 
                     })
                     if (lis !== "")
-                        ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "<img src='../Content/img/VectorAbajo.png'  class='ElipLisV'/>" + lis + "</ul>"
+                        ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "<img src='../Content/img/VectorArriba.png'  class='ElipLisV'/>" + lis + "</ul>"
                     if (lis === "")
                         ilv += "<ul class='ulServ' onclick= 'openli(this)'>  <img src='../Content/img/Ellipse1.png'  class='ElipLis'/>" + ser.servicio + "</ul>"
                 })

@@ -17,6 +17,7 @@ namespace SisMap.Models
         public double? latitud { get; set; }
         public double? longitud { get; set; }
         public string TipoNegocio { get; set; }
+        public string Provincia { get; set; }
         public string Canton { get; set; }
         public string Parroquia { get; set; }
         public string Celular { get; set; }
