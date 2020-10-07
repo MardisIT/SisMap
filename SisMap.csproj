@@ -312,11 +312,17 @@
     </Content>
     <Content Include="Content\css\fonts\NunitoSans-Regular.ttf" />
     <None Include="Properties\PublishProfiles\bancoguayaquil - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bancoguayaquil - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\bancoguayaquil - ReadOnly - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\bancoguayaquil - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\bancoguayaquil - ReadOnly - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dyvenpro - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\engineaggregate - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\engineaggregate - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\engineaggregate - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\engineaggregate - ReadOnly - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\engineaggregate - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

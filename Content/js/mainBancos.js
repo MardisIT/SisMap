@@ -20,7 +20,7 @@ var span = document.getElementsByClassName("close")[0];
 btn.onclick = function () {
     modal.style.display = "none";
     WiLoad2();
-    LoadMap();
+    LoadMapEmpty();
     mapbgmm3.click();
 }
 
@@ -894,7 +894,7 @@ function initializarMapa() {
 }
 
 function error() {
-    alert('Se han denegado permisos de ubicación, active para acceder');
+    //alert('Se han denegado permisos de ubicación, active para acceder');
     let latitude = -0.002247;
     let longitude = -78.458078;
 
@@ -920,8 +920,8 @@ function error() {
 }
 
 function error2() {
-    let latitude = 0;
-    let longitude = 0;
+    let latitude = -1.4595837;
+    let longitude = -78.3308247;
 
     var myIcon = L.icon({
         iconUrl: '../Content/img/myLocation.png',
@@ -941,7 +941,7 @@ function error2() {
     myLocationMarker = marker
     //  var latLngs = [marker.getLatLng()];
     // var markerBounds = L.latLngBounds(latLngs);
-    mymap.setView([latitude, longitude], 14);
+    mymap.setView([latitude, longitude], 6);
 }
 
 function permiso(_model) {
@@ -954,7 +954,7 @@ function permiso(_model) {
             navigator.geolocation.getCurrentPosition((position) => successEmbeeded(position), error);
 
         } else {
-            console.lo("Geolocation is not supported by this browser.");
+            console.log("Geolocation is not supported by this browser.");
         }
 
     }
@@ -975,10 +975,56 @@ function permiso(_model) {
             //myLocationButton.style.display = "flex";
 
         } else {
-            console.lo("Geolocation is not supported by this browser.");
+            console.log("Geolocation is not supported by this browser.");
         }
     }
 }
+
+function errorModal() {
+    let cargando = document.getElementById('cargando')
+    let contenido = document.getElementById('modalContent')
+    //let imagen = document.getElementById('imgCargando')
+    var waux = screen.width;
+
+    cargando.style.paddingLeft = "40%"
+
+    if (waux > 550) {
+        cargando.style.paddingTop = "5%"
+    } else {
+        cargando.style.paddingTop = "50%"
+        //imagen.width = "30%"
+        //imagen.height = "20%"
+    }
+    console.log("SOY PRIMERO Wiload");
+    contenido.style.width = "80%";
+
+    var mobil = whatMobile();
+    if (isMobile()) {
+        if (mobil == "ios") {modal.style.paddingInlineEnd = "25%"; }
+        else if (mobil == "android") { modal.style.paddingInlineEnd = "20%"; }
+        }
+
+    modal.style.display = "block";
+}
+
+function successModal() {
+    let cargando = document.getElementById('cargando')
+    var waux = screen.width;
+
+    cargando.style.paddingLeft = "30%"
+
+    if (waux > 550) {
+        cargando.style.paddingTop = "5%"
+    } else {
+        cargando.style.paddingTop = "50%"
+    }
+    modal.style.display = "none";
+    GetGeo();
+    LoadMap();
+    WiLoad2();
+    mapbgmm3.click();
+}
+
 function GetGeo() {
 
     //se debe  poner en negado la siguiente función
@@ -990,7 +1036,6 @@ function GetGeo() {
         } else {
             console.lo("Geolocation is not supported by this browser.");
         }
-
     }
     else {
         if (navigator.geolocation) {
@@ -1005,7 +1050,6 @@ function InitGeo(position) {
     let longitude = position.coords.longitude;
     localStorage.setItem("Lat", latitude);
     localStorage.setItem("lng", longitude);
-
 }
 function changedata(_model) {
     data_engine = [];

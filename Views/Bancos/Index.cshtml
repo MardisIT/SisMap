@@ -15,21 +15,17 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
-    <center>
-        <div class="modal-content" style="width: 60%;height: 60%;">
-            <div class="modal-header">
-                <h5 class="modal-title">Mensaje Informativo</h5>
+    <div id="myModal" class="modal">
+        <div id="modalContent" class="modal-content">
+            <div class="modal-header" style="background-color: #012244">
+                <h5 class="modal-title" style="color:#FFFFFF">Mensaje Informativo</h5>
             </div>
-            <div class="modal-body">
-                <p>Para el correcto funcionamiento de la aplicacion debe conceder permisos de ubicación</p>
-            </div>
-            <div class="modal-footer">
-                <button id="myBtn" type="button" class="btn btn-primary">Cerrar</button>
+            <div class="modal-body" style="text-align:center">
+                <p style="text-align:justify">Para el correcto funcionamiento de la aplicación debe conceder permisos de ubicación,por favor conceder permisos</p>
+                <button id="myBtn" type="button" class="btn btn-primary" style="justify-self: center;">Cerrar</button>
             </div>
         </div>
-    </center>
-</div>
+    </div>
 
 <div id="contentRequestPermisson" class="dialogModal">
     <a id="requestPermisson" class="waves-effect waves-light btn" style="background-color:#007ACC">VER BANCOS DEL BARRIO</a>
@@ -155,7 +151,6 @@
 
             <a id = "Abrir" class="transparent" style="position: absolute;    top:  15px;    left: 90%;">
                 <img src="~/Content/img/VectorArriba.png" />
-
             </a>
         </div>
     </div>
@@ -1010,23 +1005,32 @@
             }
             WiLoad();
             function WiLoad() {
-                let cargando = document.getElementById('cargando')
-                let imagen = document.getElementById('imgCargando')
-                var waux = screen.width;
-
-                cargando.style.paddingLeft = "40%"
-
-                if (waux > 550) {
-                    cargando.style.paddingTop = "5%"
-                } else {
-                    cargando.style.paddingTop = "50%"
-                    //imagen.width = "30%"
-                    //imagen.height = "20%"
-                }
-
-                console.log("SOY PRIMERO Wiload");
-                modal.style.display = "block";
+                navigator.geolocation.getCurrentPosition(successModal, function (error) {
+                    // El segundo parámetro es la función de error
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            // El usuario denegó el permiso para la Geolocalización.
+                            errorModal();
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            // La ubicación no está disponible.
+                            errorModal();
+                            break;
+                        case error.TIMEOUT:
+                            // Se ha excedido el tiempo para obtener la ubicación.
+                            errorModal();
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            // Un error desconocido.
+                            errorModal();
+                            break;
+                        default:
+                            errorModal();
+                            break;
+                    }
+                });
             }
+
             function WiLoad2() {
                 console.log("SOY PRIMERO Wiload2")
                 var w = screen.width;
@@ -1048,7 +1052,7 @@
                         mapbg9.style.display = "flex";
                     var badBrowser = document.getElementsByClassName("leaflet-right");
                     if (mobil == "ios") { vh = (screen.height - 80); }
-                    else if (mobil == "android") { vh = (screen.height - 60); }
+                    else if (mobil == "android") { vh = (screen.height - 68); }
                     for (i = 0; i < badBrowser.length; i++) {
                         badBrowser[i].style.top = (vh-100)+"px";
                     }
@@ -1059,14 +1063,12 @@
                     mapbg3.style.display = "none";
                         mapbg2.style.display = "none";
                   //  mapbg22.style.display = "flex";
-                    h = (screen.height - 340);
+                    if (mobil == "ios") { h = (screen.height - 340); }
+                    else if (mobil == "android") { h = (screen.height - 310); }
                     map.style.height=(vh-100)+"px";
-                     mapbg2.style.top = h+"px";
+                    mapbg2.style.top = h+"px";
 
                 }
-
-
-
             }
 
 
@@ -1226,9 +1228,102 @@ if(isMobil.Windows()) {
                     });
                     return null;
                 }
-                var store
-                function LoadMap() {
+            var store
 
+            function LoadMapEmpty() {
+
+                GetGeo();
+                var token = $("[name='__RequestVerificationToken']").val();
+                let _bdb = $('#bdb').prop('checked')
+                let _mtf = $('#mtf').prop('checked')
+                let _agc = $('#agc').prop('checked')
+                let _atm = $('#atm').prop('checked')
+                let _atb = $('#atb').prop('checked')
+                let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
+
+                var dataSet = []
+                $.ajax({
+                    url: "/Bancos/DataMax",
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: token,
+                        mlf: _mtf,
+                        bdb: _bdb,
+                        agc: _agc,
+                        atm: _atm,
+                        atb: _atb,
+                        lat: 0,
+                        lgn: 0
+                    },
+                    success: function (result) {
+                        //  console.log(result)
+                        store = result
+                        permiso(result)
+                    },
+                    error: function () {
+                        if (window.location !== window.parent.location) {
+                            var requestPermissonButton = document.getElementById('requestPermisson')
+                            requestPermissonButton.style.display = "flex"
+
+                            var progressCircle = document.getElementById('progressCircle')
+                            progressCircle.style.display = "none"
+                        } else {
+
+                        }
+
+                    }
+                });
+                return null;
+            }
+
+            function LoadMapSinGeo() {
+
+                var token = $("[name='__RequestVerificationToken']").val();
+                let _bdb = $('#bdb').prop('checked')
+                let _mtf = $('#mtf').prop('checked')
+                let _agc = $('#agc').prop('checked')
+                let _atm = $('#atm').prop('checked')
+                let _atb = $('#atb').prop('checked')
+                let geos = localStorage.getItem('Lat') + ";" + localStorage.getItem('lng')
+
+                var dataSet = []
+                $.ajax({
+                    url: "/Bancos/DataMax",
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: token,
+                        mlf: _mtf,
+                        bdb: _bdb,
+                        agc: _agc,
+                        atm: _atm,
+                        atb: _atb,
+                        lat: parseFloat(localStorage.getItem('Lat')),
+                        lgn: parseFloat(localStorage.getItem('lng'))
+                    },
+                    success: function (result) {
+                        //  console.log(result)
+                        store = result
+                        permiso(result)
+                    },
+                    error: function () {
+                        if (window.location !== window.parent.location) {
+                            var requestPermissonButton = document.getElementById('requestPermisson')
+                            requestPermissonButton.style.display = "flex"
+
+                            var progressCircle = document.getElementById('progressCircle')
+                            progressCircle.style.display = "none"
+                        } else {
+
+                        }
+
+                    }
+                });
+                return null;
+            }
+
+
+                function LoadMap() {
+ 
                     GetGeo();
                     var token = $("[name='__RequestVerificationToken']").val();
                     let _bdb = $('#bdb').prop('checked')

@@ -32,10 +32,10 @@ namespace SisMap.Controllers
 
 
                 //Para Publicar  
-                //List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb, "",  City, float.Parse(lat), float.Parse(lgn));
+                List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank( mlf,  bdb,  agc,  atm, atb, "",  City, float.Parse(lat), float.Parse(lgn));
 
                 //Para Pulicar Desarrollo
-                List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb,"", City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
+                //List<ProvinceModel> statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb,"", City, float.Parse(lat.Replace(".", ",")), float.Parse(lgn.Replace(".", ",")));
                 //List <ProvinceModel> statustask = _BancoBarioDOA.GetDataBank(mlf, bdb, agc, atm, atb, "", City, lat, lgn);
                 return Json(statustask);
 
